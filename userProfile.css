@@ -1,3 +1,4 @@
+ 162460864-ch-UI-update
 @font-face {
   font-family: "Brawler Regular";
   src: url('../fonts/Brawler-Regular.ttf');
@@ -35,6 +36,50 @@ body
   background-color: #333;
   color: white;
 }
+
+
+body {
+    font-family: HelvLight;
+}
+
+
+/* The div boxes */
+.div {
+    color: white;
+    background-color: white;
+    width: 120vh;
+    padding: 10px;
+    height: 100vh;
+    background-image: linear-gradient( rgb(75, 14, 54), #310d4e); 
+   
+}
+
+.div1 {
+    color: white;
+    background-color: white;
+    width: 20vh;
+    padding: 10px;
+    height: 10vh;
+    background-color: white;
+   
+}
+
+
+
+/* The tables */
+    table, h1 {
+        border-collapse: collapse;
+        width: 100%;
+        color: white;
+    }
+    
+    th, td {
+    
+        padding: 8px;
+        text-align: left;
+        border-bottom: 1px solid white;
+    }
+ gh-pages
     
 /*The Navigation section*/
 .topnav {
@@ -66,7 +111,11 @@ body
     display: none;
   }
   
+ 162460864-ch-UI-update
   @media screen and (max-width: 800px) {
+
+  @media screen and (max-width: 600px) {
+gh-pages
     .topnav a:not(:first-child) {display: none;}
     .topnav a.icon {
       float: right;
@@ -74,7 +123,11 @@ body
     }
   }
   
+ 162460864-ch-UI-update
   @media screen and (max-width: 800px) {
+
+  @media screen and (max-width: 600px) {
+ gh-pages
     .topnav.responsive {position: relative;}
     .topnav.responsive .icon {
       position: absolute;
@@ -86,9 +139,12 @@ body
       display: block;
       text-align: left;
     }
+ 162460864-ch-UI-update
   }
 
   @media (max-width: 800px){
     .records {width:60px}
     }
   
+  }
+ gh-pages

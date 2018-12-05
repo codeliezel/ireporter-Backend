@@ -1,3 +1,4 @@
+ 162460864-ch-UI-update
 @font-face {
   font-family: "Brawler Regular";
   src: url('../fonts/Brawler-Regular.ttf');
@@ -17,12 +18,24 @@ body
 #grad {
     background-image: url('../../pictures/pic3.jpg');
     height: 120vh;
+=======
+body
+{
+    font-family: HelvLight;
+       
+}
+
+#grad {
+    background-image: url('../../pictures/pic3.jpg');
+    height: 170vh;
+ gh-pages
     background-size: cover;
 }
  
 
 .div {
     background-color: white;
+ 162460864-ch-UI-update
     width: 60vh;
     padding: 25px;
     margin: 25px;
@@ -32,6 +45,18 @@ body
 @media (max-width: 800px){
   .div {width:200px}
   }
+
+    width: 100vh;
+    padding: 25px;
+    margin: 25px;
+    height: 130vh;
+    background-image: linear-gradient( white, grey); 
+}
+
+@media (max-width: 600px){
+    .div {width:300px}
+    }
+ gh-pages
     
 
 /*The Form section*/
@@ -40,7 +65,11 @@ body
       padding: 12px 20px;
       margin: 8px 0;
       box-sizing: border-box;
+ 162460864-ch-UI-update
       border: 2px solid black;
+
+      border: 2px solid purple;
+gh-pages
       border-radius: 4px;
   }
   
@@ -76,7 +105,11 @@ body
     display: none;
   }
   
+ 162460864-ch-UI-update
   @media screen and (max-width: 800px) {
+
+  @media screen and (max-width: 600px) {
+ gh-pages
     .topnav a:not(:first-child) {display: none;}
     .topnav a.icon {
       float: right;
@@ -84,7 +117,11 @@ body
     }
   }
   
+ 162460864-ch-UI-update
   @media screen and (max-width: 800px) {
+
+  @media screen and (max-width: 600px) {
+ gh-pages
     .topnav.responsive {position: relative;}
     .topnav.responsive .icon {
       position: absolute;

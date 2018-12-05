@@ -1,3 +1,4 @@
+162460864-ch-UI-update
 @font-face {
   font-family: "Brawler Regular";
   src: url('../fonts/Brawler-Regular.ttf');
@@ -15,6 +16,12 @@ body
 
 @media only screen and (max-width: 800px) {
   .background-image {width:200px}
+
+/* The body section*/
+body 
+{
+    font-family: HelvLight;
+gh-pages
 }
 
 /* The header section*/

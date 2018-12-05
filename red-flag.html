@@ -16,7 +16,11 @@ Red-Flag - WACA
       <div class="topnav" id="myTopnav">
             <a href="index.html" class="active">Home</a>
             <a href="intervention.html">Create an intervention record</a>
+162460864-ch-UI-update
             <a href="signIn.html">Sign in to your account</a>
+
+            <a href="signIn.html">Go to your account</a>
+gh-pages
             <a href="javascript:void(0);" class="icon" onclick="myFunction()">
                             <i class="fa fa-bars"></i>
                           </a>
@@ -28,14 +32,22 @@ Red-Flag - WACA
 
 </header>
 
+ 162460864-ch-UI-update
 <div align = "center">
+
+<div align = "left">
+ gh-pages
     <font size = "12px">
 <p>
 <b>What is a Red-Flag Record?</b>
 </p>
 </font>
 <p>
+ 162460864-ch-UI-update
 
+
+<b>
+ gh-pages
     A red-flag record is a detailed information provided by you on cases and incidents of corruption<br>
     within AFRICA.<br><br>
 
@@ -46,27 +58,46 @@ Red-Flag - WACA
 ** Never be bullied to not create one.<br>
 ** Never be tired to create one.<br><br>
 Thank you.
+162460864-ch-UI-update
 </p>
 </div>
 <div align= "center">
+
+</b>
+</p>
+</div>
+<div align= "right">
+gh-pages
         <font size = "12px">
                 <p>
                 <b>Why you should always create a Red-Flag Record?</b>
                 </p>
                 </font>
                 <p>
+162460864-ch-UI-update
                    
                             WACA is all about bringing multiple voices together, this medium aims<br>
                             at creating an opportunity for people's voices to be heard,<br>
                             people who have been belittled, suffered from and surpressed with corruption.<br>
                             By creating a red-flag record, an experience will always be a plus to the movement.<br>
                             So never hesistate.<br><br><br>
-                      
+
+                  
+                        <b>
+                            WACA is all about bringing multiple voices together, this medium aims<br>
+                            at creating an opportunity for people's voices to be heard,<br>
+                            people who have been belittled, suffered from and surpressed with corruption.<br>
+                            By creating a red-flag record, an experience will always be a <br>
+                            plus to the movement.<br>
+                            So never hesistate.<br><br><br>
+                        </b>
+gh-pages
                         </p>
                     </div>
 
 <div align= "center">
         <div class="div" >
+162460864-ch-UI-update
             <label><b>Create a red-flag record:</b></label>
             <br><br><br>
             <form spellcheck="true">
@@ -78,10 +109,35 @@ Thank you.
                 <input type="text" id="address" name="address">
                 <textarea rows="5" cols="90">
                  Describe the incidence in full details:
+
+            <label>Create a red flag record:</label>
+            <br><br><br>
+            <form spellcheck="true">
+                <label>First Name:</label>
+                <input type="text" id="fname" name="fname">
+                <label >Last Name:</label>
+                <input type="text" id="lname" name="lname">
+                <label >Email:</label>
+                <input type="text" id="lname" name="lname">
+                <label >Country of Incidence:</label>
+                <input type="text" id="country" name="country">
+                <label>State of Incidence:</label>
+                <input type="text" id="state" name="state">
+                <label>City of Incidence:</label>
+                <input type="text" id="city" name="city">
+                <label>Exact Address:</label>
+                <input type="text" id="add" name="add">
+                <textarea rows="4" cols="86">
+                 Describe the incidence in full details:
+
+                 Do not forget to start with a title, else
+                it might be penalised by the moderators.
+gh-pages
                     </textarea><br><br>
                     
                 <label >The date it happened?</label>
                 <input type="date" id="date" name="date"><br><br>
+162460864-ch-UI-update
                 <label>Add the geolocation: Check below to know the coordinates</label><br><br>
                 <label>Latitude:</label>
                 <input type="text" id="lat" name="lat"> 
@@ -93,18 +149,66 @@ Thank you.
                 <input type="file" name="vid"><br><br>
                 
                 <button class="button button1" name= "submit">SUBMIT</button>
+
+                <label>Add the geolocation: Check below to know your coordinates</label><br><br>
+                <label>Latitude:</label>
+                <input type="text" id="lat" name="lat"> 
+                <label>Longtitude:</label>
+                <input type="text" id="long" name="long"> 
+                <label>Select an image to upload:</label>
+                <input type="file" name="image1" id="image1"> 
+                <label >Select an image to upload:</label>
+                <input type="file" name="image2" id="image2"><br><br>
+                <label >Select a video to upload:</label>
+                <input type="file" name="vid"><br><br>
+             
+                <button class="button button1" name= "submit">SEND</button>
+ gh-pages
               </form>
             </div>
            
         </div>
         </div>
 
+ 162460864-ch-UI-update
+
+        <div>
+        <p>Click the button to get your coordinates.</p>
+
+        <button onclick="getLocation()">Try It</button>
+        
+        <p id="demo"></p>
+        
+        <script>
+        var x = document.getElementById("demo");
+        
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition);
+            } else { 
+                x.innerHTML = "Geolocation is not supported by this browser.";
+            }
+        }
+        
+        function showPosition(position) {
+            x.innerHTML = "Latitude: " + position.coords.latitude + 
+            "<br>Longitude: " + position.coords.longitude;
+        }
+        </script>
+        </div>
+
+
+ gh-pages
             <!--The Footer-->
             <div align = "center">
                     <font color = "black">
                    <b><p>2018<sup>&copy;</sup> WACA. All Rights Reserved. 
                     <br><br>
+ 162460864-ch-UI-update
                     Contact information: WACAsupport@WACA.com</p></b>
+
+                    Contact information: <a href="mailto:someone@example.com">WACAsupport@WACA.com</a></p></b>
+gh-pages
                     </font>
                     </div> 
       </body>
