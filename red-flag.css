@@ -1,4 +1,4 @@
- 162460864-ch-UI-update
+
 @font-face {
   font-family: "Brawler Regular";
   src: url('../fonts/Brawler-Regular.ttf');
@@ -16,12 +16,10 @@ body
 body 
 {
     font-family: HelvLight;
-gh-pages
 }
 
 
 header {
- 162460864-ch-UI-update
   background-image: url('../../pictures/pic2.jpg');
   height: 70vh;
   background-size: cover;
@@ -39,17 +37,14 @@ header {
     background-position: center;
 }
 
-gh-pages
+
 /*The Navigation section*/
 .topnav {
     overflow: hidden;
     background-color: #333;
   }
   
-162460864-ch-UI-update
-  
 
-gh-pages
   .topnav a {
     float: left;
     display: block;
@@ -74,11 +69,11 @@ gh-pages
     display: none;
   }
   
- 162460864-ch-UI-update
+
   @media screen and (max-width: 800px) {
 
   @media screen and (max-width: 600px) {
- gh-pages
+
     .topnav a:not(:first-child) {display: none;}
     .topnav a.icon {
       float: right;
@@ -86,11 +81,11 @@ gh-pages
     }
   }
   
-162460864-ch-UI-update
+
   @media screen and (max-width: 800px) {
 
   @media screen and (max-width: 600px) {
- gh-pages
+
     .topnav.responsive {position: relative;}
     .topnav.responsive .icon {
       position: absolute;
@@ -114,7 +109,7 @@ img {
 
 .div {
     background-color: white;
-162460864-ch-UI-update
+
     width: 60vh;
     padding: 12px 25px;
     margin: 25px;
@@ -136,7 +131,6 @@ img {
 
 @media (max-width: 600px){
     .div {width:300px}
- gh-pages
     }
     
 input[type=text], [type=file], [type=date] {
@@ -144,11 +138,11 @@ input[type=text], [type=file], [type=date] {
     padding: 12px 20px;
     margin: 8px 0;
     box-sizing: border-box;
-162460864-ch-UI-update
+
     border: 2px solid black;
 
     border: 2px solid purple;
- gh-pages
+
     border-radius: 4px;
 }
 
@@ -157,10 +151,10 @@ textarea {
   padding: 12px 20px;
   margin: 8px 0;
   box-sizing: border-box;
- 162460864-ch-UI-update
+
   border: 2px solid black;
 
   border: 2px solid purple;
-gh-pages
+
   border-radius: 4px;
 }
