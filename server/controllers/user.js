@@ -11,11 +11,12 @@ class Usercontroller {
       password: req.body.password,
     };
     usersTable.push(account);
-    return res.status(201).send({
-      status: '201',
-      message: ' Account created successfully',
-      data: account,
-    });
+    return res.status(201)
+      .json({
+        status: '201',
+        message: ' Account created successfully',
+        data: account,
+      });
   }
 }
 

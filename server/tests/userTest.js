@@ -23,12 +23,7 @@ describe("POST /api/v1/users ", () => {
       .send(account)
       .end((err, res) => {
         expect(res.body).to.be.an('object');
-        expect(res.body).to.have.property('status');
-        expect(res.body).to.have.property('message');
-        expect(res.body).to.have.property('data');
-        expect(res.body.message).to.equal(' Account created successfully');
-        expect(res.body.status).to.equal('201');
-
+        expect(res.status).to.be.equal(201);
         done();
       });
   });

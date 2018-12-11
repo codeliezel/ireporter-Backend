@@ -1,12 +1,26 @@
-import db from "./db/index";
+import db from '../../db/index';
 
-const tables = ['redflags', 'interventions', 'users'];
+const tables = ['red-flags', 'interventions', 'users'];
 
-db.query(
-  `CREATE TABLE users(id SERIAL PRIMARY KEY), 
-     firstName varchar(255), 
-     lastName varchar(255), 
-     Email varchar(255), 
-     Password varchar(255));
-     `,
-);
+const createtable = () => {
+  const text = `CREATE TABLE IF NOT EXISTS users
+    (id SERIAL PRIMARY KEY), 
+    firstName varchar(255), 
+    lastName varchar(255), 
+    email varchar(255), 
+    password varchar(255));
+    `;
+  return text;
+};
+
+async function createUserTable() {
+  try {
+    await db.query(createtable);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+createUserTable();
+
+require('make-runnable');

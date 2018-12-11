@@ -5,7 +5,7 @@ const redflag = [
     createdBy: 'Funmi Olaiya',
     email: 'funmi677@yahoo.com',
     location: '6.77772272, 992999992',
-    status: '',
+    status: 'Approved',
     images: ['image1', 'image2'],
     videos: ['video1', 'video2'],
     comment: 'A politician bribed me to keep quiet about his alleged embezzlement of three million dollars meant for building schools.',

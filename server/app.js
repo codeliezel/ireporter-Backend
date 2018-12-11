@@ -9,7 +9,6 @@ const app = express();
 // to load up env file that includes values for environment varibales
 require('dotenv').config();
 
-console.log(process.env);
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
