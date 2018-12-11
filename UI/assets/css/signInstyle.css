@@ -1,9 +1,19 @@
-body
-{
-    font-family: HelvLight;
-    
-    
+@font-face {
+  font-family: "Brawler Regular";
+  src: url('../fonts/Brawler-Regular.ttf');
 }
+* {
+font-family: "Brawler Regular";
+}
+
+body 
+{
+  margin: 0;
+    font-family: HelvLight;
+    background-color: #f2e6ff;
+}
+
+
 
 #grad {
     background-image: url('../../pictures/pic3.jpg');
@@ -12,15 +22,14 @@ body
 
 .div {
     background-color: white;
-    width: 100vh;
+    width: 60vh;
     padding: 25px;
     margin: 25px;
-    height: 60vh;
-    background-image: linear-gradient( white, grey); 
+    height: 65vh;
 }
 
-@media (max-width: 600px){
-  .div {width:300px}
+@media (max-width: 800px){
+  .div {width:200px}
   }
 
     /*The Form section*/
@@ -29,7 +38,7 @@ input[type=text], [type=password] {
     padding: 12px 20px;
     margin: 8px 0;
     box-sizing: border-box;
-    border: 2px solid purple;
+    border: 2px solid black;
     border-radius: 4px;
 }
 

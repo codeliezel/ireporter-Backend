@@ -1,15 +1,41 @@
-
-body {
+@font-face {
+  font-family: "Brawler Regular";
+  src: url('../fonts/Brawler-Regular.ttf');
+}
+* {
+font-family: "Brawler Regular";
+}
+body 
+{
+  margin: 0;
     font-family: HelvLight;
+    background-color: #f2e6ff;
+}
+
+
+#records {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#records td, #records th {
+  border: 1px solid #ddd;
+  padding: 20px;
+}
+
+#records tr:nth-child(even){background-color: #f2f2f2;}
+
+#records tr:hover {background-color: #ddd;}
+
+#records th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #333;
+  color: white;
+}
     
-}
-
-#grad{
-    background-color: purple; 
-    width: 200vh;
-
-}
-
 /*The Navigation section*/
 .topnav {
     overflow: hidden;
@@ -40,7 +66,7 @@ body {
     display: none;
   }
   
-  @media screen and (max-width: 600px) {
+  @media screen and (max-width: 800px) {
     .topnav a:not(:first-child) {display: none;}
     .topnav a.icon {
       float: right;
@@ -48,7 +74,7 @@ body {
     }
   }
   
-  @media screen and (max-width: 600px) {
+  @media screen and (max-width: 800px) {
     .topnav.responsive {position: relative;}
     .topnav.responsive .icon {
       position: absolute;
@@ -61,19 +87,3 @@ body {
       text-align: left;
     }
   }
-
-
-  /* The tables */
-  table, h1 {
-    border-collapse: collapse;
-    width: 100vh;
-    color: white;
-}
-
-th, td {
-    margin: 15px;
-    padding: 15px;
-    text-align: left;
-    border-bottom: 1px solid white;
-}
-

@@ -8,13 +8,16 @@ Intervention - WACA
      <link rel = "Stylesheet" href = "assets/css/intervention.css" />
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
      <script src = "assets/js/navigation.js"></script>
+     <script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
+     <script>tinymce.init({ selector:'textarea' });</script>
 
  </head>
     <body>
 
         <!--The Navigation bar-->
+            
 <header>
-      <div class="topnav" id="myTopnav">
+          <div class="topnav" id="myTopnav">
             <a href="index.html" class="active">Home</a>
             <a href="red-flag.html">Create a Red-flag record</a>
             <a href="signIn.html">Sign in to your account</a>
@@ -30,17 +33,16 @@ Intervention - WACA
 
 
    <!--The Description-->
-<div align = "left">
+<div align = "center">
     <font size = "12px">
 <p>
 <b>What is an Intervention Record?</b>
 </p>
 </font>
-<p>
-<b>
+<font size = "4px">
     An intervention record is the call for government agencies to intervene in cases of corruption,<br>
-    lack of infrastructural facilities, high rise of poverty, poor healthcare system and many other<br>
-    problems within AFRICA.<br><br>
+    lack of infrastructural facilities, high rise of poverty, poor healthcare system and many other
+    problems<br> within AFRICA.<br><br>
 
     By joining WACA, you are assuming a huge responsiblity to strive for ending corruption in Africa,<br>
     we are glad you are taking this step to create an intervention record by sharing your ideas,<br>
@@ -48,8 +50,8 @@ Intervention - WACA
     corruption to the notice of government agencies. <br><br>
     Never give up on the fight, your voice is needed!
 
-</b>
-</p>
+
+</font>
 </div>
 
 
@@ -59,81 +61,43 @@ Intervention - WACA
             <strong>Create an intervention record:</strong>
             <br><br><br>
             <form spellcheck="true">
-                    <label>First Name:</label>
+                    <label>Full Names:</label>
                     <input type="text" id="fname" name="fname">
-                    <label>Last Name:</label>
-                    <input type="text" id="lname" name="lname">
-                    <label>Other Name:</label>
-                    <input type="text" id="oname" name="oname">
                     <label>Email:</label>
                     <input type="text" id="email" name="email">
-                    <label>In What Country:</label>
-                    <input type="text" id="country" name="country">
-                    <label>In What State:</label>
-                    <input type="text" id="state" name="state" >
-                    <label>In What City:</label>
-                    <input type="text" id="city" name="city">
-                    <label>Exact Address:</label>
-                    <input type="text" id="add" name="add">
-                    <textarea rows="4" cols="86">
-                            Describe the exact intervention needed:
-
-                            Do not forget to start with a title, else
-                            it might be penalised.
+                    <label>Exact address of incidence:</label>
+                    <input type="text" id="address" name="address">
+                    <label >Give an appropriate title:</label>
+                <input type="text" id="title" name="title"><br>
+                <label >Describe the exact intervention needed:</label><br><br>
+                    <textarea rows="6" cols="90">
+                    Describe the exact intervention needed.
                         </textarea><br><br>
-                        <label>Add the geolocation: Check below to know your coordinates</label><br><br>
+                        <label>Add the geolocation:</label><br><br>
                         <label>Latitude:</label>
                         <input type="text" id="lat" name="lat"> 
                         <label>Longtitude:</label>
-                        <input type="text" id="long" name="long"> 
+                        <input type="text" id="long" name="long"> <br><br>
 
                     <label>Select an image to upload:</label>
                     <input type="file" name="image1" id="image1">
                     <br><br>
-                    <label>Select an image to upload:</label>
-                    <input type="file" name="image2" id="image2"><br><br>
                     <label>Select a video file: </label>
                     <input type="file" name="vid"><br><br>
                     <br><br>
-                    <button class="button button1" name= "submit">SEND</button>
+                    <button class="button button1" name= "submit">SUBMIT</button>
                   </form>
                   
             </div>
             <br><br><br>
         </div>
 
-        <div>
-            <p>Click the button to get your coordinates.</p>
-    
-            <button onclick="getLocation()">Try It</button>
-            
-            <p id="demo"></p>
-            
-            <script>
-            var x = document.getElementById("demo");
-            
-            function getLocation() {
-                if (navigator.geolocation) {
-                    navigator.geolocation.getCurrentPosition(showPosition);
-                } else { 
-                    x.innerHTML = "Geolocation is not supported by this browser.";
-                }
-            }
-            
-            function showPosition(position) {
-                x.innerHTML = "Latitude: " + position.coords.latitude + 
-                "<br>Longitude: " + position.coords.longitude;
-            }
-            </script>
-            </div>
-    
-
            <!--The Footer-->
         <div align = "center">
                 <font color = "black">
                <b><p>2018<sup>&copy;</sup> WACA. All Rights Reserved. 
                 <br><br>
-                Contact information: <a href="mailto:someone@example.com">WACAsupport@WACA.com</a></p></b>
+                Contact information: WACAsupport@WACA.com</p></b>
                 </font>
                 </div> 
 </body>

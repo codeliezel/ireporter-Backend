@@ -1,5 +1,15 @@
+@font-face {
+  font-family: "Brawler Regular";
+  src: url('../fonts/Brawler-Regular.ttf');
+}
+* {
+font-family: "Brawler Regular";
+}
+
+
 body 
 {
+    margin: 0;
     font-family: HelvLight;
     background-size: cover;
 }
@@ -18,6 +28,7 @@ header {
     overflow: hidden;
     background-color: #333;
   }
+
   
   .topnav a {
     float: left;

@@ -6,31 +6,58 @@
   Intervention Records- WACA 
 </title>
 <link rel = "Stylesheet" href = "assets/css/userProfile.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+     <script src = "assets/js/navigation.js"></script>
 </head>
     <body bgcolor= "purple">
 
-            <table>             
-                    <h1>Intervention Records</h1>
-                        <tr>
-                          <th>Incidence</th>
-                          <th>Date it happened</th>
-                          <th>Status</th>
-                        </tr>
-                        <tr>
-                          <td>empty</td>
-                          <td>empty</td>
-                          <td>empty</td>
-                          <td><button class="button button1">edit</td>
-                            <td><button class="button button1">delete</td>
-                        </tr>
-                        <tr>
-                          <td>empty</td>
-                          <td>empty</td>
-                          <td>empty</td>
-                          <td><button class="button button1">edit</td>
-                            <td><button class="button button1">delete</td>
-                        </tr>
-                        
-                      </table>
+
+        <div class="topnav" id="myTopnav">
+            <a href="index.html" class="active">Home</a>
+            <a href="intervention.html">Create an intervention record</a>
+            <a href="red-flag.html">Create a Red-flag record</a>
+            <a href="userRed-flag.html">Red-flag records</a>
+            <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+                            <i class="fa fa-bars"></i>
+                          </a>
+                        </div>
+          
+          <h3>Intervention Records</h3>
+
+          <div style="overflow-x:auto;">
+        <table id="records">
+            <tr>
+              <th>Incidence</th>
+              <th>Date it happened</th>
+              <th>Status</th>
+              <th>Edit</th>
+              <th>Delete</th>
+            </tr>
+            <tr>
+              <td>There has been no power supply in omokukuro for the past 3 weeks.</td>
+              <td>November 18, 2018</td>
+              <td>Rejected</td>
+              <td><button class="button button1">Edit</td>
+                <td><button class="button button1">Delete</td>
+            </tr>
+            
+            <tr>
+              <td>We need good roads at eleyele.</td>
+              <td>January 17, 2017</td>
+              <td>Approved</td>
+              <td><button class="button button1">Edit</td>
+                <td><button class="button button1">Delete</td>
+            </tr>
+            <tr>
+              <td>A flood just happened in Ida, and most of the houses has been caught up in it.</td>
+              <td>November 19, 2018</td>
+              <td>Under investigation</td>
+              <td><button class="button button1">Edit</td>
+                <td><button class="button button1">Delete</td>
+            </tr>
+            
+            
+          </table>
+          </div>
 </body>
 </html>
