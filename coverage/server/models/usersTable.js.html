@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Code coverage report for server/routes/index.js</title>
+    <title>Code coverage report for server/models/usersTable.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="..\..\prettify.css" />
     <link rel="stylesheet" href="..\..\base.css" />
@@ -16,13 +16,13 @@
 <div class='wrapper'>
   <div class='pad1'>
     <h1>
-      <a href="..\..\index.html">All files</a> / <a href="index.html">server/routes</a> index.js
+      <a href="..\..\index.html">All files</a> / <a href="index.html">server/models</a> usersTable.js
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>16/16</span>
+        <span class='fraction'>1/1</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -37,7 +37,7 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>16/16</span>
+        <span class='fraction'>1/1</span>
       </div>
     </div>
     <p class="quiet">
@@ -72,58 +72,76 @@
 <a name='L24'></a><a href='#L24'>24</a>
 <a name='L25'></a><a href='#L25'>25</a>
 <a name='L26'></a><a href='#L26'>26</a>
-<a name='L27'></a><a href='#L27'>27</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<a name='L27'></a><a href='#L27'>27</a>
+<a name='L28'></a><a href='#L28'>28</a>
+<a name='L29'></a><a href='#L29'>29</a>
+<a name='L30'></a><a href='#L30'>30</a>
+<a name='L31'></a><a href='#L31'>31</a>
+<a name='L32'></a><a href='#L32'>32</a>
+<a name='L33'></a><a href='#L33'>33</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import express from 'express';
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">&nbsp;
+const user = [
+  {
+    id: 1,
+    firstName: 'Funmi',
+    lastName: 'Olaiya',
+    otherName: 'Elizabeth',
+    email: 'funmiolaiya@hotmail.com',
+    phoneNumber: '08022066672',
+    userName: 'funmi5',
+    profession: 'scientist',
+    registered: 'November 25 2018',
+    password: 'funmi111',
+    isAdmin: 'NO',
+  },
+  {
+    id: 2,
+    firstName: 'Tolu',
+    lastName: 'Olaiya',
+    otherName: 'Lydia',
+    email: 'lydia001@hotmail.com',
+    phoneNumber: '080229849333',
+    userName: 'toluP',
+    profession: 'doctor',
+    registered: 'February 15 2018',
+    password: 'tolu.ola7',
+    isAdmin: 'NO',
+  },
+];
 &nbsp;
-import Recordcontroller from '../controllers/record';
 &nbsp;
-import Usercontroller from '../controllers/user';
-&nbsp;
-import Validate from '../middleware/validate';
-&nbsp;
-const router = express.Router();
-&nbsp;
-router.get('/api/v1/red-flags', Recordcontroller.getAllRedflags);
-router.get('/api/v1/interventions', Recordcontroller.getAllInterventions);
-router.get('/api/v1/red-flags/:id', Recordcontroller.getRedflag);
-router.get('/api/v1/interventions/:id', Recordcontroller.getIntervention);
-&nbsp;
-router.post('/api/v1/users', Validate.createAccount, Usercontroller.createAccount);
-router.post('/api/v1/red-flags', Validate.createRedflagRecord, Recordcontroller.createRedflagRecord);
-router.post('/api/v1/interventions', Validate.createInterventionRecord, Recordcontroller.createInterventionRecord);
-&nbsp;
-router.patch('/api/v1/red-flags/:id', Validate.editRedflagRecord, Recordcontroller.editRedflagRecord);
-router.patch('/api/v1/interventions/:id', Validate.editInterventionRecord, Recordcontroller.editInterventionRecord);
-&nbsp;
-router.delete('/api/v1/red-flags/:id', Recordcontroller.deleteRedflagRecord);
-router.delete('/api/v1/interventions/:id', Recordcontroller.deleteInterventionRecord);
-&nbsp;
-export default router;
+export default user;
 &nbsp;</pre></td></tr>
 </table></pre>
 <div class='push'></div><!-- for sticky footer -->
