@@ -1,6 +1,6 @@
-import redflags from '../db/redflagsTable';
+import redflags from '../models/redflagsTable';
 
-import interventions from '../db/interventionsTable';
+import interventions from '../models/interventionsTable';
 
 class Recordcontroller {
   static getAllRedflags(req, res) {

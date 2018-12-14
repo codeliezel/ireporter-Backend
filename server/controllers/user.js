@@ -1,4 +1,4 @@
-import usersTable from '../db/usersTable';
+import usersTable from '../models/usersTable';
 
 
 class Usercontroller {

@@ -1,5 +1,5 @@
-import redflagsTable from '../db/redflagsTable';
-import interventionsTable from '../db/interventionsTable';
+import redflagsTable from '../models/redflagsTable';
+import interventionsTable from '../models/interventionsTable';
 
 class Validate {
   static createAccount(req, res, next) {
