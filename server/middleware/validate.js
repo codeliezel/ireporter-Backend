@@ -1,102 +1,37 @@
 import redflagsTable from '../db/redflagsTable';
 import interventionsTable from '../db/interventionsTable';
-import usersTable from '../db/usersTable';
 
 class Validate {
   static createAccount(req, res, next) {
-    if (!req.body.firstName) {
+    if (!req.body.firstName || !req.body.lastName || !req.body.email || !req.body.password) {
       return res.status(400)
         .json({
           error: '400',
-          message: 'First name is required',
-        });
-    } if (!req.body.lastName) {
-      res.status(400)
-        .json({
-          error: '400',
-          message: 'Last name is required',
-        });
-    } else if (!req.body.email) {
-      res.status(400)
-        .json({
-          error: '400',
-          message: 'Email is required',
-        });
-    } else if (!req.body.password) {
-      res.status(400)
-        .json({
-          error: '400',
-          message: 'Password is required',
+          message: 'Please, supply all the information required!',
         });
     }
     return next();
   }
 
   static createRedflagRecord(req, res, next) {
-    if (!req.body.createdOn) {
-      res.status(400)
+    if (!req.body.createdOn || !req.body.createdBy || !req.body.email
+      || !req.body.location || !req.body.comment) {
+      return res.status(400)
         .json({
           error: '400',
-          message: 'date is required',
-        });
-    } if (!req.body.createdBy) {
-      res.status(400)
-        .json({
-          error: '400',
-          message: 'Author is required',
-        });
-    } if (!req.body.email) {
-      res.status(400)
-        .json({
-          error: '400',
-          message: 'email is required',
-        });
-    } else if (!req.body.location) {
-      res.status(400)
-        .json({
-          error: '400',
-          message: 'location is required',
-        });
-    } else if (!req.body.comment) {
-      res.status(400)
-        .json({
-          error: '400',
-          message: 'comment is required',
+          message: 'Please, supply all the information required!',
         });
     }
     return next();
   }
 
   static createInterventionRecord(req, res, next) {
-    if (!req.body.createdOn) {
+    if (!req.body.createdOn || !req.body.createdBy || !req.body.email
+      || !req.body.location || !req.body.comment) {
       res.status(400)
         .json({
           error: '400',
-          message: 'date is required',
-        });
-    } if (!req.body.createdBy) {
-      res.status(400)
-        .json({
-          error: '400',
-          message: 'Author is required',
-        });
-    } if (!req.body.email) {
-      res.status(400)
-        .json({
-          error: '400',
-          message: 'email is required',
-        });
-    } else if (!req.body.location) {
-      res.status(400)
-        .json({
-          error: '400',
-          message: 'location is required',
-        });
-    } else if (!req.body.comment) {
-      res.status(400)
-        .json({
-          error: '400',
-          message: 'comment is required',
+          message: 'Please, supply all the information required!',
         });
     }
     return next();
@@ -120,17 +55,11 @@ class Validate {
           message: 'record not found',
         });
     }
-    if (!req.body.location) {
+    if (!req.body.location || !req.body.comment) {
       res.status(400)
         .json({
           error: '400',
-          message: 'The location is required',
-        });
-    } if (!req.body.comment) {
-      res.status(400)
-        .json({
-          error: '400',
-          message: 'The comment is required',
+          message: 'Please, supply the information required!',
         });
     }
     return next();
@@ -154,17 +83,11 @@ class Validate {
           message: 'record not found',
         });
     }
-    if (!req.body.location) {
+    if (!req.body.location || !req.body.comment) {
       res.status(400)
         .json({
           error: '400',
-          message: 'The location is required',
-        });
-    } if (!req.body.comment) {
-      res.status(400)
-        .json({
-          error: '400',
-          message: 'The comment is required',
+          message: 'Please, supply the information required!',
         });
     }
     return next();

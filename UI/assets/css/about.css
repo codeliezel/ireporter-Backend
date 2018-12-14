@@ -12,6 +12,7 @@ body
     margin: 0;
     font-family: HelvLight;
     background-size: cover;
+    padding: 3px;
 }
 
 /*The header section*/

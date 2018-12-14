@@ -11,6 +11,7 @@ body
   margin: 0;
     font-family: HelvLight;
     background-color: #f2e6ff;
+    padding: 3px;
 }
 
 
@@ -97,3 +98,17 @@ body
       text-align: left;
     }
   }
+
+  .button {
+    background-color: purple; /* Green */
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 4px 2px;
+    cursor: pointer;
+  }
+  
+  .button1 {font-size: 13px;}

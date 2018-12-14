@@ -27,4 +27,23 @@ describe("POST /api/v1/users ", () => {
         done();
       });
   });
+  it('should return an error if a user with email/phonenumber/username already exists', (done) => {
+    const account = {
+      id: 98,
+      firstName: '',
+      lastName: '',
+      email: '',
+      password: '',
+    };
+    request(App)
+      .post('/api/v1/users')
+      .send(account)
+      .end((err, res) => {
+        expect(res.body).to.be.an('object');
+        expect(res.status).to.be.equal(400);
+        expect(res.body).to.include.key('message');
+        expect(res.body.message).to.be.equal('Please, supply all the information required!');
+        done();
+      });
+  });
 });
