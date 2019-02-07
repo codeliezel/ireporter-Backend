@@ -25,40 +25,43 @@ class admin {
   static async getAllUsers(req, res) {
     const findAllQuery = 'SELECT * FROM users';
     const { rows, rowCount } = await db.query(findAllQuery);
-    return res.status(200).send({ rows, rowCount });
+    return res.status(200)
+    .json({
+       rows,
+      rowCount
+       });
   }
 
-  // To update an incident
-  static async updateAnIncident(req, res) {
-    const findOneQuery = 'SELECT * FROM incidents WHERE id=$1';
-    const updateOneQuery = `UPDATE incidents
-      SET location=$1, title=$2, comment=$3
-      WHERE id=$4 returning *`;
-    try {
-      const { rows } = await db.query(findOneQuery, [req.params.id]);
-      if (!rows[0]) {
-        return res.status(404)
-          .json({ "message": "Incident not found! " });
-      }
-      const values = [
-        req.body.location || rows[0].location,
-        req.body.title || rows[0].title,
-        req.body.comment || rows[0].comment,
-        req.params.id,
-      ];
-      // const response = await db.query(updateOneQuery, values);
-      // return res.status(200).send(response.rows[0]);
-      return res.status(200)
-        .json(
-          {
-            status: 200,
-            message: 'Your incident has been updated successfully.',
-          },
-        );
-    } catch (err) {
-      return res.status(400).send(err);
+
+
+// To update a status
+static async status(req, res) {
+  const findOneQuery = 'SELECT * FROM incidents WHERE id=$1';
+  const updateOneQuery = `UPDATE incidents
+    SET status=$1 WHERE id=$2 returning *`;
+  try {
+    const { rows } = await db.query(findOneQuery, [req.params.id]);
+    if (!rows[0]) {
+      return res.status(404)
+        .json({ "message": "Incident not found! " });
     }
+    const values = [
+      req.body.status || rows[0].status,
+      req.params.id,
+    ];
+    const response = await db.query(updateOneQuery, values);
+    return res.status(200).send(response.rows[0]);
+    // return res.status(200)
+    //   .json(
+    //     {
+    //       status: 200,
+    //       message: 'Your incident has been updated successfully.',
+    //     },
+    //   );
+  } catch (err) {
+    return res.status(400).send(err);
   }
+}
 }
 
 

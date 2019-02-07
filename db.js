@@ -51,7 +51,7 @@ const createIncidentsTable = () => {
         createdBy TEXT NOT NULL,
         type TEXT NOT NULL,
         location TEXT NOT NULL,
-        status VARCHAR(50) DEFAULT 'draft',
+        status VARCHAR(50),
         title TEXT NOT NULL,
         comment TEXT NOT NULL
       )`;
@@ -108,7 +108,7 @@ module.exports = {
   createIncidentsTable,
   dropIncidentsTable,
 
-
+// node db
 };
 
 require('make-runnable');

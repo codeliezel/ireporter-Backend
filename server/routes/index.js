@@ -47,4 +47,7 @@ router.post('/api/v1/admin/login', ValidateAdmin.login, admin.login);
 // admin to get all users
 router.get('/api/v1/users', admin.getAllUsers);
 
+// admin to act on a status
+router.put('/api/v1/status/:id', ValidateAdmin.status, admin.status);
+
 export default router;

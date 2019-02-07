@@ -30,6 +30,16 @@ class ValidateAdmin {
     }
     return next();
   }
+
+  static async status(req, res, next) {
+    if (!req.body.status) {
+      return res.status(400).json({
+        error: '404',
+        message: 'Please, supply the status',
+      });
+    }
+    return next();
+  }
 }
 
 export default ValidateAdmin;
