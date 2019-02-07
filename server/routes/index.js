@@ -1,26 +1,50 @@
 import express from 'express';
 
-import Recordcontroller from '../controllers/record';
+import users from '../controllers/user';
 
-import Usercontroller from '../controllers/user';
+import records from '../controllers/record';
 
-import Validate from '../middleware/validate';
+import admin from '../controllers/admin';
+
+import Auth from '../middleware/authentication';
+
+import ValidateUser from '../middleware/validateUser';
+
+import ValidateAdmin from '../middleware/validateAdmin';
 
 const router = express.Router();
 
-router.get('/api/v1/red-flags', Recordcontroller.getAllRedflags);
-router.get('/api/v1/interventions', Recordcontroller.getAllInterventions);
-router.get('/api/v1/red-flags/:id', Recordcontroller.getRedflag);
-router.get('/api/v1/interventions/:id', Recordcontroller.getIntervention);
 
-router.post('/api/v1/users', Validate.createAccount, Usercontroller.createAccount);
-router.post('/api/v1/red-flags', Validate.createRedflagRecord, Recordcontroller.createRedflagRecord);
-router.post('/api/v1/interventions', Validate.createInterventionRecord, Recordcontroller.createInterventionRecord);
+// user to create an account
+router.post('/api/v1/users', ValidateUser.createAccount, users.createAccount);
 
-router.patch('/api/v1/red-flags/:id', Validate.editRedflagRecord, Recordcontroller.editRedflagRecord);
-router.patch('/api/v1/interventions/:id', Validate.editInterventionRecord, Recordcontroller.editInterventionRecord);
+// user login to an account
+router.post('/api/v1/users/login', ValidateUser.login, users.login);
 
-router.delete('/api/v1/red-flags/:id', Recordcontroller.deleteRedflagRecord);
-router.delete('/api/v1/interventions/:id', Recordcontroller.deleteInterventionRecord);
+// user to post/create incidents
+router.post('/api/v1/incidents', records.createIncident);
+
+// user to reset password
+router.put('/api/v1/reset/:id', users.resetPassword);
+
+
+// user to get an incident
+router.get('/api/v1/incidents/:id', records.getOneIncident);
+
+// user to get all incidents
+router.get('/api/v1/incidents', records.getAllIncidents);
+
+// user to update an incident
+router.patch('/api/v1/incidents/:id', records.updateAnIncident);
+
+// user to delete an incident
+router.delete('/api/v1/incidents/:id', records.deleteAnIncident);
+
+
+// admin to log in
+router.post('/api/v1/admin/login', ValidateAdmin.login, admin.login);
+
+// admin to get all users
+router.get('/api/v1/users', admin.getAllUsers);
 
 export default router;
