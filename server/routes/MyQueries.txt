@@ -1,0 +1,1 @@
+INSERT INTO users ( firstName, lastName, otherNames, email, phoneNumber, userName, isAdmin, password) VALUES ('funmi', 'olaiya', 'beth', 'funmi@gmail.com', '090393993999', 'funmi7', 'False', '9903')

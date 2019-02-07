@@ -14,14 +14,15 @@ require('dotenv').config();
 
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(router);
 
-const port = process.env.PORT || 5000;
+// app.get('/api/v1/users', users.getAll);
 
-app.listen(process.env.PORT, () => {
-  console.log(`server running on port ${port}`);
+const port = process.env.PORT || 4000;
+
+app.listen(port, () => {
+  console.log(`server running on port 4000`);
 });
 
 export default app;
-console.log(new Date());
