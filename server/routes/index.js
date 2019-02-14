@@ -54,10 +54,12 @@ router.get('/api/v1/users', admin.getAllUsers);
 // admin to act on a status
 router.put('/api/v1/status/:id', ValidateAdmin.status, admin.status);
 
+
 // admin to send a mail of any status act
 router.post('/api/v1/mail', ValidateAdmin.mail, admin.mail);
 
 // admin to send a sms message of any status act
 router.post('/api/v1/sms', ValidateAdmin.sms, admin.sms);
+
 
 export default router;

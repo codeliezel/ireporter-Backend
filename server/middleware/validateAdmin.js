@@ -34,12 +34,18 @@ class ValidateAdmin {
   static async status(req, res, next) {
     if (!req.body.status) {
       return res.status(400).json({
+
         error: '400',
         message: 'Please, supply the status!',
+
+        error: '404',
+        message: 'Please, supply the status',
+
       });
     }
     return next();
   }
+
 
   static async mail(req, res, next) {
     if (!req.body.email || !req.body.msg || !req.body.name
