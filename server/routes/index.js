@@ -4,6 +4,7 @@ import users from '../controllers/user';
 
 import records from '../controllers/record';
 
+// eslint-disable-next-line import/no-cycle
 import admin from '../controllers/admin';
 
 import Auth from '../middleware/authentication';
@@ -21,12 +22,15 @@ router.post('/api/v1/users', ValidateUser.createAccount, users.createAccount);
 // user login to an account
 router.post('/api/v1/users/login', ValidateUser.login, users.login);
 
-// user to post/create incidents
-router.post('/api/v1/incidents', records.createIncident);
+// user to delete his or her account
+router.delete('/api/v1/users/:id', users.deleteAccount);
 
 // user to reset password
 router.put('/api/v1/reset/:id', users.resetPassword);
 
+
+// user to post/create incidents
+router.post('/api/v1/incidents', records.createIncident);
 
 // user to get an incident
 router.get('/api/v1/incidents/:id', records.getOneIncident);
@@ -49,5 +53,13 @@ router.get('/api/v1/users', admin.getAllUsers);
 
 // admin to act on a status
 router.put('/api/v1/status/:id', ValidateAdmin.status, admin.status);
+
+
+// admin to send a mail of any status act
+router.post('/api/v1/mail', ValidateAdmin.mail, admin.mail);
+
+// admin to send a sms message of any status act
+router.post('/api/v1/sms', ValidateAdmin.sms, admin.sms);
+
 
 export default router;

@@ -94,6 +94,29 @@ class users {
       return res.status(400).send(err);
     }
   }
+
+  // a user to delete his or her account
+  static async deleteAccount(req, res) {
+    const deleteQuery = 'DELETE FROM users WHERE id=$1 returning *';
+    try {
+      const { rows } = await db.query(deleteQuery, [req.params.id]);
+      if (!rows[0]) {
+        return res.status(404)
+          .json({
+            'message': 'user not found',
+          });
+      } if (rows[0]) {
+        return res.status(204)
+          .json({
+            error: 204,
+            message: 'Your account has been deleted!',
+          });
+      }
+    } catch (error) {
+      return res.status(400).send(error);
+    }
+  }
+  // end of class
 }
 
 export default users;

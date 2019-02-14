@@ -34,12 +34,40 @@ class ValidateAdmin {
   static async status(req, res, next) {
     if (!req.body.status) {
       return res.status(400).json({
+
+        error: '400',
+        message: 'Please, supply the status!',
+
         error: '404',
         message: 'Please, supply the status',
+
       });
     }
     return next();
   }
+
+
+  static async mail(req, res, next) {
+    if (!req.body.email || !req.body.msg || !req.body.name
+    || !req.body.position || !req.body.company) {
+      res.status(400).json({
+        error: '400',
+        message: 'Please, supply all the required information',
+      });
+    }
+    return next();
+  }
+
+  static async sms(req, res, next) {
+    if (!req.body.text || !req.body.number) {
+      res.status(400).json({
+        error: '400',
+        message: 'Please, supply all the required information',
+      });
+    }
+    return next();
+  }
+  // end of class
 }
 
 export default ValidateAdmin;
