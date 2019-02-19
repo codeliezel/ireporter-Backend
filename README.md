@@ -24,8 +24,8 @@
 #### The tools used in the creation of this project:
 * Node.js & Express.
 * Eslint(AirBnB style guide).
-* Mocha & Chai for testing.
-* Babel
+* Mocha, Chai, Istanbul & Nyc for testing.
+* Babel(To ranspile down from ES6 to ES5
 * Travis CI, Coveralls, Code climate and Codacy.
 
 #### Getting started:
@@ -41,7 +41,6 @@ https://funmi5.github.io/ireporter/UI
 
 #### Relevant Pivotal Tracker stories:
 https://www.pivotaltracker.com/n/projects/2226969
-
 
 ##### Author:
 Funmilayo E. Olaiya
