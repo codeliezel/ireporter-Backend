@@ -30,36 +30,36 @@ router.put('/api/v1/reset/:id', users.resetPassword);
 
 
 // user to post/create incidents
-router.post('/api/v1/incidents', records.createIncident);
+router.post('/api/v1/incidents', Auth.verifyToken, records.createIncident);
 
 // user to get an incident
-router.get('/api/v1/incidents/:id', records.getOneIncident);
+router.get('/api/v1/incidents/:id', Auth.verifyToken, records.getOneIncident);
 
 // user to get all incidents
-router.get('/api/v1/incidents', records.getAllIncidents);
+router.get('/api/v1/incidents', Auth.verifyToken, records.getAllIncidents);
 
 // user to update an incident
-router.patch('/api/v1/incidents/:id', records.updateAnIncident);
+router.patch('/api/v1/incidents/:id', Auth.verifyToken, records.updateAnIncident);
 
 // user to delete an incident
-router.delete('/api/v1/incidents/:id', records.deleteAnIncident);
+router.delete('/api/v1/incidents/:id', Auth.verifyToken, records.deleteAnIncident);
 
 
 // admin to log in
-router.post('/api/v1/admin/login', ValidateAdmin.login, admin.login);
+router.post('/api/v1/admin/login', Auth.verifyToken, ValidateAdmin.login, admin.login);
 
 // admin to get all users
-router.get('/api/v1/users', admin.getAllUsers);
+router.get('/api/v1/users', Auth.verifyToken, admin.getAllUsers);
 
 // admin to act on a status
-router.put('/api/v1/status/:id', ValidateAdmin.status, admin.status);
+router.put('/api/v1/status/:id', Auth.verifyToken,  ValidateAdmin.status, admin.status);
 
 
 // admin to send a mail of any status act
-router.post('/api/v1/mail', ValidateAdmin.mail, admin.mail);
+router.post('/api/v1/mail', Auth.verifyToken, ValidateAdmin.mail, admin.mail);
 
 // admin to send a sms message of any status act
-router.post('/api/v1/sms', ValidateAdmin.sms, admin.sms);
+router.post('/api/v1/sms', Auth.verifyToken, ValidateAdmin.sms, admin.sms);
 
 
 export default router;

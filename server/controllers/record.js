@@ -11,19 +11,38 @@ class records {
       VALUES($1, $2, $3, $4, $5, $6, $7)
       returning *`;
 
-    const values = [
-      moment(new Date()),
-      req.body.createdBy,
-      req.body.type,
-      req.body.location,
-      req.body.status,
-      req.body.title,
-      req.body.comment,
-    ];
+    const  {
+      createdBy,
+      type,
+      location,
+      status,
+      title,
+      comment,
+     } = req.body;
 
+
+     const values = [
+      moment(new Date()),
+      createdBy,
+      type,
+      location,
+      status,
+      title,
+      comment,
+     ];
     try {
       const { rows } = await db.query(createQuery, values);
-      return res.status(201).json(rows[0]);
+      const token = Helper.generateToken(rows[0].id);
+     return  res.status(201)
+        .json({
+          status: '201',
+          data:
+         [{
+           message:
+            'Incident created successfully!',
+           token,
+         }],
+        });
     } catch (error) {
       return res.status(400).json(error);
     }
@@ -37,7 +56,8 @@ class records {
       if (!rows[0]) {
         return res.status(404)
           .json({
-            'message': 'Incident not found',
+            error: '404',
+            message: 'Incident not found',
           });
       }
       return res.status(200).json(rows[0]);
@@ -73,15 +93,8 @@ class records {
         req.body.comment || rows[0].comment,
         req.params.id,
       ];
-      // const response = await db.query(updateOneQuery, values);
-      // return res.status(200).send(response.rows[0]);
-      return res.status(200)
-        .json(
-          {
-            status: 200,
-            message: 'Your incident has been updated successfully.',
-          },
-        );
+      const response = await db.query(updateOneQuery, values);
+      return res.status(200).json(response.rows[0]);
     } catch (err) {
       return res.status(400).send(err);
     }
@@ -95,14 +108,11 @@ class records {
       if (!rows[0]) {
         return res.status(404)
           .json({
-            'message': 'Incident not found',
+            error: '404',
+            message: 'Incident not found',
           });
       } if (rows[0]) {
-        return res.status(204)
-          .json({
-            error: 204,
-            message: 'Your incident has been deleted',
-          });
+        return res.status(204).json({ message: 'Your incident has been deleted'});
       }
     } catch (error) {
       return res.status(400).send(error);
