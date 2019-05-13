@@ -22,9 +22,9 @@ class users {
     try {
       const { rows } = await db.query(createQuery, values);
       const token = Helper.generateToken(rows[0].id);
-      return res.status(201)
+     return  res.status(201)
         .json({
-          status: 201,
+          status: '201',
           data:
          [{
            message:
@@ -34,10 +34,13 @@ class users {
         });
     } catch (error) {
       if (error.routine === '_bt_check_unique') {
-        return res.status(400)
+       return res.status(409)
           .json({
-            error: 409,
+            status: '409',
+            data:
+            [{
             message: 'OOPS! This particular email has already been registered.',
+          }],
           });
       }
     }
@@ -48,7 +51,7 @@ class users {
     const text = 'SELECT * FROM users WHERE email = $1';
     const { rows } = await db.query(text, [req.body.email]);
     const token = Helper.generateToken(rows[0].id);
-    res.status(200).json({
+   return  res.status(200).json({
       status: 200,
       data:
         [{
@@ -82,18 +85,24 @@ class users {
         req.params.id,
       ];
       const response = await db.query(updateOneQuery, values);
-      return res.status(200).send(response.rows[0]);
-      // return res.status(200)
-      //   .json(
-      //     {
-      //       status: 200,
-      //       message: 'A new password has been set!',
-      //     },
-      //   );
+      //return res.status(200).send(response.rows[0]);
+      return res.status(200)
+        .json(
+          {
+            data:
+            [{
+            status: 200,
+            message: 'A new password has been set!',
+            }]
+          },
+        );
     } catch (err) {
       return res.status(400).send(err);
     }
   }
+
+      
+    
 
   // a user to delete his or her account
   static async deleteAccount(req, res) {
@@ -103,13 +112,20 @@ class users {
       if (!rows[0]) {
         return res.status(404)
           .json({
-            'message': 'user not found',
+            data:
+            [{
+            error: '404',
+            message: 'user not found',
+            }]
           });
       } if (rows[0]) {
         return res.status(204)
           .json({
+            data:
+            [{
             error: 204,
             message: 'Your account has been deleted!',
+            }]
           });
       }
     } catch (error) {
