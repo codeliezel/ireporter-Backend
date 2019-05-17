@@ -165,25 +165,25 @@ describe('GET /api/v1/users', () => {
 
 
 describe('POST /api/v1/mail', () => {
-  it('should send a mail', (done) => {
-    request(App)
-      .post('/api/v1/mail')
-      .set('Accept', 'application/json')
-      .set('authorization', token)
-      .send ({
-          email : 'funmiolaiya@hotmail.com',
-          msg: 'Your incident has been approved!',
-          name: 'Halimat Adeleke',
-          position: 'Head of Reports',
-          company: 'WACA Ireporter'
-      })
-      .end((err, res) => {
-      expect(res.body).to.be.an('object');
-      expect(res.status).to.be.equal(200);
-      expect(res).to.have.status('200');
-        done();
-      });
-  });
+//   it('should send a mail', (done) => {
+//     request(App)
+//       .post('/api/v1/mail')
+//       .set('Accept', 'application/json')
+//       .set('authorization', token)
+//       .send ({
+//           email : 'funmiolaiya@hotmail.com',
+//           msg: 'Your incident has been approved!',
+//           name: 'Halimat Adeleke',
+//           position: 'Head of Reports',
+//           company: 'WACA Ireporter'
+//       })
+//       .end((err, res) => {
+//       expect(res.body).to.be.an('object');
+//       expect(res.status).to.be.equal(200);
+//       expect(res).to.have.status('200');
+//         done();
+//       });
+//   });
   it('should return an error if details are not complete/provided', (done) => {
     request(App)
       .post('/api/v1/mail')
