@@ -171,7 +171,7 @@ describe('POST /api/v1/mail', () => {
       .set('Accept', 'application/json')
       .set('authorization', token)
       .send ({
-          email : 'JohnMye@gmail.com',
+          email : 'funmiolaiya@hotmail.com',
           msg: 'Your incident has been approved!',
           name: 'Halimat Adeleke',
           position: 'Head of Reports',
