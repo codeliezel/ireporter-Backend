@@ -164,7 +164,7 @@ describe('GET /api/v1/users', () => {
 });
 
 
-describe('POST /api/v1/mail', () => {
+// describe('POST /api/v1/mail', () => {
 //   it('should send a mail', (done) => {
 //     request(App)
 //       .post('/api/v1/mail')
@@ -184,42 +184,42 @@ describe('POST /api/v1/mail', () => {
 //         done();
 //       });
 //   });
-  it('should return an error if details are not complete/provided', (done) => {
-    request(App)
-      .post('/api/v1/mail')
-      .set('Accept', 'application/json')
-      .set('authorization', token)
-      .send ({
-          email : '',
-          msg: '',
-          name: '',
-          position: '',
-          company: ''
-      })
-      .end((err, res) => {
-      expect(res.body).to.be.an('object');
-      expect(res.status).to.be.equal(400);
-      expect(res).to.have.status('400');
-      expect(res.body).to.include.key('error')
-      expect(res.body).to.include.key('message')
-      expect(res.body.message).to.be.equal('Please, supply all the required information')
-        done();
-      });
-  });
-  it('should return an error if token is not present', (done) => {
-    request(App)
-      .get('/api/v1/incidents')
-      .set('Accept', 'application/json')
-      .end((err, res) => {
-        expect(res.body).to.be.an('object');
-        expect(res.status).to.be.equal(400);
-        expect(res).to.have.status('400');
-        expect(res.body).to.include.keys('message');
-        expect(res.body.message).to.be.equal('Token is not provided');
-        done();
-      });
-  });
-});
+//   it('should return an error if details are not complete/provided', (done) => {
+//     request(App)
+//       .post('/api/v1/mail')
+//       .set('Accept', 'application/json')
+//       .set('authorization', token)
+//       .send ({
+//           email : '',
+//           msg: '',
+//           name: '',
+//           position: '',
+//           company: ''
+//       })
+//       .end((err, res) => {
+//       expect(res.body).to.be.an('object');
+//       expect(res.status).to.be.equal(400);
+//       expect(res).to.have.status('400');
+//       expect(res.body).to.include.key('error')
+//       expect(res.body).to.include.key('message')
+//       expect(res.body.message).to.be.equal('Please, supply all the required information')
+//         done();
+//       });
+//   });
+//   it('should return an error if token is not present', (done) => {
+//     request(App)
+//       .get('/api/v1/incidents')
+//       .set('Accept', 'application/json')
+//       .end((err, res) => {
+//         expect(res.body).to.be.an('object');
+//         expect(res.status).to.be.equal(400);
+//         expect(res).to.have.status('400');
+//         expect(res.body).to.include.keys('message');
+//         expect(res.body.message).to.be.equal('Token is not provided');
+//         done();
+//       });
+//   });
+// });
 
 
 describe('POST /api/v1/sms', () => {
