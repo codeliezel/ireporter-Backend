@@ -2,7 +2,6 @@ import chai from 'chai';
 import chaiHttp from 'chai-http';
 import request from 'supertest';
 import App from '../app';
-import app from '../app';
 
 const { expect } = chai;
 
@@ -11,66 +10,66 @@ chai.use(chaiHttp);
 
 //tests for a user to create an account with error handling
 
-//  describe("POST api/v1/users", () => {
-  // it("should create a new user", () => {
-  //       request(App)
-  //          .post('/api/v1/users')
-  //          .set('Accept', 'application/json')
-  //          .send({ 
-  //         firstName: 'dorothy',
-  //          lastName: 'perkins',
-  //          otherNames: 'rosa',
-  //          email: 'funmiayo@gmail.com',
-  //          phoneNumber: '4447777733773',
-  //          userName: 'd-girl',
-  //          isAdmin: 'false',
-  //          password: 'drosa'
-  //         })  
-  //          .end((err, res) => {
-  //           expect(res.status).to.be.equal(201);
-  //           // expect(body.data[0]).to.haveOwnProperty('token');
-  //           // expect(res.body).to.include.key('data');
-  //           // expect(body.data[0]).to.haveOwnProperty('token');
-  //           // expect(res.body.data[0].message).to.equal('Registration Successful!');
-  //            done();
-  //      });
-  //   });
+ describe("POST api/v1/users", () => {
+  it("should create a new user", () => {
+        request(App)
+           .post('/api/v1/users')
+           .set('Accept', 'application/json')
+           .send({ 
+          firstName: 'dorothy',
+           lastName: 'perkins',
+           otherNames: 'rosa',
+           email: 'dorothy@gmail.com',
+           phoneNumber: '4447777733773',
+           userName: 'd-girl',
+           isAdmin: 'false',
+           password: 'drosa'
+          })  
+           .end((err, res) => {
+            expect(res.status).to.be.equal(201);
+            // expect(body.data[0]).to.haveOwnProperty('token');
+            // expect(res.body).to.include.key('data');
+            // expect(body.data[0]).to.haveOwnProperty('token');
+            // expect(res.body.data[0].message).to.equal('Registration Successful!');
+             done();
+       });
+    });
 
-//   it("should send an error if the user does not fill in one or more details", (done) => {
-//    request(App)
-//       .post('/api/v1/users')
-//       .set('Accept', 'application/json')
-//       .send({
-//         firstName: '',
-//         lastName: '',
-//         otherNames: '',
-//         email: '',
-//         phoneNumber: '',
-//         userName: '',
-//         isAdmin: '',
-//         password: ''
-//       })
-//       .end((err, res) => {
-//         expect(res.status).to.be.equal(400);
-//         expect(res).to.have.status('400');
-//         done();
-//       });
-//   });
+  it("should send an error if the user does not fill in one or more details", (done) => {
+   request(App)
+      .post('/api/v1/users')
+      .set('Accept', 'application/json')
+      .send({
+        firstName: '',
+        lastName: '',
+        otherNames: '',
+        email: '',
+        phoneNumber: '',
+        userName: '',
+        isAdmin: '',
+        password: ''
+      })
+      .end((err, res) => {
+        expect(res.status).to.be.equal(400);
+        expect(res).to.have.status('400');
+        done();
+      });
+  });
 
 //   it("should return an error if the particular mail has already been registered", (done) => {
 //     request(App)
 //        .post('/api/v1/users')
 //        .set('Accept', 'application/json')
 //        .send({ 
-//         firstName: 'funmi',
-//        lastName: 'olaiya',
-//        otherNames: 'hhhhehe',
-//        email: 'funmiolayy@gmail.com',
-//        phoneNumber: '0994499994',
-//        userName: 'eegirl',
-//        isAdmin: 'false',
-//        password: 'funmi'
-//        })  
+//         firstName: 'hello',
+//          lastName: 'hello',
+//          otherNames: 'hello',
+//          email: 'dorothy@gmail.com',
+//          phoneNumber: '77777777777',
+//          userName: 'hello',
+//          isAdmin: 'false',
+//          password: 'hello'
+//         }) 
 //        .end((err, res) => {
 //         expect(res.status).to.be.equal(409);
 //         expect(res).to.have.status('409');
@@ -80,45 +79,45 @@ chai.use(chaiHttp);
 //          done();
 //    });
 // });
-// it("should return an error if the email address supplied isn't valid", (done) => {
-//   request(App)
-//      .post('/api/v1/users')
-//      .set('Accept', 'application/json')
-//      .send({
-//        email: 'funmi0987@gmail.com',
-//        password: ''
-//      })
-//      .end((err, res) => {
-//        expect(res.status).to.be.equal(400);
-//        expect(res).to.have.status('400');
-//        expect(res.body).to.include.key('error');
-//        expect(res.body).to.include.key('message');
-//        done();
-//      });
-//  });
-//   });
+it("should return an error if the email address supplied isn't valid", (done) => {
+  request(App)
+     .post('/api/v1/users')
+     .set('Accept', 'application/json')
+     .send({
+       email: 'funmi0987@gmail.com',
+       password: ''
+     })
+     .end((err, res) => {
+       expect(res.status).to.be.equal(400);
+       expect(res).to.have.status('400');
+       expect(res.body).to.include.key('error');
+       expect(res.body).to.include.key('message');
+       done();
+     });
+ });
+  });
 
 // // tests for a user to log in and error handling
 
-//   describe("POST api/v1/users/login", () => {
-//     it("should login a user", (done) => {
-//      request(App)
-//         .post('/api/v1/users/login')
-//         .set('Accept', 'application/json')
-//         .send({
-//           email: 'funmiayo@gmail.com',
-//           password: 'drosa'
-//         })
-//         .end((err, res) => {
-//           expect(res.status).to.be.equal(200);
-//           expect(res).to.have.status('200');
-//           expect(res.body).to.include.key('data');
-//           expect(res.body.data[0]).to.include.key('message');
-//           expect(res.body.data[0]).to.include.key('token');
-//           expect(res.body.data[0].message).to.be.equal('You have logged in successfully');
-//           done();
-//         });
-//     });
+  describe("POST api/v1/users/login", () => {
+    it("should login a user", (done) => {
+     request(App)
+        .post('/api/v1/users/login')
+        .set('Accept', 'application/json')
+        .send({
+          email: 'dorothy@gmail.com',
+          password: 'drosa'
+        })
+        .end((err, res) => {
+          expect(res.status).to.be.equal(200);
+          expect(res).to.have.status('200');
+          expect(res.body).to.include.key('data');
+          expect(res.body.data[0]).to.include.key('message');
+          expect(res.body.data[0]).to.include.key('token');
+          expect(res.body.data[0].message).to.be.equal('You have logged in successfully');
+          done();
+        });
+    });
 //     it("should return an error if all the information required to login isn't supplied", (done) => {
 //       request(App)
 //          .post('/api/v1/users/login')
@@ -170,7 +169,7 @@ chai.use(chaiHttp);
 //            done();
 //          });
 //      });
-//   });
+   });
 
 //   // tests for a user to reset password
 //   describe("POST api/v1/reset/:id", () => {
