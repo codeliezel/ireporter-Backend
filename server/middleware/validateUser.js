@@ -1,30 +1,29 @@
-import Helper from "./helper";
+import Helper from './helper';
 import db from '../db/index';
 
 
 class ValidateUser {
   static async createAccount(req, res, next) {
     try {
-    if (!Helper.isValidEmail(req.body.email)) {
-      return res.status(400).json({
-        error: '400',
-        message: 'Please, enter a valid email address!',
-      });
-    } else if (!req.body.firstName || !req.body.lastName || !req.body.otherNames || !req.body.email
-      || !req.body.phoneNumber || !req.body.userName || !req.body.isAdmin || !req.body.password) {
-      return res.status(400)
-        .json({
+      if (!Helper.isValidEmail(req.body.email)) {
+        return res.status(400).json({
           error: '400',
-          message: 'Please, supply all the information required!',
+          message: 'Please, enter a valid email address!',
         });
+      } if (!req.body.firstName || !req.body.lastName || !req.body.otherNames || !req.body.email
+      || !req.body.phoneNumber || !req.body.userName || !req.body.isAdmin || !req.body.password) {
+        return res.status(400)
+          .json({
+            error: '400',
+            message: 'Please, supply all the information required!',
+          });
+      }
+    } catch (error) {
+      return res.status(400)
+        .json(error);
     }
-  } catch (error) {
-    return res.status(400)
-     .json(error);
+    return next();
   }
-  return next();
-}
-
 
 
   static async login(req, res, next) {
@@ -43,7 +42,7 @@ class ValidateUser {
             error: '404',
             message: 'Wrong email or password!',
           });
-      }else if (!Helper.comparePassword(rows[0].password, req.body.password)) {
+      } if (!Helper.comparePassword(rows[0].password, req.body.password)) {
         return res.status(404)
           .json({
             error: '404',

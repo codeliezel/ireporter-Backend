@@ -63,7 +63,7 @@ class admin {
       if (!rows[0]) {
         return res.status(404)
           .json({
-            "message": "Incident not found! ",
+            message: 'Incident not found! ',
           });
       }
       const values = [

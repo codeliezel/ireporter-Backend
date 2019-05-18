@@ -19,14 +19,15 @@ const Auth = {
       const text = 'SELECT * FROM users WHERE id = $1';
       const { rows } = await db.query(text, [decoded.userId]);
       if (!rows[0]) {
-        return res.status(400).send({ 'message': 'The token you provided is invalid' });
+        return res.status(400).send({ message: 'The token you provided is invalid' });
       }
       req.user = { id: decoded.userId };
       next();
     } catch (error) {
       return res.status(400).send(error);
     }
-  },
+  // eslint-disable-next-line no-trailing-spaces
+  }, 
 };
 
 export default Auth;

@@ -52,7 +52,7 @@ router.post('/api/v1/admin/login', Auth.verifyToken, ValidateAdmin.login, admin.
 router.get('/api/v1/users', Auth.verifyToken, admin.getAllUsers);
 
 // admin to act on a status
-router.put('/api/v1/status/:id', Auth.verifyToken,  ValidateAdmin.status, admin.status);
+router.put('/api/v1/status/:id', Auth.verifyToken, ValidateAdmin.status, admin.status);
 
 
 // admin to send a mail of any status act

@@ -11,17 +11,17 @@ class records {
       VALUES($1, $2, $3, $4, $5, $6, $7)
       returning *`;
 
-    const  {
+    const {
       createdBy,
       type,
       location,
       status,
       title,
       comment,
-     } = req.body;
+    } = req.body;
 
 
-     const values = [
+    const values = [
       moment(new Date()),
       createdBy,
       type,
@@ -29,11 +29,11 @@ class records {
       status,
       title,
       comment,
-     ];
+    ];
     try {
       const { rows } = await db.query(createQuery, values);
       const token = Helper.generateToken(rows[0].id);
-     return  res.status(201)
+      return res.status(201)
         .json({
           status: '201',
           data:
@@ -85,7 +85,7 @@ class records {
       const { rows } = await db.query(findOneQuery, [req.params.id]);
       if (!rows[0]) {
         return res.status(404)
-          .json({ "message": "Incident not found! " });
+          .json({ message: 'Incident not found! ' });
       }
       const values = [
         req.body.location || rows[0].location,
@@ -112,7 +112,7 @@ class records {
             message: 'Incident not found',
           });
       } if (rows[0]) {
-        return res.status(204).json({ message: 'Your incident has been deleted'});
+        return res.status(204).json({ message: 'Your incident has been deleted' });
       }
     } catch (error) {
       return res.status(400).send(error);
