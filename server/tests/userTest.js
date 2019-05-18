@@ -12,6 +12,13 @@ const { expect } = chai;
 
 chai.use(chaiHttp);
 
+<<<<<<< 163876464-ft-server-tests
+let token = process.env.JWT_TOKEN;
+
+//tests for a user to create an account with error handling
+
+ describe("POST api/v1/users", () => {
+=======
 servertests
 let token = process.env.JWT_TOKEN;
 //tests for a user to create an account with error handling
@@ -41,6 +48,7 @@ let token = process.env.JWT_TOKEN;
 //        });
 //     });
 
+>>>>>>> develop
   it("should send an error if the user does not fill in one or more details", (done) => {
    request(App)
       .post('/api/v1/users')
@@ -67,6 +75,17 @@ let token = process.env.JWT_TOKEN;
        .post('/api/v1/users')
        .set('Accept', 'application/json')
        .send({ 
+<<<<<<< 163876464-ft-server-tests
+                  firstName: 'ade',
+                   lastName: 'johnson',
+                   otherNames: 'jane',
+                   email: 'jane@gmail.com',
+                   phoneNumber: '4447777733773',
+                   userName: 'ade-jane',
+                   isAdmin: 'false',
+                   password: 'janeade'
+                  })  
+=======
         firstName: 'funmi',
        lastName: 'olaiya',
        otherNames: 'hhhhehe',
@@ -76,6 +95,7 @@ let token = process.env.JWT_TOKEN;
        isAdmin: 'false',
        password: 'funmi'
        })  
+>>>>>>> develop
        .end((err, res) => {
         expect(res.status).to.be.equal(409);
         expect(res).to.have.status('409');
@@ -181,10 +201,17 @@ it("should return an error if the email address supplied isn't valid", (done) =>
   describe("POST api/v1/reset/:id", () => {
     it("should reset a password", (done) => {
      request(App)
+<<<<<<< 163876464-ft-server-tests
+        .put('/api/v1/reset/22')
+        .set('Accept', 'application/json')
+        .send({
+          email: 'funmiayo@gmail.com',
+=======
         .put('/api/v1/reset/3')
         .set('Accept', 'application/json')
         .send({
           email: 'folujay@gmail.com',
+>>>>>>> develop
           password: 'drosa'
         })
         .end((err, res) => {
@@ -198,11 +225,19 @@ it("should return an error if the email address supplied isn't valid", (done) =>
     });
   });
 
+<<<<<<< 163876464-ft-server-tests
+
+  describe("DELETE api/v1/users", () => {
+    it("should send an error if the user is not found", (done) => {
+     request(App)
+        .delete('/api/v1/users/1001')
+=======
   describe("DELETE api/v1/users", () => {
 
     it("should send an error if the user is not found", (done) => {
      request(App)
         .delete('/api/v1/users/10001')
+>>>>>>> develop
         .set('Accept', 'application/json')
         .set('authorization', token)
         .end((err, res) => {
@@ -216,6 +251,22 @@ it("should return an error if the email address supplied isn't valid", (done) =>
         });
     });
     it('should return an error if token is not present', (done) => {
+<<<<<<< 163876464-ft-server-tests
+                        request(App)
+                          .delete('/api/v1/users/3')
+                          .set('Accept', 'application/json')
+                          .end((err, res) => {
+                            expect(res.body).to.be.an('object');
+                            expect(res.status).to.be.equal(400);
+                            expect(res).to.have.status('400');
+                            expect(res.body).to.include.keys('message');
+                            expect(res.body.message).to.be.equal('Token is not provided');   
+                            done();
+                          });
+                      });
+  });
+
+=======
                           request(App)
                             .get('/api/v1/incidents')
                             .set('Accept', 'application/json')
@@ -457,3 +508,4 @@ it("should return an error if the email address supplied isn't valid", (done) =>
 //   });
 
  develop
+>>>>>>> develop

@@ -6,23 +6,15 @@ import App from '../app';
 const { expect } = chai;
 chai.use(chaiHttp);
 
- servertests
+
 let token = process.env.JWT_TOKEN;
-
-let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjcxLCJpYXQiOjE1NTcyNTgxMDQsImV4cCI6MTU1Nzg2MjkwNH0.DFqmZR9TLbG7OZMWWu99hL8D_O1pKsFPOkj_qaR9L34";
- develop
-
 // get all incidents
 describe('GET /api/v1/incidents', () => {
   it('should get all incidents', (done) => {
     request(App)
       .get('/api/v1/incidents')
       .set('Accept', 'application/json')
- servertests
       .set('authorization', token)
-
-      .set('x-access-token', token)
- develop
       .end((err, res) => {
       expect(res.body).to.be.an('object');
       expect(res.status).to.be.equal(200);
@@ -52,11 +44,7 @@ describe('GET /api/v1/incidents/:id', () => {
     request(App)
       .get('/api/v1/incidents/1')
       .set('Accept', 'application/json')
-servertests
       .set('authorization', token)
-
-      .set('x-access-token', token)
- develop
       .end((err, res) => {
       expect(res.body).to.be.an('object');
       expect(res.status).to.be.equal(200);
@@ -68,11 +56,7 @@ servertests
     request(App)
       .get('/api/v1/incidents/976')
       .set('Accept', 'application/json')
- servertests
       .set('authorization', token)
-
-      .set('x-access-token', token)
- develop
       .end((err, res) => {
         expect(res.body).to.be.an('object');
         expect(res.status).to.be.equal(404);
@@ -105,11 +89,7 @@ describe('POST /api/v1/incidents', () => {
     request(App)
       .post('/api/v1/incidents')
       .set('Accept', 'application/json')
- servertests
       .set('authorization', token)
-
-      .set('x-access-token', token)
- develop
       .send ({
        createdOn: '',
        createdBy: ' Folu Ola',
@@ -150,11 +130,7 @@ describe('PATCH /api/v1/incidents/:id', () => {
     request(App)
       .patch('/api/v1/incidents/1')
       .set('Accept', 'application/json')
- servertests
       .set('authorization', token)
-
-      .set('x-access-token', token)
- develop
       .send ({
                location: '99999,99999999',
                title: 'A log of wood over the bridge',
@@ -187,11 +163,7 @@ describe('PATCH /api/v1/incidents/:id', () => {
          request(App)
             .delete('/api/v1/incidents/1001')
             .set('Accept', 'application/json')
- servertests
             .set('authorization', token)
-
-            .set('x-access-token', token)  
- develop
             .end((err, res) => {
               expect(res.body).to.be.an('object');
               expect(res.status).to.be.equal(404);

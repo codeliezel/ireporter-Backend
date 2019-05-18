@@ -45,11 +45,7 @@
   },
   "scripts": {
     "start": "node_modules/.bin/nodemon server/app.js --exec babel-node --",
- servertests
     "test": "nyc --reporter=html mocha --timeout 150000 --require babel-register ./server/tests   --exit",
-
-    "test": "nyc mocha --timeout 120000 --require babel-register ./server/tests   --exit",
- develop
     "coverage": "nyc report --reporter=text-lcov --reporter=lcov | coveralls"
   },
   "repository": {
