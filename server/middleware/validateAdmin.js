@@ -1,4 +1,4 @@
-import Helper from "./helper";
+import Helper from './helper';
 import db from '../db/index';
 
 class ValidateAdmin {
@@ -18,7 +18,7 @@ class ValidateAdmin {
             error: '404',
             message: 'Wrong email or password!',
           });
-      }else if (!Helper.comparePassword(rows[0].password, req.body.password)) {
+      } if (!Helper.comparePassword(rows[0].password, req.body.password)) {
         return res.status(404)
           .json({
             error: '404',

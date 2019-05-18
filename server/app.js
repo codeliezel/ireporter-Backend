@@ -1,5 +1,5 @@
 import express from 'express';
-
+// eslint-disable-next-line import/no-cycle
 import router from './routes/index';
 
 import 'babel-polyfill';
@@ -33,7 +33,7 @@ app.get('/', (req, res) => {
 const port = process.env.PORT || 4000;
 
 const server = app.listen(port, () => {
-  console.log(`server running on port 4000`);
+  console.log('server running on port 4000');
 });
 
 
