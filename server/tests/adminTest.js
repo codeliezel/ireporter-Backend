@@ -8,17 +8,29 @@ const { expect } = chai;
 
 chai.use(chaiHttp);
 
+ servertests
 let token = process.env.JWT_TOKEN;
+
+let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjcxLCJpYXQiOjE1NTcyNTgxMDQsImV4cCI6MTU1Nzg2MjkwNH0.DFqmZR9TLbG7OZMWWu99hL8D_O1pKsFPOkj_qaR9L34";
+
+ develop
 
 describe("POST /api/v1/admin/login", () => {
     it("should login a user", (done) => {
      request(App)
         .post('/api/v1/admin/login')
         .set('Accept', 'application/json')
+ servertests
         .set('authorization', token)
         .send({
           email: 'rebbecca@gmail.com',
           password: 'rebecca'
+
+        .set('x-access-token', token)
+        .send({
+          email: 'funmiayo@gmail.com',
+          password: 'drosa'
+ develop
         })
         .end((err, res) => {
           expect(res.status).to.be.equal(200);
@@ -34,7 +46,11 @@ describe("POST /api/v1/admin/login", () => {
       request(App)
          .post('/api/v1/admin/login')
          .set('Accept', 'application/json')
+ servertests
          .set('authorization', token)
+
+         .set('x-access-token', token)
+ develop
          .send({
            email: '',
            password: ''
@@ -52,7 +68,11 @@ describe("POST /api/v1/admin/login", () => {
       request(App)
          .post('/api/v1/admin/login')
          .set('Accept', 'application/json')
+ servertests
          .set('authorization', token)
+
+         .set('x-access-token', token)
+ develop
          .send({
            email: 'funmi0987@gmail.com',
            password: 'drosa'
@@ -70,7 +90,11 @@ describe("POST /api/v1/admin/login", () => {
       request(App)
          .post('/api/v1/admin/login')
          .set('Accept', 'application/json')
+ servertests
          .set('authorization', token)
+
+         .set('x-access-token', token)
+ develop
          .send({
            email: 'funmiayo@gmail.com',
            password: 'drosp'
@@ -91,7 +115,11 @@ describe("POST /api/v1/admin/login", () => {
     request(App)
       .put('/api/v1/status/1')
       .set('Accept', 'application/json')
+ servertests
       .set('authorization', token)
+
+      .set('x-access-token', token)
+ develop
       .send ({
                status: 'Approved',
               })           
@@ -106,7 +134,11 @@ describe("POST /api/v1/admin/login", () => {
     request(App)
       .put('/api/v1/status/1')
       .set('Accept', 'application/json')
+ servertests
       .set('authorization', token)
+
+      .set('x-access-token', token)
+ develop
       .send ({
                status: '',
               })           
@@ -140,7 +172,11 @@ describe('GET /api/v1/users', () => {
     request(App)
       .get('/api/v1/users')
       .set('Accept', 'application/json')
+ servertests
       .set('authorization', token)
+
+      .set('x-access-token', token)
+ develop
       .end((err, res) => {
       expect(res.body).to.be.an('object');
       expect(res.status).to.be.equal(200);
@@ -164,6 +200,7 @@ describe('GET /api/v1/users', () => {
 });
 
 
+ servertests
 // describe('POST /api/v1/mail', () => {
 //   it('should send a mail', (done) => {
 //     request(App)
@@ -221,13 +258,75 @@ describe('GET /api/v1/users', () => {
 //   });
 // });
 
+describe('POST /api/v1/mail', () => {
+  it('should send a mail', (done) => {
+    request(App)
+      .post('/api/v1/mail')
+      .set('Accept', 'application/json')
+      .set('x-access-token', token)
+      .send ({
+          email : 'JohnMye@gmail.com',
+          msg: 'Your incident has been approved!',
+          name: 'Halimat Adeleke',
+          position: 'Head of Reports',
+          company: 'WACA Ireporter'
+      })
+      .end((err, res) => {
+      expect(res.body).to.be.an('object');
+      expect(res.status).to.be.equal(200);
+      expect(res).to.have.status('200');
+        done();
+      });
+  });
+  it('should return an error if details are not complete/provided', (done) => {
+    request(App)
+      .post('/api/v1/mail')
+      .set('Accept', 'application/json')
+      .set('x-access-token', token)
+      .send ({
+          email : '',
+          msg: '',
+          name: '',
+          position: '',
+          company: ''
+      })
+      .end((err, res) => {
+      expect(res.body).to.be.an('object');
+      expect(res.status).to.be.equal(400);
+      expect(res).to.have.status('400');
+      expect(res.body).to.include.key('error')
+      expect(res.body).to.include.key('message')
+      expect(res.body.message).to.be.equal('Please, supply all the required information')
+        done();
+      });
+  });
+  it('should return an error if token is not present', (done) => {
+    request(App)
+      .get('/api/v1/incidents')
+      .set('Accept', 'application/json')
+      .end((err, res) => {
+        expect(res.body).to.be.an('object');
+        expect(res.status).to.be.equal(400);
+        expect(res).to.have.status('400');
+        expect(res.body).to.include.keys('message');
+        expect(res.body.message).to.be.equal('Token is not provided');
+        done();
+      });
+  });
+});
+ develop
+
 
 describe('POST /api/v1/sms', () => {
     it('should send a sms', (done) => {
       request(App)
         .post('/api/v1/sms')
         .set('Accept', 'application/json')
+servertests
         .set('authorization', token)
+
+        .set('x-access-token', token)
+ develop
         .send ({
             text: 'The message has been sent successfully',
             number: '08038876545'
@@ -243,7 +342,11 @@ describe('POST /api/v1/sms', () => {
       request(App)
         .post('/api/v1/mail')
         .set('Accept', 'application/json')
+ servertests
         .set('authorization', token)
+
+        .set('x-access-token', token)
+ develop
         .send ({
             text: '',
             number: ''
