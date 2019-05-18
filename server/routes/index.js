@@ -23,7 +23,7 @@ router.post('/api/v1/users', ValidateUser.createAccount, users.createAccount);
 router.post('/api/v1/users/login', ValidateUser.login, users.login);
 
 // user to delete his or her account
-router.delete('/api/v1/users/:id', users.deleteAccount);
+router.delete('/api/v1/users/:id', Auth.verifyToken, users.deleteAccount);
 
 // user to reset password
 router.put('/api/v1/reset/:id', users.resetPassword);
