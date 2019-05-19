@@ -33,7 +33,7 @@ const createUsersTable = () => {
     .then((res) => {
       console.log(res);
       pool.end();
-      console.log("Users table has been created!");
+      console.log('Users table has been created!');
     })
     .catch((err) => {
       console.log(err);
@@ -60,7 +60,7 @@ const createIncidentsTable = () => {
     .then((res) => {
       console.log(res);
       pool.end();
-      console.log("Incidents table has been created!");
+      console.log('Incidents table has been created!');
     })
     .catch((err) => {
       console.log(err);
@@ -77,7 +77,7 @@ const dropUsersTable = () => {
     .then((res) => {
       console.log(res);
       pool.end();
-      console.log("Users table has been dropped!");
+      console.log('Users table has been dropped!');
     })
     .catch((err) => {
       console.log(err);
@@ -93,7 +93,7 @@ const dropIncidentsTable = () => {
     .then((res) => {
       console.log(res);
       pool.end();
-      console.log("Incidents table has been dropped!");
+      console.log('Incidents table has been dropped!');
     })
     .catch((err) => {
       console.log(err);
