@@ -7,6 +7,7 @@ Users can also report on things that needs government intervention.
 [![Coverage Status](https://coveralls.io/repos/github/funmi5/ireporter/badge.svg?branch=servertests)](https://coveralls.io/github/funmi5/ireporter?branch=servertests)
 [![Build Status](https://travis-ci.org/funmi5/ireporter.svg?branch=develop)](https://travis-ci.org/funmi5/ireporter)
 [![Maintainability](https://api.codeclimate.com/v1/badges/6b7413f480f9c9ad5b04/maintainability)](https://codeclimate.com/github/funmi5/ireporter/maintainability)
+[![GitHub](https://img.shields.io/github/license/funmi5/ireporter.svg?style=popout)](https://github.com/funmi5/ireporter/blob/develop/LICENSE)
 
 ## Features
 
