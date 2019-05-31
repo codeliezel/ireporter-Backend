@@ -49,7 +49,7 @@ router.delete('/api/v1/incidents/:id', Auth.verifyToken, records.deleteAnInciden
 router.post('/api/v1/admin/login', Auth.verifyToken, ValidateAdmin.login, admin.login);
 
 // admin to get all users
-router.get('/api/v1/users', Auth.verifyToken, admin.getAllUsers);
+router.get('/api/v1/users', admin.getAllUsers);
 
 // admin to act on a status
 router.put('/api/v1/status/:id', Auth.verifyToken, ValidateAdmin.status, admin.status);
