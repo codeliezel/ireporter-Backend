@@ -234,7 +234,8 @@
 <a name='L186'></a><a href='#L186'>186</a>
 <a name='L187'></a><a href='#L187'>187</a>
 <a name='L188'></a><a href='#L188'>188</a>
-<a name='L189'></a><a href='#L189'>189</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L189'></a><a href='#L189'>189</a>
+<a name='L190'></a><a href='#L190'>190</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -420,6 +421,7 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import chai from 'chai';
@@ -431,7 +433,7 @@ const { expect } = chai;
 chai.use(chaiHttp);
 &nbsp;
 &nbsp;
-let token = process.env.JWT_TOKEN;
+const token = process.env.JWT_TOKEN;
 // get all incidents
 describe('GET /api/v1/incidents', () =&gt; {
   it('should get all incidents', (done) =&gt; {
@@ -440,9 +442,9 @@ describe('GET /api/v1/incidents', () =&gt; {
       .set('Accept', 'application/json')
       .set('authorization', token)
       .end((err, res) =&gt; {
-      expect(res.body).to.be.an('object');
-      expect(res.status).to.be.equal(200);
-      expect(res).to.have.status('200');
+        expect(res.body).to.be.an('object');
+        expect(res.status).to.be.equal(200);
+        expect(res).to.have.status('200');
         done();
       });
   });
@@ -470,9 +472,9 @@ describe('GET /api/v1/incidents/:id', () =&gt; {
       .set('Accept', 'application/json')
       .set('authorization', token)
       .end((err, res) =&gt; {
-      expect(res.body).to.be.an('object');
-      expect(res.status).to.be.equal(200);
-      expect(res).to.have.status('200');
+        expect(res.body).to.be.an('object');
+        expect(res.status).to.be.equal(200);
+        expect(res).to.have.status('200');
         done();
       });
   });
@@ -514,23 +516,23 @@ describe('POST /api/v1/incidents', () =&gt; {
       .post('/api/v1/incidents')
       .set('Accept', 'application/json')
       .set('authorization', token)
-      .send ({
-       createdOn: '',
-       createdBy: ' Folu Ola',
-       type: 'red-flag',
-       location: '333333387,9999993993',
-       status: 'under investigation',
-       title: 'A log of wood over the bridge',
-       comment: ' A log of wood fell over the bridge and killed millions of people'
+      .send({
+        createdOn: '',
+        createdBy: ' Folu Ola',
+        type: 'red-flag',
+        location: '333333387,9999993993',
+        status: 'under investigation',
+        title: 'A log of wood over the bridge',
+        comment: ' A log of wood fell over the bridge and killed millions of people',
       })
       .end((err, res) =&gt; {
-      expect(res.body).to.be.an('object');
-      expect(res.status).to.be.equal(201);
-      expect(res).to.have.status('201');
-       expect(res.body.data[0]).to.include.key('message');
-       expect(res.body.data[0]).to.include.key('token');
-            expect(res.body).to.include.key('data');
-            expect(res.body.data[0].message).to.equal('Incident created successfully!');
+        expect(res.body).to.be.an('object');
+        expect(res.status).to.be.equal(201);
+        expect(res).to.have.status('201');
+        expect(res.body.data[0]).to.include.key('message');
+        expect(res.body.data[0]).to.include.key('token');
+        expect(res.body).to.include.key('data');
+        expect(res.body.data[0].message).to.equal('Incident created successfully!');
         done();
       });
   });
@@ -543,11 +545,11 @@ describe('POST /api/v1/incidents', () =&gt; {
         expect(res.status).to.be.equal(400);
         expect(res).to.have.status('400');
         expect(res.body).to.include.keys('message');
-        expect(res.body.message).to.be.equal('Token is not provided');   
+        expect(res.body.message).to.be.equal('Token is not provided');
         done();
       });
   });
- });
+});
 &nbsp;
 describe('PATCH /api/v1/incidents/:id', () =&gt; {
   it('should update an incident', (done) =&gt; {
@@ -555,68 +557,69 @@ describe('PATCH /api/v1/incidents/:id', () =&gt; {
       .patch('/api/v1/incidents/1')
       .set('Accept', 'application/json')
       .set('authorization', token)
-      .send ({
-               location: '99999,99999999',
-               title: 'A log of wood over the bridge',
-               comment: ' A log of wood fell over the bridge and killed millions of people'
-              })           
+      .send({
+        location: '99999,99999999',
+        title: 'A log of wood over the bridge',
+        comment: ' A log of wood fell over the bridge and killed millions of people',
+      })
       .end((err, res) =&gt; {
-      expect(res.body).to.be.an('object');
-      expect(res.status).to.be.equal(200);
-      expect(res).to.have.status('200');
+        expect(res.body).to.be.an('object');
+        expect(res.status).to.be.equal(200);
+        expect(res).to.have.status('200');
         done();
       });
   });
   it('should return an error if token is not present', (done) =&gt; {
-        request(App)
-          .get('/api/v1/incidents')
-          .set('Accept', 'application/json')
-          .end((err, res) =&gt; {
-            expect(res.body).to.be.an('object');
-            expect(res.status).to.be.equal(400);
-            expect(res).to.have.status('400');
-            expect(res.body).to.include.keys('message');
-            expect(res.body.message).to.be.equal('Token is not provided');   
-            done();
-          });
+    request(App)
+      .get('/api/v1/incidents')
+      .set('Accept', 'application/json')
+      .end((err, res) =&gt; {
+        expect(res.body).to.be.an('object');
+        expect(res.status).to.be.equal(400);
+        expect(res).to.have.status('400');
+        expect(res.body).to.include.keys('message');
+        expect(res.body.message).to.be.equal('Token is not provided');
+        done();
       });
+  });
 });
 &nbsp;
-  describe("DELETE api/v1/incidents/:id", () =&gt; {
-     it("should send an error if the incident is not found", (done) =&gt; {
-         request(App)
-            .delete('/api/v1/incidents/1001')
-            .set('Accept', 'application/json')
-            .set('authorization', token)
-            .end((err, res) =&gt; {
-              expect(res.body).to.be.an('object');
-              expect(res.status).to.be.equal(404);
-              expect(res.body).to.include.key('error');
-              expect(res.body).to.include.key('message');
-              expect(res.body.message).to.be.equal('Incident not found');
-              done();
-            });
-        });
-        it('should return an error if token is not present', (done) =&gt; {
-                  request(App)
-                    .get('/api/v1/incidents')
-                    .set('Accept', 'application/json')
-                    .end((err, res) =&gt; {
-                      expect(res.body).to.be.an('object');
-                      expect(res.status).to.be.equal(400);
-                      expect(res).to.have.status('400');
-                      expect(res.body).to.include.keys('message');
-                      expect(res.body.message).to.be.equal('Token is not provided');   
-                      done();
-                    });
-                });
-    });</pre></td></tr>
+describe('DELETE api/v1/incidents/:id', () =&gt; {
+  it('should send an error if the incident is not found', (done) =&gt; {
+    request(App)
+      .delete('/api/v1/incidents/1001')
+      .set('Accept', 'application/json')
+      .set('authorization', token)
+      .end((err, res) =&gt; {
+        expect(res.body).to.be.an('object');
+        expect(res.status).to.be.equal(404);
+        expect(res.body).to.include.key('error');
+        expect(res.body).to.include.key('message');
+        expect(res.body.message).to.be.equal('Incident not found');
+        done();
+      });
+  });
+  it('should return an error if token is not present', (done) =&gt; {
+    request(App)
+      .get('/api/v1/incidents')
+      .set('Accept', 'application/json')
+      .end((err, res) =&gt; {
+        expect(res.body).to.be.an('object');
+        expect(res.status).to.be.equal(400);
+        expect(res).to.have.status('400');
+        expect(res.body).to.include.keys('message');
+        expect(res.body.message).to.be.equal('Token is not provided');
+        done();
+      });
+  });
+});
+&nbsp;</pre></td></tr>
 </table></pre>
 <div class='push'></div><!-- for sticky footer -->
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sat May 18 2019 16:25:32 GMT+0100 (West Africa Standard Time)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Fri May 31 2019 23:32:41 GMT+0100 (West Africa Standard Time)
 </div>
 </div>
 <script src="..\..\prettify.js"></script>
