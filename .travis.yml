@@ -4,7 +4,7 @@ node_js:
 services:
   - postgres
 env:
-  global: CC_TEST_REPORTER_ID=8a5dfcfcbaf8818a8cd7648edb5ee7717a793f629fc8c7f4cfc46a3b959958ff
+  global: CC_TEST_REPORTER_ID=8672486bc6ce30acfebc3839bf01505ce840112b6c8acd33efe546cacfbcd472
 before_script:
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
   - chmod +x ./cc-test-reporter
