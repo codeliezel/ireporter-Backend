@@ -1,47 +1,42 @@
 # iReporter
 
-iReporter enables any/every citizen to bring any form of corruption to the notice of appropriate authorities and the  general public.
-Users can also report on things that needs government intervention.
-
-[![Build Status](https://travis-ci.org/funmi5/ireporter.svg?branch=develop)](https://travis-ci.org/funmi5/ireporter)
-[![Coverage Status](https://coveralls.io/repos/github/funmi5/ireporter/badge.svg?branch=servertests)](https://coveralls.io/github/funmi5/ireporter?branch=servertests)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/6b7413f480f9c9ad5b04/test_coverage)](https://codeclimate.com/github/funmi5/ireporter/test_coverage)
-[![Maintainability](https://api.codeclimate.com/v1/badges/6b7413f480f9c9ad5b04/maintainability)](https://codeclimate.com/github/funmi5/ireporter/maintainability)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/50122e27e00948b38339148c9e34b8af)](https://app.codacy.com/app/funmi5/ireporter?utm_source=github.com&utm_medium=referral&utm_content=funmi5/ireporter&utm_campaign=Badge_Grade_Dashboard)
-[![GitHub](https://img.shields.io/github/license/funmi5/ireporter.svg?style=popout)](https://github.com/funmi5/ireporter/blob/develop/LICENSE)
-
+[![Coverage Status](https://coveralls.io/repos/github/funmi5/ireporter/badge.svg?branch=servertests)](https://coveralls.io/github/funmi5/ireporter?branch=servertests)
+[![Build Status](https://travis-ci.org/funmi5/ireporter.svg?branch=develop)](https://travis-ci.org/funmi5/ireporter)
+[![Maintainability](https://api.codeclimate.com/v1/badges/6b7413f480f9c9ad5b04/maintainability)](https://codeclimate.com/github/funmi5/ireporter/maintainability)
 
 ## Features
 
 - Users can create an account and log in.
 - Users can create a red-flag record (An incident linked to corruption).
-- Users can create intervention record(a call for a government agency to intervene e.g  repair bad road sections,       collapsed bridges flooding e.t.c).
+- Users can create intervention record(a government agency call) to intervene.
 - Users can edit their red-flag or intervention records.  
 - Users can delete their red-flag or intervention records.
-- Users can add geo-location(Lat Long Coordinates) to their records.
-- Users can change the geo-location (Lat Long Coordinates) attached to their red-flag or intervention records.
-- Admin can change the status of a record to either under investigation, rejected (in the  event of a false claim)or resolved (in the event that the claim has been investigated and  resolved).
+- Users can add geographical location(Lat Long Coordinates) to their records.
+- Users can change the geographical location attached to their records.
+- Admin can change the status of a record to either after record reviews.
 
 ## Other Features
 
-- Users can add images to their red-flag or intervention records, to support their claims.
-- Users can add videos to their red-flag or intervention records, to support their claims.
-- The user gets real-time email notification when Admin changes the status of their record.
-- The user gets real-time sms notification when Admin changes the status of their record. 
+- Users can add images to their records, to support their claims.
+- Users can add videos to their records, to support their claims.
+- The user gets an email notification when the Admin acts on their record.
+- The user gets a SMS notification when the Admin acts on their record.
 
 ## The tools used in the creation of this project
 
 - Node.js & Express.
-- Eslint(AirBnB style guide).
-- Mocha, Chai, Istanbul & Nyc for testing.
-- Mocha, Chai, Istanbul & Nyc for testing.
+- ESLINT(AirBnB style guide).
+- Mocha, Chai, Istanbul & NYC for testing.
+- Mocha, Chai, Istanbul & NYC for testing.
 - Babel(To transpire down from ES6 to ES5
 - Travis CI, Coveralls, Code climate and Codacy.
 
 ## Getting started
 
+- In order to clone the project;
 - Have Git, Node.js installed on your computer.
-- Then use this link: ```https://github.com/funmi5/ireporter.git```  to clone the project to your computer.
+- use this link: ```https://github.com/funmi5/ireporter.git``` to clone it.
 
 ```bash
 -  cd into the project and run **npm start**
@@ -66,15 +61,15 @@ These are the HTTP request methods used in this project.
 
 These are the HTTP response codes used in this project.
 
-| Status Codes | Indication|
-|   ---        | ---
-|  `200`       | This `OK` status code indicates that a request has succeeded|
-|  `201`       | This `created` status code indicates that a resource has been created|
-|  `204`       | This `No content` status code indicates a request has succeeded and the current page need not be left|
-|  `400`       | This `bad request error` status code indicates that the request sent to the server is incorrect|
-|  `404`       | This `not found` status code indicates that the request/resource asked for can not be found|
-|  `409`       | This `conflict` status code indicates that the request--response asked for is conflicted|
-|  `500`       | This `internal server error` status code indicates that something has gone wrong on the web server|
+| Status Codes | Indication                                                                                            |
+|   ---        | ---                                                                                                   |
+|  `200`       | This `OK` status code indicates that a request has succeeded                                          |
+|  `201`       | This `created` status code indicates that a resource has been created                                 |
+|  `204`       | This `No content` status code indicates a request has succeeded and the current page need not be left |
+|  `400`       | This `bad request error` status code indicates that the request sent to the server is incorrect       |
+|  `404`       | This `not found` status code indicates that the request/resource asked for can not be found           |
+|  `409`       | This `conflict` status code indicates that the request--response asked for is conflicted              |
+|  `500`       | This `internal server error` status code indicates that something has gone wrong on the web server    |
 
 ## The API Routes
 
@@ -97,7 +92,7 @@ This features all the routes created in this project.
 | /api/v1/mail          | `POST`   | For an admin to send a mail                         |
 | /api/v1/sms           | `POST`   | For an admin to send a sms message                  |
 
-## Template UI
+## Template User Interface(UI)
 
 <https://funmi5.github.io/ireporter/UI>
 
