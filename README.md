@@ -102,6 +102,10 @@ This features all the routes created in this project.
 
 <https://www.pivotaltracker.com/n/projects/2226969>
 
+## The API endpoints are hosted on Heroku
+
+<https://ireporter16.herokuapp.com/>
+
 ## Author
 
 Funmilayo E. Olaiya
