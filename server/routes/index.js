@@ -15,7 +15,9 @@ import ValidateAdmin from '../middleware/validateAdmin';
 
 const router = express.Router();
 
-
+router.get('/', (req, res) => {
+  res.status(200).json({ message: 'Welcome to iReporter' });
+});
 // user to create an account
 router.post('/api/v1/users', ValidateUser.createAccount, users.createAccount);
 
