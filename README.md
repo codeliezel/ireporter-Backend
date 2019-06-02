@@ -1,9 +1,11 @@
 # iReporter
 
+[![Build Status](https://travis-ci.org/funmi5/ireporter.svg?branch=develop)](https://travis-ci.org/funmi5/ireporter)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/50122e27e00948b38339148c9e34b8af)](https://app.codacy.com/app/funmi5/ireporter?utm_source=github.com&utm_medium=referral&utm_content=funmi5/ireporter&utm_campaign=Badge_Grade_Dashboard)
 [![Coverage Status](https://coveralls.io/repos/github/funmi5/ireporter/badge.svg?branch=servertests)](https://coveralls.io/github/funmi5/ireporter?branch=servertests)
-[![Build Status](https://travis-ci.org/funmi5/ireporter.svg?branch=develop)](https://travis-ci.org/funmi5/ireporter)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/6b7413f480f9c9ad5b04/test_coverage)](https://codeclimate.com/github/funmi5/ireporter/test_coverage)
 [![Maintainability](https://api.codeclimate.com/v1/badges/6b7413f480f9c9ad5b04/maintainability)](https://codeclimate.com/github/funmi5/ireporter/maintainability)
+[![GitHub](https://img.shields.io/github/license/funmi5/ireporter.svg?style=popout)](https://github.com/funmi5/ireporter/blob/develop/LICENSE)
 
 ## Features
 
@@ -21,12 +23,12 @@
 - Users can add images to their records, to support their claims.
 - Users can add videos to their records, to support their claims.
 - The user gets an email notification when the Admin acts on their record.
-- The user gets a SMS notification when the Admin acts on their record.
+- The user gets a message notification when the Admin acts on their record.
 
 ## The tools used in the creation of this project
 
 - Node.js & Express.
-- ESLINT(AirBnB style guide).
+- Eslint.
 - Mocha, Chai, Istanbul & NYC for testing.
 - Mocha, Chai, Istanbul & NYC for testing.
 - Babel(To transpire down from ES6 to ES5
