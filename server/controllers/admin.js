@@ -28,6 +28,7 @@ io.on('çonnection', (socket) => {
 });
 
 
+// admin
 class admin {
   // To log in
   static async login(req, res) {

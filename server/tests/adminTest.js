@@ -8,6 +8,7 @@ const { expect } = chai;
 chai.use(chaiHttp);
 const token = process.env.JWT_TOKEN;
 
+// admin tests
 describe('POST /api/v1/admin/login', () => {
   it('should login a user', (done) => {
     request(App)

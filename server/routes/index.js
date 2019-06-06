@@ -15,6 +15,7 @@ import ValidateAdmin from '../middleware/validateAdmin';
 
 const router = express.Router();
 
+// all routes
 // for welcome
 router.get('/', (req, res) => {
   res.status(200).json({ message: 'Welcome to iReporter' });

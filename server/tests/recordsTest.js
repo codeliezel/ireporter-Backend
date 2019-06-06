@@ -8,6 +8,8 @@ chai.use(chaiHttp);
 
 
 const token = process.env.JWT_TOKEN;
+
+// records test
 // get all incidents
 describe('GET /api/v1/incidents', () => {
   it('should get all incidents', (done) => {

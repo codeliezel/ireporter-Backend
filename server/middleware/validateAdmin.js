@@ -1,6 +1,8 @@
 import Helper from './helper';
 import db from '../db/index';
 
+
+// admin validation
 class ValidateAdmin {
   static async login(req, res, next) {
     if (!req.body.email || !req.body.password) {
