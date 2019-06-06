@@ -1,6 +1,7 @@
 import Helper from './helper';
 import db from '../db/index';
 
+// users validation
 
 class ValidateUser {
   static async createAccount(req, res, next) {

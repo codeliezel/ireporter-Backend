@@ -11,7 +11,7 @@ chai.use(chaiHttp);
 const token = process.env.JWT_TOKEN;
 
 // tests for a user to create an account with error handling
-
+// users test
 describe('POST api/v1/users', () => {
   it('should return an error if the particular mail has already been registered', (done) => {
     request(App)

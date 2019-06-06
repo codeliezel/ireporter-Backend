@@ -1,6 +1,7 @@
 import jwt from 'jsonwebtoken';
 import db from '../db/index';
 
+// token
 const Auth = {
   /**
    * Verify Token

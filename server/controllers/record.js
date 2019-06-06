@@ -3,6 +3,7 @@ import db from '../db/index';
 import Helper from '../middleware/helper';
 
 
+// records
 class records {
   // To create an incident
   static async createIncident(req, res) {

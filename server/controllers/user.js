@@ -2,7 +2,7 @@ import moment from 'moment';
 import db from '../db/index';
 import Helper from '../middleware/helper';
 
-
+// users
 class users {
   // To create an account
   static async createAccount(req, res) {
