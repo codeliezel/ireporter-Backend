@@ -11,10 +11,10 @@ const token = process.env.JWT_TOKEN;
 
 // records test
 // get all incidents
-describe('GET /api/v1/incidents', () => {
+describe('GET /api/v1/auth/allincidents', () => {
   it('should get all incidents', (done) => {
     request(App)
-      .get('/api/v1/incidents')
+      .get('/api/v1/auth/allincidents')
       .set('Accept', 'application/json')
       .set('authorization', token)
       .end((err, res) => {
@@ -26,14 +26,16 @@ describe('GET /api/v1/incidents', () => {
   });
   it('should return an error if token is not present', (done) => {
     request(App)
-      .get('/api/v1/incidents')
+      .get('/api/v1/auth/allincidents')
       .set('Accept', 'application/json')
       .end((err, res) => {
         expect(res.body).to.be.an('object');
         expect(res.status).to.be.equal(400);
         expect(res).to.have.status('400');
-        expect(res.body).to.include.keys('message');
-        expect(res.body.message).to.be.equal('Token is not provided');
+        expect(res.body).to.include.key('data');
+        expect(res.body.data[0]).to.include.key('error');
+        expect(res.body.data[0]).to.include.key('message');
+        expect(res.body.data[0].message).to.be.equal('Token is not provided');
         done();
       });
   });
@@ -41,10 +43,10 @@ describe('GET /api/v1/incidents', () => {
 
 
 // get one incident
-describe('GET /api/v1/incidents/:id', () => {
+describe('GET /api/v1/auth/anincident/:id', () => {
   it('should get an incident', (done) => {
     request(App)
-      .get('/api/v1/incidents/1')
+      .get('/api/v1/auth/anincident/1')
       .set('Accept', 'application/json')
       .set('authorization', token)
       .end((err, res) => {
@@ -56,29 +58,32 @@ describe('GET /api/v1/incidents/:id', () => {
   });
   it('should return an error if incident is not found', (done) => {
     request(App)
-      .get('/api/v1/incidents/976')
+      .get('/api/v1/auth/anincident/976')
       .set('Accept', 'application/json')
       .set('authorization', token)
       .end((err, res) => {
         expect(res.body).to.be.an('object');
         expect(res.status).to.be.equal(404);
         expect(res).to.have.status('404');
-        expect(res.body).to.include.keys('error');
-        expect(res.body).to.include.keys('message');
-        expect(res.body.message).to.be.equal('Incident not found');
+        expect(res.body).to.include.key('data');
+        expect(res.body.data[0]).to.include.key('error');
+        expect(res.body.data[0]).to.include.key('message');
+        expect(res.body.data[0].message).to.be.equal('Incident not found');
         done();
       });
   });
   it('should return an error if token is not present', (done) => {
     request(App)
-      .get('/api/v1/incidents/1')
+      .get('/api/v1/auth/anincident/1')
       .set('Accept', 'application/json')
       .end((err, res) => {
         expect(res.body).to.be.an('object');
         expect(res.status).to.be.equal(400);
         expect(res).to.have.status('400');
-        expect(res.body).to.include.keys('message');
-        expect(res.body.message).to.be.equal('Token is not provided');
+        expect(res.body).to.include.key('data');
+        expect(res.body.data[0]).to.include.key('error');
+        expect(res.body.data[0]).to.include.key('message');
+        expect(res.body.data[0].message).to.be.equal('Token is not provided');
         done();
       });
   });
@@ -86,10 +91,10 @@ describe('GET /api/v1/incidents/:id', () => {
 
 // create an incident
 
-describe('POST /api/v1/incidents', () => {
+describe('POST /api/v1/auth/incident', () => {
   it('should create an incident', (done) => {
     request(App)
-      .post('/api/v1/incidents')
+      .post('/api/v1/auth/incident')
       .set('Accept', 'application/json')
       .set('authorization', token)
       .send({
@@ -105,32 +110,34 @@ describe('POST /api/v1/incidents', () => {
         expect(res.body).to.be.an('object');
         expect(res.status).to.be.equal(201);
         expect(res).to.have.status('201');
-        expect(res.body.data[0]).to.include.key('message');
-        expect(res.body.data[0]).to.include.key('token');
         expect(res.body).to.include.key('data');
+        expect(res.body.data[0]).to.include.key('status');
+        expect(res.body.data[0]).to.include.key('message');
         expect(res.body.data[0].message).to.equal('Incident created successfully!');
         done();
       });
   });
   it('should return an error if token is not present', (done) => {
     request(App)
-      .get('/api/v1/incidents')
+      .post('/api/v1/auth/incident')
       .set('Accept', 'application/json')
       .end((err, res) => {
         expect(res.body).to.be.an('object');
         expect(res.status).to.be.equal(400);
         expect(res).to.have.status('400');
-        expect(res.body).to.include.keys('message');
-        expect(res.body.message).to.be.equal('Token is not provided');
+        expect(res.body).to.include.key('data');
+        expect(res.body.data[0]).to.include.key('error');
+        expect(res.body.data[0]).to.include.key('message');
+        expect(res.body.data[0].message).to.be.equal('Token is not provided');
         done();
       });
   });
 });
 
-describe('PATCH /api/v1/incidents/:id', () => {
+describe('PATCH /api/v1/auth/updateincident/:id', () => {
   it('should update an incident', (done) => {
     request(App)
-      .patch('/api/v1/incidents/1')
+      .patch('/api/v1/auth/updateincident/1')
       .set('Accept', 'application/json')
       .set('authorization', token)
       .send({
@@ -147,44 +154,49 @@ describe('PATCH /api/v1/incidents/:id', () => {
   });
   it('should return an error if token is not present', (done) => {
     request(App)
-      .get('/api/v1/incidents')
+      .patch('/api/v1/auth/updateincident/1')
       .set('Accept', 'application/json')
       .end((err, res) => {
         expect(res.body).to.be.an('object');
         expect(res.status).to.be.equal(400);
         expect(res).to.have.status('400');
-        expect(res.body).to.include.keys('message');
-        expect(res.body.message).to.be.equal('Token is not provided');
+        expect(res.body).to.include.key('data');
+        expect(res.body.data[0]).to.include.key('error');
+        expect(res.body.data[0]).to.include.key('message');
+        expect(res.body.data[0].message).to.be.equal('Token is not provided');
         done();
       });
   });
 });
 
-describe('DELETE api/v1/incidents/:id', () => {
+describe('DELETE api/v1/auth/deleteincident/:id', () => {
   it('should send an error if the incident is not found', (done) => {
     request(App)
-      .delete('/api/v1/incidents/1001')
+      .delete('/api/v1/auth/deleteincident/1001')
       .set('Accept', 'application/json')
       .set('authorization', token)
       .end((err, res) => {
         expect(res.body).to.be.an('object');
         expect(res.status).to.be.equal(404);
-        expect(res.body).to.include.key('error');
-        expect(res.body).to.include.key('message');
-        expect(res.body.message).to.be.equal('Incident not found');
+        expect(res.body).to.include.key('data');
+        expect(res.body.data[0]).to.include.key('error');
+        expect(res.body.data[0]).to.include.key('message');
+        expect(res.body.data[0].message).to.be.equal('Incident not found');
         done();
       });
   });
   it('should return an error if token is not present', (done) => {
     request(App)
-      .get('/api/v1/incidents')
+      .delete('/api/v1/auth/deleteincident/1001')
       .set('Accept', 'application/json')
       .end((err, res) => {
         expect(res.body).to.be.an('object');
         expect(res.status).to.be.equal(400);
         expect(res).to.have.status('400');
-        expect(res.body).to.include.keys('message');
-        expect(res.body.message).to.be.equal('Token is not provided');
+        expect(res.body).to.include.key('data');
+        expect(res.body.data[0]).to.include.key('error');
+        expect(res.body.data[0]).to.include.key('message');
+        expect(res.body.data[0].message).to.be.equal('Token is not provided');
         done();
       });
   });

@@ -3,7 +3,6 @@ import db from '../db/index';
 import Helper from '../middleware/helper';
 
 
-// records
 class records {
   // To create an incident
   static async createIncident(req, res) {
@@ -36,13 +35,13 @@ class records {
       const token = Helper.generateToken(rows[0].id);
       return res.status(201)
         .json({
-          status: '201',
           data:
-         [{
-           message:
+          [{
+            status: '201',
+            message:
             'Incident created successfully!',
-           token,
-         }],
+            token,
+          }],
         });
     } catch (error) {
       return res.status(400).json(error);
@@ -57,8 +56,11 @@ class records {
       if (!rows[0]) {
         return res.status(404)
           .json({
-            error: '404',
-            message: 'Incident not found',
+            data:
+            [{
+              error: '404',
+              message: 'Incident not found',
+            }],
           });
       }
       return res.status(200).json(rows[0]);
@@ -86,7 +88,13 @@ class records {
       const { rows } = await db.query(findOneQuery, [req.params.id]);
       if (!rows[0]) {
         return res.status(404)
-          .json({ message: 'Incident not found! ' });
+          .json({
+            data:
+            [{
+              error: 404,
+              message: 'Incident not found! ',
+            }],
+          });
       }
       const values = [
         req.body.location || rows[0].location,
@@ -109,11 +117,20 @@ class records {
       if (!rows[0]) {
         return res.status(404)
           .json({
-            error: '404',
-            message: 'Incident not found',
+            data:
+            [{
+              error: '404',
+              message: 'Incident not found',
+            }],
           });
       } if (rows[0]) {
-        return res.status(204).json({ message: 'Your incident has been deleted' });
+        return res.status(200).json({
+          data:
+          [{
+            status: 200,
+            message: 'Your incident has been deleted',
+          }],
+        });
       }
     } catch (error) {
       return res.status(400).send(error);

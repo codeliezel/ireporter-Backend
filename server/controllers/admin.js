@@ -28,7 +28,6 @@ io.on('çonnection', (socket) => {
 });
 
 
-// admin
 class admin {
   // To log in
   static async login(req, res) {
@@ -36,13 +35,13 @@ class admin {
     const { rows } = await db.query(loginQuery, [req.body.email]);
     const token = Helper.generateToken(rows[0].id);
     res.status(200).json({
-      status: 200,
       data:
-        [{
-          message:
+      [{
+        status: 200,
+        message:
           'You have logged in successfully',
-          token,
-        }],
+        token,
+      }],
     });
   }
 
@@ -50,7 +49,8 @@ class admin {
   static async getAllUsers(req, res) {
     const findAllQuery = 'SELECT * FROM users';
     const { rows, rowCount } = await db.query(findAllQuery);
-    return res.status(200).send({ rows, rowCount });
+    return res.status(200)
+      .json({ rows, rowCount });
   }
 
   // act on a status
@@ -64,7 +64,11 @@ class admin {
       if (!rows[0]) {
         return res.status(404)
           .json({
-            message: 'Incident not found! ',
+            data:
+            [{
+              error: 404,
+              message: 'Incident not found! ',
+            }],
           });
       }
       const values = [
@@ -72,7 +76,7 @@ class admin {
         req.params.id,
       ];
       const response = await db.query(updateOneQuery, values);
-      return res.status(200).send(response.rows[0]);
+      return res.status(200).json(response.rows[0]);
       // return res.status(200)
       //   .json({
       //       status: 200,
@@ -120,8 +124,11 @@ class admin {
       console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
       return res.status(200)
         .json({
-          status: 200,
-          message: 'The mail has been sent successfully.',
+          data:
+          [{
+            status: 200,
+            message: 'The mail has been sent successfully.',
+          }],
         });
     });
   }
@@ -143,10 +150,14 @@ class admin {
             id: responseData.messages[0]['message-id'],
             number: responseData.messages[0]['.'],
           };
-          res.status(200).json({
-            status: 200,
-            message: 'The message has been sent successfully',
-          });
+          res.status(200)
+            .json({
+              data:
+            [{
+              status: 200,
+              message: 'The message has been sent successfully',
+            }],
+            });
 
           // Emit the the client
           io.emit('smsStatus', data);
