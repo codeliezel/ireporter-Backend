@@ -12,6 +12,7 @@ import Auth from '../middleware/authentication';
 import ValidateUser from '../middleware/validateUser';
 
 import ValidateAdmin from '../middleware/validateAdmin';
+import ValidateRecord from '../middleware/validateRecord';
 
 const router = express.Router();
 
@@ -33,7 +34,7 @@ router.put('/api/v1/auth/resetpassword/:id', Auth.verifyToken, ValidateUser.rese
 
 
 // user to post/create incidents
-router.post('/api/v1/auth/incident', Auth.verifyToken, records.createIncident);
+router.post('/api/v1/auth/incident', Auth.verifyToken, ValidateRecord.anincident, records.createIncident);
 
 // user to get an incident
 router.get('/api/v1/auth/anincident/:id', Auth.verifyToken, records.getOneIncident);

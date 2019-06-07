@@ -117,6 +117,30 @@ describe('POST /api/v1/auth/incident', () => {
         done();
       });
   });
+  it('should return an error if one or all the fields are not supplied', (done) => {
+    request(App)
+      .post('/api/v1/auth/incident')
+      .set('Accept', 'application/json')
+      .set('authorization', token)
+      .send({
+        createdBy: '',
+        type: 'red-flag',
+        location: '333333387,9999993993',
+        status: 'under investigation',
+        title: 'A log of wood over the bridge',
+        comment: ' A log of wood fell over the bridge and killed millions of people',
+      })
+      .end((err, res) => {
+        expect(res.body).to.be.an('object');
+        expect(res.status).to.be.equal(400);
+        expect(res).to.have.status('400');
+        expect(res.body).to.include.key('data');
+        expect(res.body.data[0]).to.include.key('error');
+        expect(res.body.data[0]).to.include.key('message');
+        expect(res.body.data[0].message).to.equal('Please, supply all the information required!');
+        done();
+      });
+  });
   it('should return an error if token is not present', (done) => {
     request(App)
       .post('/api/v1/auth/incident')
