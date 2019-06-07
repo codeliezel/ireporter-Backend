@@ -71,6 +71,20 @@ class ValidateUser {
     }
     return next();
   }
+
+
+  static async resetpassword(req, res, next) {
+    if (!req.body.password) {
+      return res.status(400).json({
+        data:
+        [{
+          error: '400',
+          message: 'Please, supply the information required!',
+        }],
+      });
+    }
+    return next();
+  }
 }
 
 
