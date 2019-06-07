@@ -29,7 +29,7 @@ router.post('/api/v1/user/login', ValidateUser.login, users.login);
 router.delete('/api/v1/auth/deleteaccount/:id', Auth.verifyToken, users.deleteAccount);
 
 // user to reset password
-router.put('/api/v1/auth/resetpassword/:id', Auth.verifyToken, users.resetPassword);
+router.put('/api/v1/auth/resetpassword/:id', Auth.verifyToken, ValidateUser.resetpassword, users.resetPassword);
 
 
 // user to post/create incidents
