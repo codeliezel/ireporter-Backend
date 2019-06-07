@@ -30,22 +30,18 @@ class records {
       title,
       comment,
     ];
-    try {
-      const { rows } = await db.query(createQuery, values);
-      const token = Helper.generateToken(rows[0].id);
-      return res.status(201)
-        .json({
-          data:
+    const { rows } = await db.query(createQuery, values);
+    const token = Helper.generateToken(rows[0].id);
+    return res.status(201)
+      .json({
+        data:
           [{
             status: '201',
             message:
             'Incident created successfully!',
             token,
           }],
-        });
-    } catch (error) {
-      return res.status(400).json(error);
-    }
+      });
   }
 
   // To get an incident
