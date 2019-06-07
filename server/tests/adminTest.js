@@ -8,7 +8,7 @@ const { expect } = chai;
 chai.use(chaiHttp);
 const token = process.env.JWT_TOKEN;
 
-// admin tests
+
 describe('POST /api/v1/admin/login', () => {
   it('should login a user', (done) => {
     request(App)
@@ -41,9 +41,10 @@ describe('POST /api/v1/admin/login', () => {
       .end((err, res) => {
         expect(res.status).to.be.equal(400);
         expect(res).to.have.status('400');
-        expect(res.body).to.include.key('error');
-        expect(res.body).to.include.key('message');
-        expect(res.body.message).to.be.equal('Please, supply all the information required!');
+        expect(res.body).to.include.key('data');
+        expect(res.body.data[0]).to.include.key('error');
+        expect(res.body.data[0]).to.include.key('message');
+        expect(res.body.data[0].message).to.be.equal('Please, supply all the information required!');
         done();
       });
   });
@@ -59,9 +60,10 @@ describe('POST /api/v1/admin/login', () => {
       .end((err, res) => {
         expect(res.status).to.be.equal(404);
         expect(res).to.have.status('404');
-        expect(res.body).to.include.key('error');
-        expect(res.body).to.include.key('message');
-        expect(res.body.message).to.be.equal('Wrong email or password!');
+        expect(res.body).to.include.key('data');
+        expect(res.body.data[0]).to.include.key('error');
+        expect(res.body.data[0]).to.include.key('message');
+        expect(res.body.data[0].message).to.be.equal('Wrong email or password!');
         done();
       });
   });
@@ -77,18 +79,19 @@ describe('POST /api/v1/admin/login', () => {
       .end((err, res) => {
         expect(res.status).to.be.equal(404);
         expect(res).to.have.status('404');
-        expect(res.body).to.include.key('error');
-        expect(res.body).to.include.key('message');
-        expect(res.body.message).to.be.equal('Wrong email or password!');
+        expect(res.body).to.include.key('data');
+        expect(res.body.data[0]).to.include.key('error');
+        expect(res.body.data[0]).to.include.key('message');
+        expect(res.body.data[0].message).to.be.equal('Wrong email or password!');
         done();
       });
   });
 });
 
-describe('PUT /api/v1/status/:id', () => {
+describe('PUT /api/v1/auth/changestatus/:id', () => {
   it('should update an incident', (done) => {
     request(App)
-      .put('/api/v1/status/1')
+      .put('/api/v1/auth/changestatus/1')
       .set('Accept', 'application/json')
       .set('authorization', token)
       .send({
@@ -103,7 +106,7 @@ describe('PUT /api/v1/status/:id', () => {
   });
   it('should return an error if status is not supplied', (done) => {
     request(App)
-      .put('/api/v1/status/1')
+      .put('/api/v1/auth/changestatus/1')
       .set('Accept', 'application/json')
       .set('authorization', token)
       .send({
@@ -113,51 +116,58 @@ describe('PUT /api/v1/status/:id', () => {
         expect(res.body).to.be.an('object');
         expect(res.status).to.be.equal(400);
         expect(res).to.have.status('400');
-        expect(res.body).to.include.key('error');
-        expect(res.body).to.include.key('message');
-        expect(res.body.message).to.be.equal('Please, supply the status!');
+        expect(res.body).to.include.key('data');
+        expect(res.body.data[0]).to.include.key('error');
+        expect(res.body.data[0]).to.include.key('message');
+        expect(res.body.data[0].message).to.be.equal('Please, supply the status!');
         done();
       });
   });
   it('should return an error if token is not present', (done) => {
     request(App)
-      .get('/api/v1/incidents')
+      .put('/api/v1/auth/changestatus/1')
       .set('Accept', 'application/json')
       .end((err, res) => {
         expect(res.body).to.be.an('object');
         expect(res.status).to.be.equal(400);
         expect(res).to.have.status('400');
-        expect(res.body).to.include.keys('message');
-        expect(res.body.message).to.be.equal('Token is not provided');
+        expect(res.body).to.include.key('data');
+        expect(res.body.data[0]).to.include.key('error');
+        expect(res.body.data[0]).to.include.key('message');
+        expect(res.body.data[0].message).to.be.equal('Token is not provided');
         done();
       });
   });
 });
 
 // get users
-describe('GET /api/v1/users', () => {
+describe('GET /api/v1/auth/allusers', () => {
   it('should get all users', (done) => {
     request(App)
-      .get('/api/v1/users')
+      .get('/api/v1/auth/allusers')
       .set('Accept', 'application/json')
       .set('authorization', token)
       .end((err, res) => {
         expect(res.body).to.be.an('object');
         expect(res.status).to.be.equal(200);
         expect(res).to.have.status('200');
+        expect(res.body).to.include.key('rows');
+        expect(res.body).to.include.key('rowCount');
         done();
       });
   });
   it('should return an error if token is not present', (done) => {
     request(App)
-      .get('/api/v1/incidents')
+      .get('/api/v1/auth/allusers')
       .set('Accept', 'application/json')
       .end((err, res) => {
         expect(res.body).to.be.an('object');
         expect(res.status).to.be.equal(400);
         expect(res).to.have.status('400');
-        expect(res.body).to.include.keys('message');
-        expect(res.body.message).to.be.equal('Token is not provided');
+        expect(res.body).to.include.key('data');
+        expect(res.body.data[0]).to.include.key('error');
+        expect(res.body.data[0]).to.include.key('message');
+        expect(res.body.data[0].message).to.be.equal('Token is not provided');
         done();
       });
   });
@@ -222,10 +232,10 @@ describe('GET /api/v1/users', () => {
 // });
 
 // send sms
-describe('POST /api/v1/sms', () => {
+describe('POST /api/v1/auth/sendsms', () => {
   it('should send a sms', (done) => {
     request(App)
-      .post('/api/v1/sms')
+      .post('/api/v1/auth/sendsms')
       .set('Accept', 'application/json')
       .set('authorization', token)
       .send({
@@ -236,12 +246,15 @@ describe('POST /api/v1/sms', () => {
         expect(res.body).to.be.an('object');
         expect(res.status).to.be.equal(200);
         expect(res).to.have.status('200');
+        expect(res.body).to.include.key('data');
+        expect(res.body.data[0]).to.include.key('status');
+        expect(res.body.data[0]).to.include.key('message');
         done();
       });
   });
   it('should return an error if details are not complete/provided', (done) => {
     request(App)
-      .post('/api/v1/mail')
+      .post('/api/v1/auth/sendsms')
       .set('Accept', 'application/json')
       .set('authorization', token)
       .send({
@@ -252,22 +265,25 @@ describe('POST /api/v1/sms', () => {
         expect(res.body).to.be.an('object');
         expect(res.status).to.be.equal(400);
         expect(res).to.have.status('400');
-        expect(res.body).to.include.key('error');
-        expect(res.body).to.include.key('message');
-        expect(res.body.message).to.be.equal('Please, supply all the required information');
+        expect(res.body).to.include.key('data');
+        expect(res.body.data[0]).to.include.key('error');
+        expect(res.body.data[0]).to.include.key('message');
+        expect(res.body.data[0].message).to.be.equal('Please, supply all the required information');
         done();
       });
   });
   it('should return an error if token is not present', (done) => {
     request(App)
-      .get('/api/v1/incidents')
+      .post('/api/v1/auth/sendsms')
       .set('Accept', 'application/json')
       .end((err, res) => {
         expect(res.body).to.be.an('object');
         expect(res.status).to.be.equal(400);
         expect(res).to.have.status('400');
-        expect(res.body).to.include.keys('message');
-        expect(res.body.message).to.be.equal('Token is not provided');
+        expect(res.body).to.include.key('data');
+        expect(res.body.data[0]).to.include.key('error');
+        expect(res.body.data[0]).to.include.key('message');
+        expect(res.body.data[0].message).to.be.equal('Token is not provided');
         done();
       });
   });

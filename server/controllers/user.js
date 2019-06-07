@@ -2,7 +2,7 @@ import moment from 'moment';
 import db from '../db/index';
 import Helper from '../middleware/helper';
 
-// users
+
 class users {
   // To create an account
   static async createAccount(req, res) {
@@ -24,22 +24,22 @@ class users {
       const token = Helper.generateToken(rows[0].id);
       return res.status(201)
         .json({
-          status: '201',
           data:
-         [{
-           message:
+          [{
+            status: '201',
+            message:
             'Registration Successful!',
-           token,
-         }],
+            token,
+          }],
         });
     } catch (error) {
       if (error.routine === '_bt_check_unique') {
         return res.status(409)
           .json({
-            status: '409',
             data:
             [{
-              message: 'OOPS! This particular email has already been registered.',
+              error: '409',
+              message: 'OOPS! This particular email has already been registered',
             }],
           });
       }
@@ -52,13 +52,13 @@ class users {
     const { rows } = await db.query(text, [req.body.email]);
     const token = Helper.generateToken(rows[0].id);
     return res.status(200).json({
-      status: 200,
       data:
-        [{
-          message:
+      [{
+        status: 200,
+        message:
           'You have logged in successfully',
-          token,
-        }],
+        token,
+      }],
     });
   }
 
@@ -72,7 +72,13 @@ class users {
       const { rows } = await db.query(findQuery, [req.params.id]);
       if (!rows[0]) {
         return res.status(404)
-          .json({ message: 'Email not found' });
+          .json({
+            data:
+            [{
+              error: 404,
+              message: 'Email not found',
+            }],
+          });
       }
 
       const {
@@ -117,11 +123,11 @@ class users {
             }],
           });
       } if (rows[0]) {
-        return res.status(204)
+        return res.status(200)
           .json({
             data:
             [{
-              error: 204,
+              status: 200,
               message: 'Your account has been deleted!',
             }],
           });

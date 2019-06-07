@@ -8,15 +8,21 @@ class ValidateUser {
     try {
       if (!Helper.isValidEmail(req.body.email)) {
         return res.status(400).json({
-          error: '400',
-          message: 'Please, enter a valid email address!',
+          data:
+          [{
+            error: '400',
+            message: 'Please, enter a valid email address!',
+          }],
         });
       } if (!req.body.firstName || !req.body.lastName || !req.body.otherNames || !req.body.email
       || !req.body.phoneNumber || !req.body.userName || !req.body.isAdmin || !req.body.password) {
         return res.status(400)
           .json({
-            error: '400',
-            message: 'Please, supply all the information required!',
+            data:
+            [{
+              error: '400',
+              message: 'Please, supply all the information required!',
+            }],
           });
       }
     } catch (error) {
@@ -30,8 +36,11 @@ class ValidateUser {
   static async login(req, res, next) {
     if (!req.body.email || !req.body.password) {
       return res.status(400).json({
-        error: '400',
-        message: 'Please, supply all the information required!',
+        data:
+        [{
+          error: '400',
+          message: 'Please, supply all the information required!',
+        }],
       });
     }
     try {
@@ -40,14 +49,20 @@ class ValidateUser {
       if (!rows[0]) {
         return res.status(404)
           .json({
-            error: '404',
-            message: 'Wrong email or password!',
+            data:
+            [{
+              error: '404',
+              message: 'Wrong email or password!',
+            }],
           });
       } if (!Helper.comparePassword(rows[0].password, req.body.password)) {
         return res.status(404)
           .json({
-            error: '404',
-            message: 'Wrong email or password!',
+            data:
+            [{
+              error: '404',
+              message: 'Wrong email or password!',
+            }],
           });
       }
     } catch (error) {
