@@ -4,6 +4,7 @@
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/50122e27e00948b38339148c9e34b8af)](https://app.codacy.com/app/funmi5/ireporter?utm_source=github.com&utm_medium=referral&utm_content=funmi5/ireporter&utm_campaign=Badge_Grade_Dashboard)
 [![Coverage Status](https://coveralls.io/repos/github/funmi5/ireporter/badge.svg?branch=servertests)](https://coveralls.io/github/funmi5/ireporter?branch=servertests)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/6b7413f480f9c9ad5b04/test_coverage)](https://codeclimate.com/github/funmi5/ireporter/test_coverage)
+[![codecov](https://codecov.io/gh/funmi5/ireporter/branch/develop/graph/badge.svg)](https://codecov.io/gh/funmi5/ireporter)
 [![Maintainability](https://api.codeclimate.com/v1/badges/6b7413f480f9c9ad5b04/maintainability)](https://codeclimate.com/github/funmi5/ireporter/maintainability)
 [![Code style: airbnb](https://img.shields.io/badge/code%20style-airbnb-blue.svg?style=flat-square)](https://github.com/airbnb/javascript)
 [![GitHub](https://img.shields.io/github/license/funmi5/ireporter.svg?style=popout)](https://github.com/funmi5/ireporter/blob/develop/LICENSE)
