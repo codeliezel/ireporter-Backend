@@ -108,6 +108,10 @@ This features all the routes created in this project.
 
 <https://ireporter16.herokuapp.com/>
 
+## The API endpoints are well documented
+
+<https://ireporter100.docs.apiary.io/>
+
 ## Author
 
 Funmilayo E. Olaiya
