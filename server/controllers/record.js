@@ -81,6 +81,16 @@ class records {
   static async deleteAnIncident(req, res) {
     const deleteQuery = 'DELETE FROM incidents WHERE id=$1 returning *';
     const { rows } = await db.query(deleteQuery, [req.params.id]);
+    if (!rows[0]) {
+      return res.status(404)
+        .json({
+          data:
+            [{
+              error: '404',
+              message: 'Incident not found',
+            }],
+        });
+    }
     if (rows[0]) {
       return res.status(200).json({
         data:
