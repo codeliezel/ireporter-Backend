@@ -46,7 +46,7 @@ router.get('/api/v1/auth/allincidents', Auth.verifyToken, records.getAllIncident
 router.patch('/api/v1/auth/updateincident/:id', Auth.verifyToken, ValidateRecord.updateAnIncident, records.updateAnIncident);
 
 // user to delete an incident
-router.delete('/api/v1/auth/deleteincident/:id', Auth.verifyToken, ValidateRecord.deleteAnIncident, records.deleteAnIncident);
+router.delete('/api/v1/auth/deleteincident/:id', Auth.verifyToken, records.deleteAnIncident);
 
 
 // admin to log in

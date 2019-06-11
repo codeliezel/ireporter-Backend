@@ -68,43 +68,28 @@ class users {
     const updateOneQuery = `UPDATE users
       SET password=$1
       WHERE id=$2 returning *`;
-    try {
-      const { rows } = await db.query(findQuery, [req.params.id]);
-      if (!rows[0]) {
-        return res.status(404)
-          .json({
-            data:
-            [{
-              error: 404,
-              message: 'Email not found',
-            }],
-          });
-      }
+    const { rows } = await db.query(findQuery, [req.params.id]);
+    const {
+      password,
+    } = req.body;
 
-      const {
-        password,
-      } = req.body;
-
-      const hashPassword = Helper.hashPassword(password);
-      const values = [
-        hashPassword || rows[0].password,
-        req.params.id,
-      ];
-      const response = await db.query(updateOneQuery, values);
-      // return res.status(200).send(response.rows[0]);
-      return res.status(200)
-        .json(
-          {
-            data:
+    const hashPassword = Helper.hashPassword(password);
+    const values = [
+      hashPassword || rows[0].password,
+      req.params.id,
+    ];
+    // const response = await db.query(updateOneQuery, values);
+    // return res.status(200).send(response.rows[0]);
+    return res.status(200)
+      .json(
+        {
+          data:
             [{
               status: 200,
               message: 'A new password has been set!',
             }],
-          },
-        );
-    } catch (err) {
-      return res.status(400).send(err);
-    }
+        },
+      );
   }
 
 

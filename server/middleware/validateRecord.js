@@ -59,22 +59,6 @@ class ValidateRecord {
     }
     return next();
   }
-
-  static async deleteAnIncident(req, res, next) {
-    const deleteQuery = 'DELETE FROM incidents WHERE id=$1 returning *';
-    const { rows } = await db.query(deleteQuery, [req.params.id]);
-    if (!rows[0]) {
-      return res.status(404)
-        .json({
-          data:
-            [{
-              error: '404',
-              message: 'Incident not found',
-            }],
-        });
-    }
-    return next();
-  }
 }
 
 export default ValidateRecord;
