@@ -1,6 +1,8 @@
 language: node_js
 node_js:
   - "8.12.0"
+install:
+  - npm install -g codecov
 services:
   - postgres
 env:
@@ -11,7 +13,8 @@ before_script:
   - ./cc-test-reporter before-build
 after_script:
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
-  - mvn cobertura:cobertura
+  - istanbul cover ./node_modules/mocha/bin/_mocha --reporter lcovonly -- -R spec
+  - codecov
 cache:
   directories:
     - "node_modules"
