@@ -34,19 +34,19 @@ router.put('/api/v1/auth/resetpassword/:id', Auth.verifyToken, ValidateUser.rese
 
 
 // user to post/create incidents
-router.post('/api/v1/auth/incident', Auth.verifyToken, ValidateRecord.anincident, records.createIncident);
+router.post('/api/v1/auth/incident', Auth.verifyToken, ValidateRecord.createIncident, records.createIncident);
 
 // user to get an incident
-router.get('/api/v1/auth/anincident/:id', Auth.verifyToken, records.getOneIncident);
+router.get('/api/v1/auth/anincident/:id', Auth.verifyToken, ValidateRecord.getOneIncident, records.getOneIncident);
 
 // user to get all incidents
 router.get('/api/v1/auth/allincidents', Auth.verifyToken, records.getAllIncidents);
 
 // user to update an incident
-router.patch('/api/v1/auth/updateincident/:id', Auth.verifyToken, records.updateAnIncident);
+router.patch('/api/v1/auth/updateincident/:id', Auth.verifyToken, ValidateRecord.updateAnIncident, records.updateAnIncident);
 
 // user to delete an incident
-router.delete('/api/v1/auth/deleteincident/:id', Auth.verifyToken, records.deleteAnIncident);
+router.delete('/api/v1/auth/deleteincident/:id', Auth.verifyToken, ValidateRecord.deleteAnIncident, records.deleteAnIncident);
 
 
 // admin to log in
