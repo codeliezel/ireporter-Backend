@@ -42,7 +42,7 @@
     "build": "npm run clean && npm run build-babel",
     "start": "npm run build && node ./build/app.js",
     "start:dev": "nodemon --exec babel-node server/app.js",
-    "test": "nyc --reporter=html mocha --timeout 10000  --require @babel/register ./server/tests --recursive --exit || true",
+    "test": "nyc --reporter=html mocha --timeout 200000  --require @babel/register ./server/tests --recursive --exit || true",
     "coverage": "nyc report --reporter=text-lcov --reporter=lcov | coveralls"
   },
   "repository": {

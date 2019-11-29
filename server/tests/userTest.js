@@ -21,7 +21,7 @@ const signin = {
 };
 
 let request;
-describe('Test for the flag-property Endpoint', () => {
+describe('Test for the user Endpoint', () => {
   before(async () => {
     request = chai.request(App).keepOpen();
   });
@@ -54,6 +54,86 @@ describe('Test for the flag-property Endpoint', () => {
           done();
         });
     });
+    it('should return an error for conflicted email', (done) => {
+      chai
+        .request(App)
+        .post('/api/v1/user')
+        .set('Accept', 'application/json')
+        .send({
+          firstName: 'jane',
+          lastName: 'somori',
+          otherNames: 'sheryl',
+          email: 'janee@gmail.com',
+          phoneNumber: faker.random.number(),
+          userName: faker.name.findName(),
+          password: 'janeade',
+        })
+        .end((err, res) => {
+          expect(res.status).to.be.equal(409);
+          expect(res).to.have.status('409');
+          done();
+        });
+    });
+    it('should return an error for conflicted username', (done) => {
+      chai
+        .request(App)
+        .post('/api/v1/user')
+        .set('Accept', 'application/json')
+        .send({
+          firstName: 'jane',
+          lastName: 'somori',
+          otherNames: 'sheryl',
+          email: 'janedoe@gmail.com',
+          phoneNumber: faker.random.number(),
+          userName: 'jane11',
+          password: 'janeade1',
+        })
+        .end((err, res) => {
+          expect(res.status).to.be.equal(409);
+          expect(res).to.have.status('409');
+          done();
+        });
+    });
+    it('should return an error if the mail is not valid', (done) => {
+      chai
+        .request(App)
+        .post('/api/v1/user')
+        .set('Accept', 'application/json')
+        .send({
+          firstName: 'jane',
+          lastName: 'somori',
+          otherNames: 'sheryl',
+          email: 'janesomorigmail.com',
+          phoneNumber: faker.random.number(),
+          userName: faker.name.findName(),
+          password: 'janeade',
+        })
+        .end((err, res) => {
+          expect(res.status).to.be.equal(400);
+          expect(res).to.have.status('400');
+          done();
+        });
+    });
+    it('should return an error is one of the fields is not supplied', (done) => {
+      chai
+        .request(App)
+        .post('/api/v1/user')
+        .set('Accept', 'application/json')
+        .send({
+          firstName: 'jane',
+          lastName: 'somori',
+          otherNames: 'sheryl',
+          email: faker.internet.email(),
+          phoneNumber: faker.random.number(),
+          userName: faker.name.findName(),
+          password: '',
+        })
+        .end((err, res) => {
+          expect(res.status).to.be.equal(400);
+          expect(res).to.have.status('400');
+          done();
+        });
+    });
     it('should return a server error', async () => {
       const req = {};
       const res = {
@@ -80,6 +160,34 @@ describe('Test for the flag-property Endpoint', () => {
           expect(res.status).to.be.equal(200);
           expect(res).to.have.status('200');
           expect(res.body).to.include.key('data');
+          done();
+        });
+    });
+    it('should return an error is a field isnt supplied', (done) => {
+      chai.request(App)
+        .post('/api/v1/user/login')
+        .set('Accept', 'application/json')
+        .send({
+          email: 'janee@gmail.com',
+          password: '',
+        })
+        .end((err, res) => {
+          expect(res.status).to.be.equal(400);
+          expect(res).to.have.status('400');
+          done();
+        });
+    });
+    it('should return an error if the password is wrong', (done) => {
+      chai.request(App)
+        .post('/api/v1/user/login')
+        .set('Accept', 'application/json')
+        .send({
+          email: 'janee@gmail.com',
+          password: 'jane',
+        })
+        .end((err, res) => {
+          expect(res.status).to.be.equal(401);
+          expect(res).to.have.status('401');
           done();
         });
     });

@@ -24,6 +24,7 @@ class Users {
         status: '201', message: 'Registration successful', email, data: rows, token,
       });
     } catch (error) {
+      console.log(error);
       return res.status(500).json({ status: '500', error: 'Oops, there\'s an error!' });
     }
   }

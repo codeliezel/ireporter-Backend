@@ -21,9 +21,9 @@ class ValidateUser {
     const loginQuery = 'SELECT * FROM users WHERE email = $1';
     const { rows } = await db.query(loginQuery, [req.body.email]);
     if (!rows[0]) {
-      return res.status(404).json({ error: '401', message: 'Wrong email or password!' });
+      return res.status(401).json({ error: '401', message: 'Wrong email or password!' });
     } if (!Helper.comparePassword(rows[0].password, req.body.password)) {
-      return res.status(404).json({ error: '401', message: 'Wrong email or password!' });
+      return res.status(401).json({ error: '401', message: 'Wrong email or password!' });
     }
     next();
   }
@@ -32,7 +32,7 @@ class ValidateUser {
     const text = 'SELECT * FROM users WHERE email = $1';
     const { rows } = await db.query(text, [req.body.email]);
     if (rows[0]) {
-      return res.status(400).json({ status: '409', message: 'This email is not available, please use another' });
+      return res.status(409).json({ status: '409', message: 'This email is not available, please use another' });
     }
     next();
   }
@@ -41,7 +41,7 @@ class ValidateUser {
     const text = 'SELECT * FROM users WHERE userName = $1';
     const { rows } = await db.query(text, [req.body.userName]);
     if (rows[0]) {
-      return res.status(400).json({ status: '409', message: 'This username is not available, please use another' });
+      return res.status(409).json({ status: '409', message: 'This username is not available, please use another' });
     }
     next();
   }
