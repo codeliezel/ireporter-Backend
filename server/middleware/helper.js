@@ -1,5 +1,8 @@
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 class Helper {
   static hashPassword(password) {
@@ -15,8 +18,11 @@ class Helper {
     return /\S+@\S+\.\S+/.test(email);
   }
 
-  static generateToken(id) {
-    const token = jwt.sign({ userId: id }, process.env.SECRET_KEY, { expiresIn: '7d' });
+  static generateToken(id, username) {
+    const token = jwt.sign({
+      userid: id,
+      createdby: username,
+    }, process.env.SECRET_KEY, { expiresIn: '7d' });
     return token;
   }
 }

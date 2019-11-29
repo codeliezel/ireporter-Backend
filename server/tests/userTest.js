@@ -1,192 +1,165 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
-import request from 'supertest';
+import faker from 'faker';
+import sinon from 'sinon';
+import sinonChai from 'sinon-chai';
 import App from '../app';
+import Users from '../controllers/user';
+
+const {
+  createAccount, login, deactivateAccount, reactivateAccount,
+} = Users;
 
 const { expect } = chai;
-
-
+chai.use(chaiHttp);
+chai.use(sinonChai);
 chai.use(chaiHttp);
 
-const token = process.env.JWT_TOKEN;
+const signin = {
+  email: 'janee@gmail.com',
+  password: 'janeade',
+};
 
-// tests for a user to create an account with error handling
-// users test
-describe('POST api/v1/user', () => {
-  it('should return an error if the particular mail has already been registered', (done) => {
-    request(App)
-      .post('/api/v1/user')
-      .set('Accept', 'application/json')
-      .send({
-        firstName: 'ade',
-        lastName: 'johnson',
-        otherNames: 'jane',
-        email: 'jane@gmail.com',
-        phoneNumber: '4447777733773',
-        userName: 'ade-jane',
-        isAdmin: 'false',
-        password: 'janeade',
-      })
+let request;
+describe('Test for the flag-property Endpoint', () => {
+  before(async () => {
+    request = chai.request(App).keepOpen();
+  });
 
-      .end((err, res) => {
-        expect(res.status).to.be.equal(409);
-        expect(res).to.have.status('409');
-        expect(res.body).to.include.key('data');
-        expect(res.body.data[0]).to.include.key('error');
-        expect(res.body.data[0]).to.include.key('message');
-        expect(res.body.data[0].message).to.be.equal('OOPS! This particular email has already been registered');
-        done();
-      });
-  });
-  it("should return an error if the email address supplied isn't valid", (done) => {
-    request(App)
-      .post('/api/v1/user')
-      .set('Accept', 'application/json')
-      .send({
-        email: 'funmi0987@gmail.com',
-        password: '',
-      })
-      .end((err, res) => {
-        expect(res.status).to.be.equal(400);
-        expect(res).to.have.status('400');
-        expect(res.body).to.include.key('data');
-        expect(res.body.data[0]).to.include.key('error');
-        expect(res.body.data[0]).to.include.key('message');
-        done();
-      });
-  });
-});
+  afterEach(() => sinon.restore());
 
-// tests for a user to log in and error handling
+  after(() => request.close());
 
-describe('POST api/v1/user/login', () => {
-  it('should login a user', (done) => {
-    request(App)
-      .post('/api/v1/user/login')
-      .set('Accept', 'application/json')
-      .send({
-        email: 'funmiayo@gmail.com',
-        password: 'drosa',
-      })
-      .end((err, res) => {
-        expect(res.status).to.be.equal(200);
-        expect(res).to.have.status('200');
-        expect(res.body).to.include.key('data');
-        expect(res.body.data[0]).to.include.key('message');
-        expect(res.body.data[0]).to.include.key('token');
-        expect(res.body.data[0].message).to.be.equal('You have logged in successfully');
-        done();
-      });
-  });
-  it("should return an error if all the information required to login isn't supplied", (done) => {
-    request(App)
-      .post('/api/v1/user/login')
-      .set('Accept', 'application/json')
-      .send({
-        email: '',
-        password: '',
-      })
-      .end((err, res) => {
-        expect(res.status).to.be.equal(400);
-        expect(res).to.have.status('400');
-        expect(res.body).to.include.key('data');
-        expect(res.body.data[0]).to.include.key('error');
-        expect(res.body.data[0]).to.include.key('message');
-        expect(res.body.data[0].message).to.be.equal('Please, supply all the information required!');
-        done();
-      });
-  });
-  it('should return an error if the email address supplied by a user is not recognised', (done) => {
-    request(App)
-      .post('/api/v1/user/login')
-      .set('Accept', 'application/json')
-      .send({
-        email: 'funmi0987@gmail.com',
-        password: 'drosa',
-      })
-      .end((err, res) => {
-        expect(res.status).to.be.equal(404);
-        expect(res).to.have.status('404');
-        expect(res.body).to.include.key('data');
-        expect(res.body.data[0]).to.include.key('error');
-        expect(res.body.data[0]).to.include.key('message');
-        expect(res.body.data[0].message).to.be.equal('Wrong email or password!');
-        done();
-      });
-  });
-  it('should return an error if the password supplied by a user is incorrect', (done) => {
-    request(App)
-      .post('/api/v1/user/login')
-      .set('Accept', 'application/json')
-      .send({
-        email: 'funmiayo@gmail.com',
-        password: 'drosp',
-      })
-      .end((err, res) => {
-        expect(res.status).to.be.equal(404);
-        expect(res).to.have.status('404');
-        expect(res.body).to.include.key('data');
-        expect(res.body.data[0]).to.include.key('error');
-        expect(res.body.data[0]).to.include.key('message');
-        expect(res.body.data[0].message).to.be.equal('Wrong email or password!');
-        done();
-      });
-  });
-});
+  describe('POST api/v1/user', () => {
+    it('should return a successful message on sign up', (done) => {
+      chai
+        .request(App)
+        .post('/api/v1/user')
+        .set('Accept', 'application/json')
+        .send({
+          firstName: 'jane',
+          lastName: 'somori',
+          otherNames: 'sheryl',
+          email: faker.internet.email(),
+          phoneNumber: faker.random.number(),
+          userName: faker.name.findName(),
+          password: 'janeade',
+        })
+        .end((err, res) => {
+          expect(res.status).to.be.equal(201);
+          expect(res).to.have.status('201');
+          expect(res.body).to.include.key('data');
+          expect(res.body).to.include.key('status');
+          expect(res.body).to.include.key('message');
+          done();
+        });
+    });
+    it('should return a server error', async () => {
+      const req = {};
+      const res = {
+        status: () => {},
+        json: () => {},
+      };
+      sinon.stub(res, 'status').returnsThis();
 
-// tests for a user to reset password
-describe('PUT api/v1/auth/resetpassword/:id', () => {
-  it('should reset a password', (done) => {
-    request(App)
-      .put('/api/v1/auth/resetpassword/22')
-      .set('Accept', 'application/json')
-      .set('authorization', token)
-      .send({
-        password: 'drosa',
-      })
-      .end((err, res) => {
-        expect(res.status).to.be.equal(200);
-        expect(res).to.have.status('200');
-        expect(res.body).to.include.key('data');
-        expect(res.body.data[0]).to.include.key('status');
-        expect(res.body.data[0]).to.include.key('message');
-        expect(res.body.data[0].message).to.be.equal('A new password has been set!');
-        done();
-      });
+      await createAccount(req, res);
+      expect(res.status).to.have.been.calledWith(500);
+    });
   });
-});
 
+  describe('POST api/v1/user/login', () => {
+    it('should login a user', (done) => {
+      chai.request(App)
+        .post('/api/v1/user/login')
+        .set('Accept', 'application/json')
+        .send({
+          email: 'janee@gmail.com',
+          password: 'janeade',
+        })
+        .end((err, res) => {
+          expect(res.status).to.be.equal(200);
+          expect(res).to.have.status('200');
+          expect(res.body).to.include.key('data');
+          done();
+        });
+    });
+    it('should return a server error', async () => {
+      const req = {
+      };
+      const res = {
+        status: () => {},
+        json: () => {},
+      };
+      sinon.stub(res, 'status').returnsThis();
 
-describe('DELETE api/v1/auth/deleteaccount', () => {
-  it('should send an error if the user is not found', (done) => {
-    request(App)
-      .delete('/api/v1/auth/deleteaccount/1001')
-      .set('Accept', 'application/json')
-      .set('authorization', token)
-      .end((err, res) => {
-        expect(res.body).to.be.an('object');
-        expect(res.status).to.be.equal(404);
-        expect(res.body).to.include.key('data');
-        expect(res.body).to.include.key('data');
-        expect(res.body.data[0]).to.include.key('error');
-        expect(res.body.data[0]).to.include.key('message');
-        expect(res.body.data[0].message).to.be.equal('user not found');
-        done();
-      });
+      await login(req, res);
+      expect(res.status).to.have.been.calledWith(500);
+    });
   });
-  it('should return an error if token is not present', (done) => {
-    request(App)
-      .delete('/api/v1/auth/deleteaccount/3')
-      .set('Accept', 'application/json')
-      .end((err, res) => {
-        expect(res.body).to.be.an('object');
-        expect(res.status).to.be.equal(400);
-        expect(res).to.have.status('400');
-        expect(res.body).to.include.key('data');
-        expect(res.body.data[0]).to.include.key('error');
-        expect(res.body.data[0]).to.include.key('message');
-        expect(res.body.data[0].message).to.be.equal('Token is not provided');
-        done();
-      });
+
+  describe('POST api/v1/user/deactivate', () => {
+    it('should de-activate a user', (done) => {
+      chai.request(App)
+        .post('/api/v1/user/login')
+        .set('Accept', 'application/json')
+        .send(signin)
+        .end((logError, logResponse) => {
+          const token = process.env.JWT_TOKEN;
+          chai.request(App)
+            .patch('/api/v1/user/deactivate/2')
+            .set('Authorization', token)
+            .end((err, res) => {
+              expect(res.status).to.be.equal(200);
+              expect(res).to.have.status('200');
+              done();
+            });
+        });
+    });
+    it('should return a server error', async () => {
+      const req = {
+
+      };
+      const res = {
+        status: () => {},
+        json: () => {},
+      };
+      sinon.stub(res, 'status').returnsThis();
+
+      await deactivateAccount(req, res);
+      expect(res.status).to.have.been.calledWith(500);
+    });
+  });
+
+  describe('POST api/v1/user/reactivate', () => {
+    it('should re-activate a user', (done) => {
+      chai.request(App)
+        .post('/api/v1/user/login')
+        .set('Accept', 'application/json')
+        .send(signin)
+        .end((logError, logResponse) => {
+          const token = process.env.JWT_TOKEN;
+          chai.request(App)
+            .patch('/api/v1/user/reactivate/2')
+            .set('Authorization', token)
+            .end((err, res) => {
+              expect(res.status).to.be.equal(200);
+              expect(res).to.have.status('200');
+              done();
+            });
+        });
+    });
+    it('should return a server error', async () => {
+      const req = {
+
+      };
+      const res = {
+        status: () => {},
+        json: () => {},
+      };
+      sinon.stub(res, 'status').returnsThis();
+
+      await reactivateAccount(req, res);
+      expect(res.status).to.have.been.calledWith(500);
+    });
   });
 });

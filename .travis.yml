@@ -1,10 +1,8 @@
 language: node_js
 node_js:
   - "8.12.0"
-install:
-  - npm install -g codecov
 services:
-  - postgres
+  - postgresql
 env:
   global: CC_TEST_REPORTER_ID=a94f5a2246f7a1c7838034c41f374243ac559b1ef3ab29acc78b55094d67f337
 before_script:
@@ -13,8 +11,6 @@ before_script:
   - ./cc-test-reporter before-build
 after_script:
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
-  - istanbul cover ./node_modules/mocha/bin/_mocha --reporter lcovonly -- -R spec
-  - codecov
 cache:
   directories:
     - "node_modules"

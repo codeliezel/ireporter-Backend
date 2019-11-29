@@ -1,28 +1,32 @@
-
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
-  value: true,
+  value: true
 });
+exports.default = void 0;
 
-let _express = require('express');
+var _express = _interopRequireDefault(require("express"));
 
-let _express2 = _interopRequireDefault(_express);
+var _index = _interopRequireDefault(require("./routes/index"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-let bodyParser = require('body-parser');
+const bodyParser = require('body-parser');
 
-let app = (0, _express2.default)();
-let router = require('../routes/index.js');
+const app = (0, _express.default)();
 
-app.use(bodyParser.urlencoded({ extended: true }));
-router.use(bodyParser.json());
-app.use(router);
+require('dotenv').config();
 
-let port = process.env.PORT || 5000;
-
-app.listen(port, () => {
-  console.log('server running on port ' + port);
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
+app.use(_index.default);
+const port = process.env.PORT || 4000;
+const server = app.listen(port, () => {
+  console.log('server running on port 4000');
+  return server;
 });
-
-exports.default = app;
+var _default = app;
+exports.default = _default;
+//# sourceMappingURL=app.js.map
