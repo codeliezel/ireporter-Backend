@@ -1,248 +1,351 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
-import request from 'supertest';
+import faker from 'faker';
+import sinon from 'sinon';
+import sinonChai from 'sinon-chai';
 import App from '../app';
+import Records from '../controllers/record';
+
+const {
+  createIncident, updateAnIncident, getOneIncident, getAllIncidents, deleteAnIncident,
+} = Records;
 
 const { expect } = chai;
 chai.use(chaiHttp);
+chai.use(sinonChai);
+chai.use(chaiHttp);
+
+const signin = {
+  email: 'janee@gmail.com',
+  password: 'janeade',
+};
+
+const signin1 = {
+  email: 'jan@gmail.com',
+  password: 'janeade',
+};
+
+const signin2 = {
+  email: 'janefox@gmail.com',
+  password: 'janefox',
+};
+let request;
+describe('Test for the property Endpoints', () => {
+  before(async () => {
+    request = chai.request(App).keepOpen();
+  });
+
+  afterEach(() => sinon.restore());
+
+  after(() => request.close());
+
+  describe('POST api/v1/incident', () => {
+    it('should add a new incident', (done) => {
+      chai.request(App)
+        .post('/api/v1/user/login')
+        .set('Accept', 'application/json')
+        .send(signin)
+        .end((logError, logResponse) => {
+          const token = process.env.JWT_TOKEN;
+          chai.request(App)
+            .post('/api/v1/incident')
+            .set('Authorization', token)
+            .send({
+              type: 'intervention',
+              location: 'ff55667,6667',
+              status: 'in-review',
+              title: 'They stole my book',
+              comment: 'Political thugs visited me on a fateful sunday',
+            })
+            .end((err, res) => {
+              expect(res.status).to.be.equal(201);
+              expect(res).to.have.status('201');
+              done();
+            });
+        });
+    });
+    it('should return an error is token is not provided', (done) => {
+      chai.request(App)
+        .post('/api/v1/user/login')
+        .set('Accept', 'application/json')
+        .send(signin)
+        .end((logError, logResponse) => {
+          const token = process.env.JWT_TOKEN;
+          chai.request(App)
+            .post('/api/v1/incident')
+            .send({
+              type: 'intervention',
+              location: 'ff55667,6667',
+              status: 'in-review',
+              title: 'They stole my book',
+              comment: 'Political thugs visited me on a fateful sunday',
+            })
+            .end((err, res) => {
+              expect(res.status).to.be.equal(400);
+              expect(res).to.have.status('400');
+              done();
+            });
+        });
+    });
+    it('should return an error if the account is deactivated', (done) => {
+      chai.request(App)
+        .post('/api/v1/user/login')
+        .set('Accept', 'application/json')
+        .send(signin2)
+        .end((logError, logResponse) => {
+          const token = process.env.JWT_TOKEN2;
+          chai.request(App)
+            .post('/api/v1/incident')
+            .set('Authorization', token)
+            .send({
+              type: 'intervention',
+              location: 'ff55667,6667',
+              status: 'in-review',
+              title: 'They stole my book',
+              comment: 'Political thugs visited me on a fateful sunday',
+            })
+            .end((err, res) => {
+              expect(res.status).to.be.equal(400);
+              expect(res).to.have.status('400');
+              done();
+            });
+        });
+    });
+    it('should return an error if one of the fields isnt supplied', (done) => {
+      chai.request(App)
+        .post('/api/v1/user/login')
+        .set('Accept', 'application/json')
+        .send(signin)
+        .end((logError, logResponse) => {
+          const token = process.env.JWT_TOKEN;
+          chai.request(App)
+            .post('/api/v1/incident')
+            .set('Authorization', token)
+            .send({
+              type: 'intervention',
+              location: 'ff55667,6667',
+              status: 'in-review',
+              title: 'They stole my book',
+              comment: '',
+            })
+            .end((err, res) => {
+              expect(res.status).to.be.equal(400);
+              expect(res).to.have.status('400');
+              done();
+            });
+        });
+    });
+    it('should return an access denied error', (done) => {
+      chai.request(App)
+        .post('/api/v1/user/login')
+        .set('Accept', 'application/json')
+        .send(signin)
+        .end((logError, logResponse) => {
+          const token = process.env.JWT_TOKEN;
+          chai.request(App)
+            .patch('/api/v1/user/deactivate/1')
+            .set('Authorization', token)
+            .end((err, res) => {
+              expect(res.status).to.be.equal(422);
+              expect(res).to.have.status('422');
+              done();
+            });
+        });
+    });
+    it('should return a server error', async () => {
+      const req = {};
+      const res = {
+        status: () => {},
+        json: () => {},
+      };
+      sinon.stub(res, 'status').returnsThis();
+
+      await createIncident(req, res);
+      expect(res.status).to.have.been.calledWith(500);
+    });
+  });
+
+  describe('UPDATE api/v1/updateincident/:id', () => {
+    it('should update an incident', (done) => {
+      chai.request(App)
+        .post('/api/v1/user/login')
+        .set('Accept', 'application/json')
+        .send(signin)
+        .end((logError, logResponse) => {
+          const token = process.env.JWT_TOKEN;
+          chai.request(App)
+            .patch('/api/v1/updateincident/9')
+            .set('Authorization', token)
+            .send({
+              type: 'intervention',
+              location: 'ff55667,6667',
+              status: 'in-review',
+              title: 'They stole my book',
+              comment: 'Political thugs visited me on a fateful saturday',
+            })
+            .end((err, res) => {
+              expect(res.status).to.be.equal(200);
+              expect(res).to.have.status('200');
+              done();
+            });
+        });
+    });
+    it('should return a server error', async () => {
+      const req = {};
+      const res = {
+        status: () => {},
+        json: () => {},
+      };
+      sinon.stub(res, 'status').returnsThis();
+
+      await updateAnIncident(req, res);
+      expect(res.status).to.have.been.calledWith(500);
+    });
+  });
 
 
-const token = process.env.JWT_TOKEN;
+  describe('GET api/v1/anincident/:id', () => {
+    it('should get an incident', (done) => {
+      chai.request(App)
+        .post('/api/v1/user/login')
+        .set('Accept', 'application/json')
+        .send(signin)
+        .end((logError, logResponse) => {
+          const token = process.env.JWT_TOKEN;
+          chai.request(App)
+            .get('/api/v1/anincident/9')
+            .set('Authorization', token)
+            .end((err, res) => {
+              expect(res.status).to.be.equal(200);
+              expect(res).to.have.status('200');
+              done();
+            });
+        });
+    });
+    it('should return an error when getting an incident', (done) => {
+      chai.request(App)
+        .post('/api/v1/user/login')
+        .set('Accept', 'application/json')
+        .send(signin1)
+        .end((logError, logResponse) => {
+          const token = process.env.JWT_TOKEN1;
+          chai.request(App)
+            .get('/api/v1/anincident/10000')
+            .set('Authorization', token)
+            .end((err, res) => {
+              expect(res.status).to.be.equal(404);
+              expect(res).to.have.status('404');
+              done();
+            });
+        });
+    });
+    it('should return an error if access denied when getting incident', (done) => {
+      chai.request(App)
+        .post('/api/v1/user/login')
+        .set('Accept', 'application/json')
+        .send(signin)
+        .end((logError, logResponse) => {
+          const token = process.env.JWT_TOKEN1;
+          chai.request(App)
+            .get('/api/v1/anincident/1')
+            .set('Authorization', token)
+            .end((err, res) => {
+              expect(res.status).to.be.equal(422);
+              expect(res).to.have.status('422');
+              done();
+            });
+        });
+    });
+    it('should return a server error', async () => {
+      const req = {};
+      const res = {
+        status: () => {},
+        json: () => {},
+      };
+      sinon.stub(res, 'status').returnsThis();
 
-// records test
-// get all incidents
-describe('GET /api/v1/auth/allincidents', () => {
-  it('should get all incidents', (done) => {
-    request(App)
-      .get('/api/v1/auth/allincidents')
-      .set('Accept', 'application/json')
-      .set('authorization', token)
-      .end((err, res) => {
-        expect(res.body).to.be.an('object');
-        expect(res.status).to.be.equal(200);
-        expect(res).to.have.status('200');
-        done();
-      });
+      await getOneIncident(req, res);
+      expect(res.status).to.have.been.calledWith(500);
+    });
   });
-  it('should return an error if token is not present', (done) => {
-    request(App)
-      .get('/api/v1/auth/allincidents')
-      .set('Accept', 'application/json')
-      .end((err, res) => {
-        expect(res.body).to.be.an('object');
-        expect(res.status).to.be.equal(400);
-        expect(res).to.have.status('400');
-        expect(res.body).to.include.key('data');
-        expect(res.body.data[0]).to.include.key('error');
-        expect(res.body.data[0]).to.include.key('message');
-        expect(res.body.data[0].message).to.be.equal('Token is not provided');
-        done();
-      });
-  });
-});
 
 
-// get one incident
-describe('GET /api/v1/auth/anincident/:id', () => {
-  it('should get an incident', (done) => {
-    request(App)
-      .get('/api/v1/auth/anincident/1')
-      .set('Accept', 'application/json')
-      .set('authorization', token)
-      .end((err, res) => {
-        expect(res.body).to.be.an('object');
-        expect(res.status).to.be.equal(200);
-        expect(res).to.have.status('200');
-        done();
-      });
-  });
-  it('should return an error if incident is not found', (done) => {
-    request(App)
-      .get('/api/v1/auth/anincident/976')
-      .set('Accept', 'application/json')
-      .set('authorization', token)
-      .end((err, res) => {
-        expect(res.body).to.be.an('object');
-        expect(res.status).to.be.equal(404);
-        expect(res).to.have.status('404');
-        expect(res.body).to.include.key('data');
-        expect(res.body.data[0]).to.include.key('error');
-        expect(res.body.data[0]).to.include.key('message');
-        expect(res.body.data[0].message).to.be.equal('Incident not found');
-        done();
-      });
-  });
-  it('should return an error if token is not present', (done) => {
-    request(App)
-      .get('/api/v1/auth/anincident/1')
-      .set('Accept', 'application/json')
-      .end((err, res) => {
-        expect(res.body).to.be.an('object');
-        expect(res.status).to.be.equal(400);
-        expect(res).to.have.status('400');
-        expect(res.body).to.include.key('data');
-        expect(res.body.data[0]).to.include.key('error');
-        expect(res.body.data[0]).to.include.key('message');
-        expect(res.body.data[0].message).to.be.equal('Token is not provided');
-        done();
-      });
-  });
-});
+  describe('GET api/v1/allincidents', () => {
+    it('should get all incidents', (done) => {
+      chai.request(App)
+        .post('/api/v1/user/login')
+        .set('Accept', 'application/json')
+        .send(signin)
+        .end((logError, logResponse) => {
+          const token = process.env.JWT_TOKEN;
+          chai.request(App)
+            .get('/api/v1/allincidents')
+            .set('Authorization', token)
+            .end((err, res) => {
+              expect(res.status).to.be.equal(200);
+              expect(res).to.have.status('200');
+              done();
+            });
+        });
+    });
+    it('should return an error if there are no incidents', (done) => {
+      chai.request(App)
+        .post('/api/v1/user/login')
+        .set('Accept', 'application/json')
+        .send(signin1)
+        .end((logError, logResponse) => {
+          const token = process.env.JWT_TOKEN1;
+          chai.request(App)
+            .get('/api/v1/allincidents')
+            .set('Authorization', token)
+            .end((err, res) => {
+              expect(res.status).to.be.equal(404);
+              expect(res).to.have.status('404');
+              done();
+            });
+        });
+    });
+    it('should return a server error', async () => {
+      const req = {};
+      const res = {
+        status: () => {},
+        json: () => {},
+      };
+      sinon.stub(res, 'status').returnsThis();
 
-// create an incident
+      await getAllIncidents(req, res);
+      expect(res.status).to.have.been.calledWith(500);
+    });
+  });
 
-describe('POST /api/v1/auth/incident', () => {
-  it('should create an incident', (done) => {
-    request(App)
-      .post('/api/v1/auth/incident')
-      .set('Accept', 'application/json')
-      .set('authorization', token)
-      .send({
-        createdOn: '',
-        createdBy: ' Folu Ola',
-        type: 'red-flag',
-        location: '333333387,9999993993',
-        status: 'under investigation',
-        title: 'A log of wood over the bridge',
-        comment: ' A log of wood fell over the bridge and killed millions of people',
-      })
-      .end((err, res) => {
-        expect(res.body).to.be.an('object');
-        expect(res.status).to.be.equal(201);
-        expect(res).to.have.status('201');
-        expect(res.body).to.include.key('data');
-        expect(res.body.data[0]).to.include.key('status');
-        expect(res.body.data[0]).to.include.key('message');
-        expect(res.body.data[0].message).to.equal('Incident created successfully!');
-        done();
-      });
-  });
-  it('should return an error if one or all the fields are not supplied', (done) => {
-    request(App)
-      .post('/api/v1/auth/incident')
-      .set('Accept', 'application/json')
-      .set('authorization', token)
-      .send({
-        createdBy: '',
-        type: 'red-flag',
-        location: '333333387,9999993993',
-        status: 'under investigation',
-        title: 'A log of wood over the bridge',
-        comment: ' A log of wood fell over the bridge and killed millions of people',
-      })
-      .end((err, res) => {
-        expect(res.body).to.be.an('object');
-        expect(res.status).to.be.equal(400);
-        expect(res).to.have.status('400');
-        expect(res.body).to.include.key('data');
-        expect(res.body.data[0]).to.include.key('error');
-        expect(res.body.data[0]).to.include.key('message');
-        expect(res.body.data[0].message).to.equal('Please, supply all the information required!');
-        done();
-      });
-  });
-  it('should return an error if token is not present', (done) => {
-    request(App)
-      .post('/api/v1/auth/incident')
-      .set('Accept', 'application/json')
-      .end((err, res) => {
-        expect(res.body).to.be.an('object');
-        expect(res.status).to.be.equal(400);
-        expect(res).to.have.status('400');
-        expect(res.body).to.include.key('data');
-        expect(res.body.data[0]).to.include.key('error');
-        expect(res.body.data[0]).to.include.key('message');
-        expect(res.body.data[0].message).to.be.equal('Token is not provided');
-        done();
-      });
-  });
-});
+  describe('DELETE api/v1/deleteincident/:id', () => {
+    it('should delete an incident', (done) => {
+      chai.request(App)
+        .post('/api/v1/user/login')
+        .set('Accept', 'application/json')
+        .send(signin)
+        .end((logError, logResponse) => {
+          const token = process.env.JWT_TOKEN;
+          chai.request(App)
+            .get('/api/v1/deleteincident/1000000000')
+            .set('Authorization', token)
+            .end((err, res) => {
+              expect(res.status).to.be.equal(404);
+              expect(res).to.have.status('404');
+              done();
+            });
+        });
+    });
+    it('should return a server error', async () => {
+      const req = {};
+      const res = {
+        status: () => {},
+        json: () => {},
+      };
+      sinon.stub(res, 'status').returnsThis();
 
-describe('PATCH /api/v1/auth/updateincident/:id', () => {
-  it('should update an incident', (done) => {
-    request(App)
-      .patch('/api/v1/auth/updateincident/1')
-      .set('Accept', 'application/json')
-      .set('authorization', token)
-      .send({
-        location: '99999,99999999',
-        title: 'A log of wood over the bridge',
-        comment: ' A log of wood fell over the bridge and killed millions of people',
-      })
-      .end((err, res) => {
-        expect(res.body).to.be.an('object');
-        expect(res.status).to.be.equal(200);
-        expect(res).to.have.status('200');
-        done();
-      });
-  });
-  it('should return an error if one or all fields are not supplied', (done) => {
-    request(App)
-      .patch('/api/v1/auth/updateincident/1')
-      .set('Accept', 'application/json')
-      .set('authorization', token)
-      .send({
-        location: '',
-        title: 'A log of wood over the bridge',
-        comment: ' A log of wood fell over the bridge and killed millions of people',
-      })
-      .end((err, res) => {
-        expect(res.body).to.be.an('object');
-        expect(res.status).to.be.equal(400);
-        expect(res).to.have.status('400');
-        expect(res.body).to.include.key('data');
-        expect(res.body.data[0]).to.include.key('error');
-        expect(res.body.data[0]).to.include.key('message');
-        expect(res.body.data[0].message).to.equal('Please, supply all the information required!');
-        done();
-      });
-  });
-  it('should return an error if token is not present', (done) => {
-    request(App)
-      .patch('/api/v1/auth/updateincident/1')
-      .set('Accept', 'application/json')
-      .end((err, res) => {
-        expect(res.body).to.be.an('object');
-        expect(res.status).to.be.equal(400);
-        expect(res).to.have.status('400');
-        expect(res.body).to.include.key('data');
-        expect(res.body.data[0]).to.include.key('error');
-        expect(res.body.data[0]).to.include.key('message');
-        expect(res.body.data[0].message).to.be.equal('Token is not provided');
-        done();
-      });
-  });
-});
-
-describe('DELETE api/v1/auth/deleteincident/:id', () => {
-  it('should send an error if the incident is not found', (done) => {
-    request(App)
-      .delete('/api/v1/auth/deleteincident/1001')
-      .set('Accept', 'application/json')
-      .set('authorization', token)
-      .end((err, res) => {
-        expect(res.body).to.be.an('object');
-        expect(res.status).to.be.equal(404);
-        expect(res.body).to.include.key('data');
-        expect(res.body.data[0]).to.include.key('error');
-        expect(res.body.data[0]).to.include.key('message');
-        expect(res.body.data[0].message).to.be.equal('Incident not found');
-        done();
-      });
-  });
-  it('should return an error if token is not present', (done) => {
-    request(App)
-      .delete('/api/v1/auth/deleteincident/1001')
-      .set('Accept', 'application/json')
-      .end((err, res) => {
-        expect(res.body).to.be.an('object');
-        expect(res.status).to.be.equal(400);
-        expect(res).to.have.status('400');
-        expect(res.body).to.include.key('data');
-        expect(res.body.data[0]).to.include.key('error');
-        expect(res.body.data[0]).to.include.key('message');
-        expect(res.body.data[0].message).to.be.equal('Token is not provided');
-        done();
-      });
+      await deleteAnIncident(req, res);
+      expect(res.status).to.have.been.calledWith(500);
+    });
   });
 });

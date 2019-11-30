@@ -4,7 +4,7 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
+  connectionString: process.env.DEV_DATABASE_URL,
 });
 
 
@@ -22,11 +22,12 @@ const createUsersTable = () => {
         lastName VARCHAR(50) NOT NULL,
         otherNames VARCHAR(50) NOT NULL,
         email VARCHAR(50) UNIQUE NOT NULL,
-        phoneNumber VARCHAR(50),
-        userName VARCHAR(20),
-        registered TIMESTAMP,
-        isAdmin BOOLEAN DEFAULT false,
-        password VARCHAR(128) NOT NULL
+        phoneNumber VARCHAR(50) UNIQUE NOT NULL,
+        userName VARCHAR(20) UNIQUE NOT NULL,
+        password VARCHAR(128) NOT NULL,
+        isActive BOOLEAN DEFAULT true,
+        createdOn TIMESTAMP,
+        updatedOn TIMESTAMP
       )`;
 
   pool.query(queryText)
@@ -41,19 +42,19 @@ const createUsersTable = () => {
     });
 };
 
-// create incidents table
-
 const createIncidentsTable = () => {
   const queryText = `CREATE TABLE IF NOT EXISTS
       incidents(
         id SERIAL PRIMARY KEY,
-        createdOn TIMESTAMP,
-        createdBy TEXT NOT NULL,
-        type TEXT NOT NULL,
+        userId INTEGER REFERENCES users(id),
+        createdBy VARCHAR REFERENCES Users(userName),
+        type VARCHAR(30),
         location TEXT NOT NULL,
-        status VARCHAR(50),
+        status VARCHAR(30) DEFAULT 'in-review',
         title TEXT NOT NULL,
-        comment TEXT NOT NULL
+        comment TEXT NOT NULL,
+        createdOn TIMESTAMP,
+        updatedOn TIMESTAMP
       )`;
 
   pool.query(queryText)
@@ -72,7 +73,7 @@ const createIncidentsTable = () => {
 // Drop Users Table
 
 const dropUsersTable = () => {
-  const queryText = 'DROP TABLE IF EXISTS users';
+  const queryText = 'DROP TABLE IF EXISTS users CASCADE';
   pool.query(queryText)
     .then((res) => {
       console.log(res);

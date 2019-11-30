@@ -1,14 +1,8 @@
 # iReporter
 
 [![Build Status](https://travis-ci.org/funmi5/ireporter.svg?branch=develop)](https://travis-ci.org/funmi5/ireporter)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/50122e27e00948b38339148c9e34b8af)](https://app.codacy.com/app/funmi5/ireporter?utm_source=github.com&utm_medium=referral&utm_content=funmi5/ireporter&utm_campaign=Badge_Grade_Dashboard)
-[![codebeat badge](https://codebeat.co/badges/cecb2e9e-2f0c-4e59-9a8f-44c8c5a9d2e4)](https://codebeat.co/projects/github-com-funmi5-ireporter-develop)
-[![Coverage Status](https://coveralls.io/repos/github/funmi5/ireporter/badge.svg?branch=servertests)](https://coveralls.io/github/funmi5/ireporter?branch=servertests)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/6b7413f480f9c9ad5b04/test_coverage)](https://codeclimate.com/github/funmi5/ireporter/test_coverage)
-[![codecov](https://codecov.io/gh/funmi5/ireporter/branch/develop/graph/badge.svg)](https://codecov.io/gh/funmi5/ireporter)
 [![Maintainability](https://api.codeclimate.com/v1/badges/6b7413f480f9c9ad5b04/maintainability)](https://codeclimate.com/github/funmi5/ireporter/maintainability)
-[![Code style: airbnb](https://img.shields.io/badge/code%20style-airbnb-blue.svg?style=flat-square)](https://github.com/airbnb/javascript)
-[![GitHub](https://img.shields.io/github/license/funmi5/ireporter.svg?style=popout)](https://github.com/funmi5/ireporter/blob/develop/LICENSE)
 
 ## Features
 
@@ -17,25 +11,13 @@
 - Users can create intervention record(a government agency call) to intervene.
 - Users can edit their red-flag or intervention records.  
 - Users can delete their red-flag or intervention records.
-- Users can add geographical location(Lat Long Coordinates) to their records.
+- Users can add geographical location(Lat/Long Coordinates) to their records.
 - Users can change the geographical location attached to their records.
 - Admin can change the status of a record to either after record reviews.
 
-## Other Features
-
-- Users can add images to their records, to support their claims.
-- Users can add videos to their records, to support their claims.
-- The user gets an email notification when the Admin acts on their record.
-- The user gets a message notification when the Admin acts on their record.
-
 ## The tools used in the creation of this project
 
-- Node.js & Express.
-- Eslint.
-- Mocha, Chai, Istanbul & NYC for testing.
-- Mocha, Chai, Istanbul & NYC for testing.
-- Babel(To transpire down from ES6 to ES5
-- Travis CI, Coveralls, Code climate and Codacy.
+- Node, Express, Postgres
 
 ## Getting started
 
@@ -43,12 +25,17 @@
 - Have Git, Node.js installed on your computer.
 - use this link: ```https://github.com/funmi5/ireporter.git``` to clone it.
 
-```bash
--  cd into the project and run **npm start**
--  For testing, run **npm test**
 ```
 
-## Core details
+-  Cd into the project
+-  Create a .env file and add the necessary variables
+-  Run npm install to install the modules used in the course of this project
+-  Run npm start
+-  Run npm test for unit-tests
+  
+```
+
+## Core project details
 
 ## HTTP Request Methods
 
@@ -108,10 +95,6 @@ This features all the routes created in this project.
 ## The API endpoints are hosted on Heroku
 
 <https://ireporter16.herokuapp.com/>
-
-## The API endpoints are well documented
-
-<https://ireporter100.docs.apiary.io/>
 
 ## Author
 
