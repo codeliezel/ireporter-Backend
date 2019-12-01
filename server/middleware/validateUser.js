@@ -46,6 +46,15 @@ class ValidateUser {
     next();
   }
 
+  static async conflictPhoneNumber(req, res, next) {
+    const text = 'SELECT * FROM users WHERE phoneNumber = $1';
+    const { rows } = await db.query(text, [req.body.phoneNumber]);
+    if (rows[0]) {
+      return res.status(409).json({ status: '409', message: 'This phone number is not available, please use another' });
+    }
+    next();
+  }
+
 
   static async accessDenied(req, res, next) {
     const { id } = req.user;

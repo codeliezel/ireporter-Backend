@@ -94,6 +94,26 @@ describe('Test for the user Endpoint', () => {
           done();
         });
     });
+    it('should return an error for conflicted phone number', (done) => {
+      chai
+        .request(App)
+        .post('/api/v1/user')
+        .set('Accept', 'application/json')
+        .send({
+          firstName: 'jane',
+          lastName: 'somori',
+          otherNames: 'sheryl',
+          email: 'janedoerex@gmail.com',
+          phoneNumber: '0000000000068',
+          userName: 'jane100',
+          password: 'janeade1',
+        })
+        .end((err, res) => {
+          expect(res.status).to.be.equal(409);
+          expect(res).to.have.status('409');
+          done();
+        });
+    });
     it('should return an error if the mail is not valid', (done) => {
       chai
         .request(App)
