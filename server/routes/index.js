@@ -21,6 +21,7 @@ router.post('/api/v1/user',
   ValidateUser.createAccount,
   ValidateUser.conflictEmail,
   ValidateUser.conflictUsername,
+  ValidateUser.conflictPhoneNumber,
   Users.createAccount);
 
 router.post('/api/v1/user/login',
