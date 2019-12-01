@@ -37,7 +37,6 @@ These are the HTTP request methods used in this project:
 |---       | ---                                                         |
 | `GET`    | This method is used to *get* a resource                     |
 | `POST`   | This method is used to *create* a resource or *send* data   |
-| `PUT`    | This method is used to *create/overwrite* a resource        |
 | `PATCH`  | This method is used to *update* a resource                  |
 | `DELETE` | This method is used to *delete* a resource                  |
 
@@ -54,6 +53,7 @@ These are the HTTP response codes used in this project:
 |  `401`       | This `unauthorised error` status code indicates that the page can't be accessed without valid credentials        |
 |  `404`       | This `not found` status code indicates that the request/resource asked for can not be found           |
 |  `409`       | This `conflict` status code indicates that the request--response asked for is conflicted              |
+|  `422`       | This `unprocessable error` status code indicates that the request can not be processed - access denied              |
 |  `500`       | This `internal server error` status code indicates that something has gone wrong on the web server    |
 
 <hr>
@@ -92,7 +92,7 @@ Sample test format:
 
 ```
 
-- For a user to sign in: ``
+- For a user to sign in: `https://ireporter7.herokuapp.com/api/v1/user/login`
   
 ```
 
@@ -102,12 +102,6 @@ Sample test format:
 }
 
 ```
-
-
-
-
-
-
 
 UI Templates - <a href= "https://funmi5.github.io/ireporter/UI">click on me</a>
 
