@@ -76,7 +76,8 @@ The routes featured in this project:
 
 Sample test format:
 
-- For a user to sign up: `https://ireporter7.herokuapp.com/api/v1/user`
+- For a user to sign up: `https://ireporter8.herokuapp.com/api/v1/user`
+`POST`
   
 ```
 
@@ -92,8 +93,9 @@ Sample test format:
 
 ```
 
-- For a user to sign in: `https://ireporter7.herokuapp.com/api/v1/user/login`
-  
+- For a user to sign in: `https://ireporter8.herokuapp.com/api/v1/user/login`
+`POST`  
+
 ```
 
 {
@@ -103,10 +105,92 @@ Sample test format:
 
 ```
 
+- For a user to deactivate his/her account: `https://ireporter8.herokuapp.com/api/v1/user/deactivate/:id`
+`PATCH`
+  
+```
+
+Sign into the user account and proceed to deactivate
+Headers - Authorization `token`
+
+```
+
+- For a user to reactivate his/her account: `https://ireporter8.herokuapp.com/api/v1/user/reactivate/:id`
+`PATCH`
+ 
+```
+
+Sign into the user account and proceed to reactivate
+Headers - Authorization `token`
+
+```
+
+- For a user to create an incident: `https://ireporter8.herokuapp.com/api/v1/incident`
+`POST`
+
+```
+
+Sign into the user account
+Headers - Authorization `token`
+
+{
+    "type":"intervention",
+    "location":"ff55667,6667",
+    "status":"in-review",
+    "title": "They stole my book",
+    "comment": "Political thugs visited me on a fateful sunday to steal my linear algebra notes knowing I would get an A1"
+}
+
+```
+
+- For a user to update an incident: `https://ireporter8.herokuapp.com/api/v1/updateincident/:id`
+`PATCH` 
+
+```
+
+Sign into the user account
+Headers - Authorization `token`
+
+{
+    "title": "Thieves stole my Linear Algebra notebook"
+}
+
+```
+
+- For a user to get an incident: `https://ireporter8.herokuapp.com/api/v1/anincident/:id`
+`GET` 
+
+```
+
+Sign into the user account
+Headers - Authorization `token`
+
+```
+
+- For a user to get all incidents: `https://ireporter8.herokuapp.com/api/v1/allincidents`
+`GET` 
+
+```
+
+Sign into the user account
+Headers - Authorization `token`
+
+```
+
+- For a user to delete an incident: `https://ireporter8.herokuapp.com/api/v1/deleteincident/:id`
+`DELETE` 
+
+```
+
+Sign into the user account
+Headers - Authorization `token`
+
+```
+
 UI Templates - <a href= "https://funmi5.github.io/ireporter/UI">click on me</a>
 
 Pivotal Tracker stories - <a href= "https://www.pivotaltracker.com/n/projects/2226969">click on me</a>
 
-Hosted API Endpoints - <a href= "https://ireporter7.herokuapp.com">click on me</a>
+Hosted API Endpoints - <a href= "https://ireporter8.herokuapp.com">click on me</a>
 
 Author - Funmilayo E. Olaiya
