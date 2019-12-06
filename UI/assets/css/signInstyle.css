@@ -1,46 +1,36 @@
-@font-face {
-  font-family: "Brawler Regular";
-  src: url('../fonts/Brawler-Regular.ttf');
-}
-* {
-font-family: "Brawler Regular";
-}
-
 body 
 {
-  margin: 0;
-    font-family: HelvLight;
-    background-color: #f2e6ff;
+  margin: 0%;
+  font-family: 'Quicksand', sans-serif;
+  background-color: white;
+  background-size: cover;
+  background-image: url('../../pictures/pic7.jpg');
 }
 
-
-
-#grad {
-    background-image: url('../../pictures/pic3.jpg');
-    height: 100vh;
-}
-
-.div {
-    background-color: white;
-    width: 60vh;
-    padding: 25px;
-    margin: 25px;
-    height: 65vh;
+ 
+.grad {
+  background-color: white;
+  width: 60vh;
+  padding: 25px;
+  height: 50vh;
+  margin-left: 35%;
 }
 
 @media (max-width: 800px){
   .div {width:200px}
   }
+    
 
-    /*The Form section*/
-input[type=text], [type=password] {
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    box-sizing: border-box;
-    border: 2px solid black;
-    border-radius: 4px;
-}
+/*The Form section*/
+    input[type=text], [type=password] {
+      width: 100%;
+      padding: 12px 20px;
+      margin: 8px 0;
+      box-sizing: border-box;
+      border: 1px solid purple;
+      border-radius: 4px;
+  }
+  
 
 
 /*The Navigation section*/
@@ -73,7 +63,7 @@ input[type=text], [type=password] {
     display: none;
   }
   
-  @media screen and (max-width: 600px) {
+  @media screen and (max-width: 800px) {
     .topnav a:not(:first-child) {display: none;}
     .topnav a.icon {
       float: right;
@@ -81,7 +71,7 @@ input[type=text], [type=password] {
     }
   }
   
-  @media screen and (max-width: 600px) {
+  @media screen and (max-width: 800px) {
     .topnav.responsive {position: relative;}
     .topnav.responsive .icon {
       position: absolute;
@@ -94,3 +84,38 @@ input[type=text], [type=password] {
       text-align: left;
     }
   }
+
+  .button {
+    border: none;
+    color: white;
+    padding: 10px 40px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 6px 2px;
+    cursor: pointer;
+    
+}
+  .button1 {
+    background-color: purple; 
+    color: white; 
+    border: 2px solid white;
+    
+}
+
+.button1:hover {
+    background-color: black;
+    color: white;
+}
+
+.button2 {
+    background-color: purple; 
+    color: white; 
+    border: 2px solid white;
+}
+
+.button2:hover {
+    background-color: black;
+    color: white;
+}
