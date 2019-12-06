@@ -1,15 +1,8 @@
-@font-face {
-  font-family: "Brawler Regular";
-  src: url('../fonts/Brawler-Regular.ttf');
-}
-* {
-font-family: "Brawler Regular";
-}
 body 
 {
-  margin: 0;
-    font-family: HelvLight;
-    background-color: #f2e6ff;
+  margin: 0%;
+  font-family: 'Quicksand', sans-serif;
+  background-color: white;
 }
 
 
