@@ -8,11 +8,13 @@ Sign Up - WACA
      <link rel = "Stylesheet" href = "assets/css/signUpstyle.css" />
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
      <script src = "assets/js/navigation.js"></script>
+     <link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet">
+
 
      
  </head>
     <body> 
-        <div id = "grad">
+        <div class = "grad">
 
           <div class="topnav" id="myTopnav">
                 <a href="index.html" class="active">Home</a>
@@ -30,7 +32,7 @@ Sign Up - WACA
         <div class="div" >
             <label>Join WACA by filling in the form: </label>
             <br><br><br>
-            <form >
+            <form align="left">
                 <label >First Name:</label>
                 <input type="text" id="fname" name="fname">
                 <label>Last Name:</label>
@@ -38,22 +40,19 @@ Sign Up - WACA
                 <label >Email:</label>
                 <input type="text" id="email" name="email">
                 <label >Put in a suitable password:</label>
-                <input type="password" id="pwd" name="pwd" value = "pwd">
+                <input type="password" id="pwd" name="pwd">
                 <input type="checkbox" onclick="Password()">Show Password
 
                 <br><br>
-                <button class="button button1">Sign up</button>
+                <a class="button button1" href = "./userProfile.html">Sign up</a>
                 
               </form>
             </div>
             <div align = "center">
               <font color = "white">
-              <p>2018<sup>&copy;</sup> WACA. All Rights Reserved. 
-              <br><br>
-              Contact information: WACAsupport@WACA.com </p>
-              </font>
+              <p>2020<sup>&copy;</sup> WACA. All Rights Reserved. 
               </div>  
         </div>
-        <script src="assets/js/signUp.js"></script>
+        <script src="assets/js/signUp.js"></script> 
     </body>
     </html>

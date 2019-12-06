@@ -4,16 +4,8 @@ import db from '../db/index';
 
 class ValidateRecord {
   static async createIncident(req, res, next) {
-    if (!req.body.createdBy || !req.body.type || !req.body.location
-             || !req.body.status || !req.body.title || !req.body.comment) {
-      return res.status(400)
-        .json({
-          data:
-              [{
-                error: '400',
-                message: 'Please, supply all the information required!',
-              }],
-        });
+    if (!req.body.type || !req.body.location || !req.body.status || !req.body.title || !req.body.comment) {
+      return res.status(400).json({ error: '400', message: 'Please, supply all the information required!' });
     }
     return next();
   }
@@ -22,42 +14,40 @@ class ValidateRecord {
     const text = 'SELECT * FROM incidents WHERE id = $1';
     const { rows } = await db.query(text, [req.params.id]);
     if (!rows[0]) {
-      return res.status(404)
-        .json({
-          data:
-            [{
-              error: '404',
-              message: 'Incident not found',
-            }],
-        });
+      return res.status(404).json({ error: '404', message: 'Incident not found' });
     }
     return next();
   }
 
-  static async updateAnIncident(req, res, next) {
-    const findOneQuery = 'SELECT * FROM incidents WHERE id=$1';
-    const { rows } = await db.query(findOneQuery, [req.params.id]);
-    if (!req.body.location || !req.body.title || !req.body.comment) {
-      return res.status(400)
-        .json({
-          data:
-         [{
-           error: '400',
-           message: 'Please, supply all the information required!',
-         }],
-        });
+  static async getAllIncident(req, res, next) {
+    const { id: userid } = req.user;
+    const text = 'SELECT * FROM incidents WHERE userid = $1';
+    const { rows } = await db.query(text, [userid]);
+    if (rows.length <= 0) {
+      return res.status(404).json({ status: 'error', error: 'No properties found!' });
     }
-    if (!rows[0]) {
-      return res.status(404)
-        .json({
-          data:
-            [{
-              error: 404,
-              message: 'Incident not found! ',
-            }],
-        });
+    next();
+  }
+
+
+  static async checkDeactivateAccount(req, res, next) {
+    const { id } = req.user;
+    const text = 'SELECT * FROM users WHERE id = $1 AND isActive = \'false\'';
+    const { rows } = await db.query(text, [id]);
+    if (rows[0]) {
+      return res.status(400).json({ status: '400', message: 'Your account is deactivated' });
     }
-    return next();
+    next();
+  }
+
+  static async accessDenied(req, res, next) {
+    const { id } = req.user;
+    const text = 'SELECT * FROM incidents WHERE id = $1';
+    const { rows } = await db.query(text, [req.params.id]);
+    if (rows[0].userid !== id) {
+      return res.status(422).json({ status: '422', error: 'Access Denied' });
+    }
+    next();
   }
 }
 

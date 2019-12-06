@@ -1,22 +1,14 @@
-@font-face {
-  font-family: "Brawler Regular";
-  src: url('../fonts/Brawler-Regular.ttf');
-}
-* {
-font-family: "Brawler Regular";
-}
-
 body 
 {
-  margin: 0;
-    font-family: HelvLight;
-    background-color: #f2e6ff;
+  margin: 0%;
+  font-family: 'Quicksand', sans-serif;
+  background-color: white;
 }
 
 
-#grad {
-    background-image: url('../../pictures/pic3.jpg');
-    height: 120vh;
+.grad {
+    background-image: url('../../pictures/pic7.jpg');
+    height: 100%;
     background-size: cover;
 }
  
@@ -40,7 +32,7 @@ body
       padding: 12px 20px;
       margin: 8px 0;
       box-sizing: border-box;
-      border: 2px solid black;
+      border: 1px solid purple;
       border-radius: 4px;
   }
   
@@ -97,3 +89,38 @@ body
       text-align: left;
     }
   }
+
+  .button {
+    border: none;
+    color: white;
+    padding: 10px 40px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 6px 2px;
+    cursor: pointer;
+    
+}
+  .button1 {
+    background-color: purple; 
+    color: white; 
+    border: 2px solid white;
+    
+}
+
+.button1:hover {
+    background-color: black;
+    color: white;
+}
+
+.button2 {
+    background-color: purple; 
+    color: white; 
+    border: 2px solid white;
+}
+
+.button2:hover {
+    background-color: black;
+    color: white;
+}

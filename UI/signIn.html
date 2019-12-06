@@ -8,39 +8,42 @@ Sign In - WACA
      <link rel = "Stylesheet" href = "assets/css/signInstyle.css" />
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
      <script src = "assets/js/navigation.js"></script>
- </head>
-    <body>
+     <link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet">
+</head>
+    <body> 
 
-                  <div class="topnav" id="myTopnav">
-                      <a href="index.html" class="active">Home</a>
-                      <a href="signOut.html">Sign out</a>
-                      <a href="about.html">About WACA</a>
-                      <a href="javascript:void(0);" class="icon" onclick="myFunction()">
-                                      <i class="fa fa-bars"></i>
-                                    </a>
-                    </div>
-          
-            <div id="grad">
-              <br><br>
-            <div align= "center">
-                    <div class="div" >
-                        <label> Sign into your account:</label>
-                        <br><br><br>
-                        <form>
-                            <label>Email:</label>
-                            <input type="text" id="email" name="email">
-                            <br><br>
-                            <label >Password:</label>
-                            <input type="password" id="pwd" name="pwd">
-                            <input type="checkbox" onclick="Password()">Show Password<br><br>
-                            <button class="button button1">Sign in</button>
-                            <br><br>
-                <p> You don't have an account?</p>
-                <a class="button button1" href = "signUp.html">Sign up here.</button>
+          <div class="topnav" id="myTopnav">
+                <a href="index.html" class="active">Home</a>
+                <a href="signIn.html">Sign up</a>
+                <a href="about.html">About WACA</a>
+                <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+                                <i class="fa fa-bars"></i>
+                              </a>
+              </div>
+
+
+       
+<br>
+        <div class = "grad" align= "center">
+        <div class="div" >
+            <br><br><br>
+            <form align="left">
+                <label >Email:</label>
+                <input type="text" id="email" name="email">
+                <label >Password:</label>
+                <input type="password" id="pwd" name="pwd">
+                <input type="checkbox" onclick="Password()">Show Password<br><br>
+
+                <a class="button button1" href = "./userProfile.html">Sign in</a>
+                
               </form>
             </div>
-            </div>
+            <br><br><br><br>   
+            <div align = "center">
+              <font color = "white">
+              <p>2020<sup>&copy;</sup> WACA. All Rights Reserved. 
+              </div>  
         </div>
-    
-        </body>
-        </html>
+        <script src="assets/js/signUp.js"></script> 
+    </body>
+    </html>

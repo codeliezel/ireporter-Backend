@@ -1,26 +1,11 @@
-@font-face {
-  font-family: "Brawler Regular";
-  src: url('../fonts/Brawler-Regular.ttf');
-}
-* {
-font-family: "Brawler Regular";
-}
-
-
 body 
 {
-    margin: 0;
-    font-family: HelvLight;
-    background-size: cover;
+  margin: 0%;
+  font-family: 'Quicksand', sans-serif;
+  background-color: white;
 }
-
-/*The header section*/
-
-header {
-    background-image: url('../../pictures/pic4.jpg');
-    height: 50vh;
-    
-    background-position: center;
+.about{
+  margin: 2%;
 }
 
 /*The Navigation section*/
