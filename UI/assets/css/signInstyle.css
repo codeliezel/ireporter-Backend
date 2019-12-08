@@ -3,21 +3,28 @@ body
   margin: 0%;
   font-family: 'Quicksand', sans-serif;
   background-color: white;
-  background-size: cover;
   background-image: url('../../pictures/pic7.jpg');
+  height: 100%;
+  background-size: cover;
 }
 
- 
-.grad {
-  background-color: white;
-  width: 60vh;
-  padding: 25px;
-  height: 50vh;
-  margin-left: 35%;
+.footer{
+  text-align: center;
+  color: white;
+  margin-top: 10%;
+}
+
+.div {
+    background-color: white;
+    width: 60vh;
+    padding: 25px;
+    margin: 25px;
+    height: 50vh;
 }
 
 @media (max-width: 800px){
   .div {width:200px}
+  .footer{margin-top: 40%; font-size: 0.7em;}
   }
     
 

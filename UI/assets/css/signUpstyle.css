@@ -12,6 +12,11 @@ body
     background-size: cover;
 }
  
+.footer{
+  text-align: center;
+  color: white;
+  margin-top: 2%;
+}
 
 .div {
     background-color: white;
@@ -23,6 +28,7 @@ body
 
 @media (max-width: 800px){
   .div {width:200px}
+  .footer{margin-top: 10%; font-size: 0.7em;}
   }
     
 
