@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+ <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+     <title>
+Incident - WACA
+     </title>
+     <link rel = "Stylesheet" href = "assets/css/incident.css" />
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+     <script src = "assets/js/navigation.js"></script>
+     <link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet">
+      <script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
+  <script>tinymce.init({ selector:'textarea' });</script>
+
+    </head>
+    <body>
+<header>
+
+      <div class="topnav" id="myTopnav">
+            <a href="index.html" class="active">Home</a>
+            <a href="./signUp.html">Sign Up</a>
+            <a href="./about.html">About WACA</a>
+            <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+                            <i class="fa fa-bars"></i>
+                          </a>
+          </div>
+
+</header>
+
+
+<div align= "center">
+        <div class="div" >
+            <label>Report a problem to us, let us take action!</label>
+            <br><br><br>
+            <form spellcheck="true" align="left">
+                <label >Exact address of Incidence:</label>
+                <input type="text" id="lname" name="lname">
+                <label >Give an appropriate title:</label>
+                <input type="text" id="title" name="title"><br>
+                <label >Describe the exact incident needed:</label><br><br>
+                <textarea rows="5" cols="90">
+                 Describe the incidence in full details:
+                    </textarea><br><br>
+                    
+                <label >The date it happened?</label>
+                <input type="date" id="date" name="date"><br><br>
+                <label>Add the geolocation:</label><br><br>
+                <label>Latitude:</label>
+                <input type="text" id="lat" name="lat"> 
+                <label>Longtitude:</label>
+                <input type="text" id="long" name="long"> <br><br>
+                <label>Select an image to upload:</label>
+                <input type="file" name="image1" id="image1"> 
+                <label >Select a video to upload:</label>
+                <input type="file" name="vid"><br><br>
+
+                <a class="button button1" href = "#">Submit</a>
+              </form>
+            </div>
+           
+        </div>
+        </div>
+        <p class ="footer">2020<sup>&copy;</sup> WACA. All Rights Reserved. </p>
+      </body>
+      </html>

@@ -9,12 +9,16 @@ Sign In - WACA
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
      <script src = "assets/js/navigation.js"></script>
      <link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet">
-</head>
+
+
+     
+ </head>
     <body> 
+        <div class = "grad">
 
           <div class="topnav" id="myTopnav">
                 <a href="index.html" class="active">Home</a>
-                <a href="signIn.html">Sign up</a>
+                <a href="signUp.html">Sign up</a>
                 <a href="about.html">About WACA</a>
                 <a href="javascript:void(0);" class="icon" onclick="myFunction()">
                                 <i class="fa fa-bars"></i>
@@ -24,26 +28,25 @@ Sign In - WACA
 
        
 <br>
-        <div class = "grad" align= "center">
+        <div id = "grad" align= "center">
         <div class="div" >
+            <label>Welcome back!: </label>
             <br><br><br>
             <form align="left">
                 <label >Email:</label>
                 <input type="text" id="email" name="email">
                 <label >Password:</label>
                 <input type="password" id="pwd" name="pwd">
-                <input type="checkbox" onclick="Password()">Show Password<br><br>
+                <input type="checkbox" onclick="Password()">Show Password
 
-                <a class="button button1" href = "./userProfile.html">Sign in</a>
+                <br><br>
+                <a class="button button1" href = "#">Sign In</a>
                 
               </form>
             </div>
-            <br><br><br><br>   
-            <div align = "center">
-              <font color = "white">
-              <p>2020<sup>&copy;</sup> WACA. All Rights Reserved. 
-              </div>  
         </div>
+
+        <p class="footer">2020<sup>&copy;</sup> WACA. All Rights Reserved. </p>
         <script src="assets/js/signUp.js"></script> 
     </body>
     </html>
